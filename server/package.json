@@ -1,0 +1,22 @@
+{
+  "name": "resume-architect-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e ts --exec npm run compile",
+    "compile": "tsc && node ./dist/index.js"
+  },
+  "author": "Cristi Cismas",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "typescript": "^3.7.4",
+    "@types/hapi": "^18.0.3",
+    "@types/node": "^13.1.2"
+  }
+}

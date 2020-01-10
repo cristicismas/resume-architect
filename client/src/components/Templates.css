@@ -1,0 +1,25 @@
+#templates .title {
+  font-size: 35px;
+  text-align: center;
+  margin-top: -70px;
+}
+
+#templates .template-previews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 70px auto;
+}
+
+#templates .template-previews img {
+  max-width: 550px;
+  margin: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px 0px #bbb;
+  transition: all 0.3s;
+}
+
+#templates .template-previews a:hover img {
+  box-shadow: 0 20px 30px 0px #aaa;
+  transform: translateY(-5px);
+}

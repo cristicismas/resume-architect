@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export default () => {
+const connectToDatabase = async () => {
   mongoose.connect(process.env.DATABASE_URL, {
     keepAlive: true,
     useNewUrlParser: true,
@@ -8,3 +8,5 @@ export default () => {
     useCreateIndex: true
   });
 };
+
+export default connectToDatabase;

@@ -2,6 +2,8 @@ import { Server } from '@hapi/hapi';
 import * as dotenv from 'dotenv';
 
 import connectToDatabase from './models/index';
+import configureCloudinary from './util/cloudinary';
+
 import { configureJWT } from './plugins/jwt';
 import routes from './routes/index';
 
@@ -23,7 +25,11 @@ const init = async () => {
   await server.start();
   console.log('Server running on %s', server.info.uri);
 
-  connectToDatabase();
+  await connectToDatabase();
+  console.log('Connected to MongoDB');
+
+  await configureCloudinary();
+  console.log('Connected to Cloudinary');
 };
 
 process.on('unhandledRejection', err => {

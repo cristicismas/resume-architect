@@ -47,7 +47,6 @@ export const login = async (credentials: IUser) => {
       token: createToken(user)
     };
   } catch (err) {
-    console.log(err);
     return err;
   }
 };

@@ -11,12 +11,12 @@ const Hero = () => {
           With ResumeArchitect, you can easily build a professional, scannable and printable resume by completing a simple form and choosing a template you like, for free.
         </p>
 
-        <a href="#" className="hero-cta">
+        <a href="/" className="hero-cta">
           Choose a Template
         </a>
       </div>
 
-      <a href="#" className="resume-sample-link"> 
+      <a href="/" className="resume-sample-link"> 
         <img className="resume-sample" src="resume-sample.png" alt="Resume Sample" />
       </a>
     </section>

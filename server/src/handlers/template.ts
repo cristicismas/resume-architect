@@ -7,6 +7,9 @@ export const getTemplateLinks = async () => {
 
   // Returns all template links with a .png extension in an array
   return templates.resources.map((pdf: IResume) => {
-    return `${pdf.secure_url.slice(0, -4)}.png`;
+    return {
+      name: pdf.public_id,
+      url: `${pdf.secure_url.slice(0, -4)}.png`
+    };
   });
 };

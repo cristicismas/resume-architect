@@ -13,7 +13,7 @@ const Templates = () => {
 
   const templatePreviews = templates.map(template => (
     <a href="#">
-      <img key={template} src={template} alt="Template Preview" />
+      <img key={template.name} src={template.url} alt="Template Preview" />
     </a>
   ));
 

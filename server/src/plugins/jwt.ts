@@ -24,6 +24,4 @@ export const configureJWT = async (server: Server) => {
     key: process.env.SECRET_KEY,
     validate
   });
-
-  server.auth.default('jwt');
 };

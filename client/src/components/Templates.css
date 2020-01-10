@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 70px auto;
+  margin: 70px 100px;
 }
 
 #templates .template-previews img {

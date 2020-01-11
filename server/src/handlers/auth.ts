@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcrypt';
+import * as Boom from '@hapi/boom';
 
 import { createToken } from '../util/jwt';
 import { IUser } from '../interfaces/user';
@@ -11,18 +12,22 @@ export const signup = async (credentials: IUser) => {
     const saltRounds = 10;
     const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
-    const user = await User.create({
-      username,
-      password: encryptedPassword
-    });
+    let user = null;
+    try {
+      user = await User.create({
+        username,
+        password: encryptedPassword
+      });
+    } catch (err) {
+      return Boom.badRequest('A user with that username already exists.');
+    }
 
     return {
       username: username,
       token: createToken(user)
     };
   } catch (err) {
-    console.log(err);
-    return err;
+    return Boom.badImplementation(err);
   }
 };
 
@@ -33,13 +38,13 @@ export const login = async (credentials: IUser) => {
     const user = await User.findOne({ username: username });
 
     if (!user) {
-      throw Error('Cannot find user with that username');
+      return Boom.badRequest('That user does not exist.');
     }
 
     const isPasswordValid = bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      throw Error('Your password is wrong.');
+      return Boom.badRequest('Your password is wrong.');
     }
 
     return {
@@ -47,6 +52,6 @@ export const login = async (credentials: IUser) => {
       token: createToken(user)
     };
   } catch (err) {
-    return err;
+    return Boom.badImplementation(err);
   }
 };

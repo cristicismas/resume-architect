@@ -4,6 +4,11 @@
   margin-top: -70px;
 }
 
+#templates .templates-spinner {
+  display: flex;
+  justify-content: center;
+}
+
 #templates .template-previews {
   display: flex;
   flex-wrap: wrap;
@@ -23,4 +28,23 @@
 #templates .template-previews a:hover img {
   box-shadow: 0 20px 30px 0px #aaa;
   transform: translateY(-5px);
+}
+
+#templates .show-more-btn {
+  opacity: .8;
+  display: block;
+  cursor: pointer;
+  margin: -50px auto 50px;
+  padding: 7px 10px;
+  font-size: 16px;
+  background-color: #00A2FF;
+  font-weight: bold;
+  color: #eee;
+  border: none;
+  border-radius: 5px;
+  transition: all .2s;
+}
+
+#templates .show-more-btn:hover {
+  opacity: 1;
 }

@@ -4,5 +4,8 @@ export const apiCall = async (method, path, data) => {
     body: data
   })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(err => {
+      console.log(err);
+    });
 };

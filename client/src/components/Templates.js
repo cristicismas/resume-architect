@@ -6,12 +6,20 @@ import Spinner from './Spinner';
 
 const Templates = () => {
   const [templates, setTemplates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    apiCall('GET', 'templates/previews').then(templates => {
-      setTemplates(templates);
-    });
+    fetchTemplatePreviews();
   }, []);
+
+  const fetchTemplatePreviews = () => {
+    setIsLoading(true);
+
+    apiCall('GET', 'templates/previews').then(newTemplates => {
+      setTemplates([...templates, ...newTemplates]);
+      setIsLoading(false);
+    });
+  };
 
   const templatePreviews = templates.map(template => (
     <a key={template.name} href="/">
@@ -23,7 +31,17 @@ const Templates = () => {
     <section id="templates">
       <h1 className="title">Pick a template!</h1>
 
-      <div className="template-previews">{!templates.length ? <Spinner /> : templatePreviews}</div>
+      {isLoading ? (
+        <div className="templates-spinner">
+          <Spinner />
+        </div>
+      ) : null}
+
+      <div className="template-previews">{templatePreviews}</div>
+
+      <button className="show-more-btn" type="button" onClick={() => fetchTemplatePreviews()}>
+        Show More
+      </button>
     </section>
   );
 };

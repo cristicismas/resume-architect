@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { apiCall } from '../utils/api';
 import './Templates.css';
 
+import Spinner from './Spinner';
+
 const Templates = () => {
   const [templates, setTemplates] = useState([]);
 
@@ -21,7 +23,7 @@ const Templates = () => {
     <section id="templates">
       <h1 className="title">Pick a template!</h1>
 
-      <div className="template-previews">{templatePreviews}</div>
+      <div className="template-previews">{!templates.length ? <Spinner /> : templatePreviews}</div>
     </section>
   );
 };

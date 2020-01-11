@@ -1,0 +1,19 @@
+.spinner {
+  border: 7px solid #04779D;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

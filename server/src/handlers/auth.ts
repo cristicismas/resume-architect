@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import * as Boom from '@hapi/boom';
 
-import { createToken } from '../util/jwt';
+import { createToken } from '../utils/jwt';
 import { IUser } from '../interfaces/user';
 import User from '../models/user';
 

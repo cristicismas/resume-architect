@@ -2,13 +2,13 @@ import { Server } from '@hapi/hapi';
 import * as dotenv from 'dotenv';
 
 import connectToDatabase from './models/index';
-import configureCloudinary from './util/cloudinary';
+import configureCloudinary from './utils/cloudinary';
 
 import { configureJWT } from './plugins/jwt';
 import routes from './routes/index';
 
-import { everyFifteenMinutes } from './util/cron';
-import { fetchTemplateLinks } from './util/templates';
+import { everyFifteenMinutes } from './utils/cron';
+import { fetchTemplateLinks } from './utils/templates';
 
 const init = async () => {
   dotenv.config();

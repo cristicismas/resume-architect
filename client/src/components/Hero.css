@@ -5,6 +5,7 @@
   min-height: 100vh;
   position: relative;
   top: -110px;
+  margin-bottom: -150px;
   background: rgb(7, 0, 124);
   background: linear-gradient(to bottom right, rgba(7, 0, 124, 1) 0%, rgba(0, 255, 194, 1) 100%);
   clip-path: polygon(0 0, 100% 0%, 100% 90%, 0 100%);

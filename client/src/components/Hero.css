@@ -1,19 +1,32 @@
 #hero {
+  min-height: 100vh;
+}
+
+#hero:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  background: linear-gradient(to bottom right, rgb(7, 0, 124) 0%, rgb(0, 255, 194) 100%);
+  width: 100%;
+  min-height: 100vh;
+}
+
+#hero .flex-group {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  min-height: 100vh;
   position: relative;
-  top: -110px;
-  margin-bottom: -150px;
-  background: rgb(7, 0, 124);
-  background: linear-gradient(to bottom right, rgba(7, 0, 124, 1) 0%, rgba(0, 255, 194, 1) 100%);
-  clip-path: polygon(0 0, 100% 0%, 100% 90%, 0 100%);
+  top: 10vh;
+  z-index: 10;
+}
+
+#hero .flex-group > * {
+  padding: 70px;
 }
 
 #hero .hero-text {
-  position: relative;
-  top: -50px;
   width: 600px;
   color: #eee;
 }
@@ -34,7 +47,6 @@
   font-weight: bold;
   transition: all .2s;
   cursor: pointer;
-  z-index: 100;
   font-size: 20px;
   background-color: rgb(0, 162, 255);
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
@@ -55,4 +67,63 @@
   transition: all .3s ease-out;
   height: 700px;
   border-radius: 15px;
+}
+
+@media only screen and (max-width: 1425px) {
+  #hero .flex-group {
+    top: 0;
+    flex-direction: column;
+  }
+
+  #hero:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+    background: linear-gradient(to bottom right, rgb(7, 0, 124) 0%, rgb(0, 255, 194) 100%);
+    width: 100%;
+    min-height: 1300px;
+  }
+
+  #hero .hero-text {
+    padding: 30px;
+  }
+
+  #hero .hero-cta {
+    display: block;
+    margin: auto;
+    width: 185px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #hero .hero-text {
+    width: auto;
+  }
+
+  #hero .flex-group > * {
+    padding: 50px 30px;
+  }
+
+  #hero .resume-sample {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #hero:after {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+    min-height: 1000px;
+  }
+
+  #hero .hero-text .hero-title {
+    font-size: 30px;
+  }
+
+  #hero .hero-text .hero-description {
+    font-size: 20px;
+    color: #eee;
+  }
 }

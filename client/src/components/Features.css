@@ -6,11 +6,12 @@
 
 #features .feature-cards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 #features .feature-cards .card {
-  max-width: 350px;
+  width: 350px;
   min-height: 320px;
   border-radius: 5px;
   line-height: 35px;
@@ -35,4 +36,27 @@
 #features .feature-cards .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 30px 0px #bbb;
+}
+
+@media only screen and (max-width: 1650px) {
+  #features .feature-cards .card {
+    margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  #features .feature-cards .card {
+    width: auto;
+    height: auto;
+    max-width: 95%;
+    line-height: 32px;
+  }
+
+  #features .feature-cards .card .card-title {
+    font-size: 22px;
+  }
+
+  #features .feature-cards .card .card-description {
+    font-size: 18px;
+  }
 }

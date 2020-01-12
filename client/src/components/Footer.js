@@ -22,7 +22,7 @@ const Footer = () => {
 
       <p className="copyright-notice">
         Copyright 2020 | ResumeArchitect - built by{' '}
-        <a target="_blank" href="https://cristicismas.github.io">
+        <a target="_blank" rel="noopener noreferrer" href="https://cristicismas.github.io">
           Cristi Cismas
         </a>
       </p>

@@ -14,12 +14,13 @@
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
-  margin: 70px 100px;
+  margin: 70px 50px;
 }
 
 #templates .template-previews img {
   width: 550px;
-  margin: 40px;
+  max-width: 95%;
+  margin: 30px;
   border-radius: 15px;
   box-shadow: 0 5px 30px 0px #bbb;
   transition: all 0.3s;
@@ -47,4 +48,15 @@
 
 #templates .show-more-btn:hover {
   opacity: 1;
+}
+
+@media only screen and (max-width: 700px) {
+  #templates .template-previews a {
+    text-align: center;
+  }
+
+  #templates .template-previews img {
+    max-width: 100%;
+    margin: 20px auto;
+  }
 }

@@ -7,7 +7,7 @@ const Header = () => {
       <h1 className="title"><a href="/">ResumeArchitect</a></h1>
 
       <nav>
-        <a href="/">Templates</a>
+        <a href="#templates">Templates</a>
         <a href="/">Build Your Own</a>
         <a href="/">About</a>
         <a href="/">Sign Up</a>

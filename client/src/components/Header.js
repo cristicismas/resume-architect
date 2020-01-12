@@ -9,7 +9,9 @@ const Header = () => {
       <nav>
         <a href="/">Templates</a>
         <a href="/">Build Your Own</a>
+        <a href="/">About</a>
         <a href="/">Sign Up</a>
+        <a href="/">Log In</a>
       </nav>
     </header>
   );

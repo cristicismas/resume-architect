@@ -9,17 +9,13 @@ const Templates = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchTemplatePreviews();
-  }, []);
-
-  const fetchTemplatePreviews = () => {
-    setIsLoading(true);
-
-    apiCall('GET', 'templates/previews').then(newTemplates => {
-      setTemplates([...templates, ...newTemplates]);
-      setIsLoading(false);
-    });
-  };
+    if (isLoading) {
+      apiCall('GET', 'templates/previews').then(newTemplates => {
+        setTemplates(templates => [...templates, ...newTemplates]);
+        setIsLoading(false);
+      });
+    }
+  }, [isLoading]);
 
   const templatePreviews = templates.map(template => (
     <a key={template.name} href="/">
@@ -39,7 +35,7 @@ const Templates = () => {
 
       <div className="template-previews">{templatePreviews}</div>
 
-      <button className="show-more-btn" type="button" onClick={() => fetchTemplatePreviews()}>
+      <button className="show-more-btn" type="button" onClick={() => setIsLoading(true)}>
         Show More
       </button>
     </section>

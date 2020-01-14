@@ -1,7 +1,7 @@
 footer {
   display: flex;
   padding: 150px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   background: rgb(7, 0, 124);
@@ -16,6 +16,12 @@ footer * {
   color: #eee;
 }
 
+footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 footer nav a {
   padding: 7px;
   font-size: 18px;
@@ -25,6 +31,27 @@ footer nav a {
 
 footer .copyright-notice {
   position: absolute;
+  width: 99%;
+  text-align: center;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   font-weight: bold;
+}
+
+@media only screen and (max-width: 1400px) {
+  footer {
+    flex-direction: column;
+    padding: 20px 0 150px 0;
+  }
+
+  footer .title {
+    margin-bottom: 100px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  footer nav a {
+    margin: 10px;
+  }
 }

@@ -1,10 +1,10 @@
 import { Request } from 'hapi';
-import { getTemplateLinks } from '../handlers/template';
+import { getTemplatePreviewsLinks } from '../handlers/template';
 
 const templateLinksRoute = {
   method: 'GET',
   path: '/templates/previews/{indexToFetch}',
-  handler: (request: Request) => getTemplateLinks(request)
+  handler: (request: Request) => getTemplatePreviewsLinks(request)
 };
 
 export default [templateLinksRoute];

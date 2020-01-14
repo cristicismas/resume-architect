@@ -2,22 +2,22 @@ import * as cloudinary from 'cloudinary';
 import * as fs from 'fs';
 import { IResume } from '../interfaces/resume';
 
-export const fetchTemplateLinks = async () => {
+export const fetchTemplatePreviews = async () => {
   const templates = await cloudinary.v2.api.resources({
     type: 'upload',
-    prefix: 'resume_architect/'
+    prefix: 'resume_architect/previews'
   });
 
-  // Returns all template links with a .png extension
-  const templateLinks = templates.resources.map((pdf: IResume) => {
+  // Returns all template previews with a .png extension
+  const templatePreviews = templates.resources.map((pdf: IResume) => {
     return {
       name: pdf.public_id,
       url: getPngURL(pdf.secure_url)
     };
   });
 
-  fs.writeFile('template_links.json', JSON.stringify(templateLinks), () => {
-    console.log('Templates list updated');
+  fs.writeFile('template_previews.json', JSON.stringify(templatePreviews), () => {
+    console.log('Template previews list updated');
   })
 };
 

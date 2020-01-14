@@ -3,9 +3,9 @@ import * as fs from 'fs';
 
 const max_results = 6;
 
-export const getTemplateLinks = async (request: Request) => {
+export const getTemplatePreviewsLinks = async (request: Request) => {
   return new Promise((resolve, reject) => {
-    fs.readFile('template_links.json', 'UTF8', (err, content) => {
+    fs.readFile('template_previews.json', 'UTF8', (err, content) => {
       if (err) reject(err);
       else {
         const { indexToFetch } = request.params;

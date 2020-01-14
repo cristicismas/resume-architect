@@ -54,6 +54,10 @@ header nav a:hover {
 }
 
 @media only screen and (max-width: 700px) {
+  header {
+    width: 85%;
+  }
+  
   header nav {
     margin-top: 20px;
   }

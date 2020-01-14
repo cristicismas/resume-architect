@@ -2,7 +2,7 @@ import * as cloudinary from 'cloudinary';
 import * as fs from 'fs';
 import { IResume } from '../interfaces/resume';
 
-export const fetchTemplatePreviews = async () => {
+export const fetchAndStoreTemplatePreviews = async () => {
   const templates = await cloudinary.v2.api.resources({
     type: 'upload',
     prefix: 'resume_architect/previews'

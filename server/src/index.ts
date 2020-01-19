@@ -7,8 +7,8 @@ import configureCloudinary from './utils/cloudinary';
 import { configureJWT } from './plugins/jwt';
 import routes from './routes/index';
 
-import { everyFifteenMinutes } from './utils/cron';
-import { fetchAndStoreTemplatePreviews } from './utils/templates';
+import { everyTenMinutes, everyFifteenMinutes } from './utils/cron';
+import { buildTemplatePreviews, fetchAndStoreTemplatePreviews } from './utils/templates';
 
 const init = async () => {
   dotenv.config();
@@ -34,6 +34,7 @@ const init = async () => {
   await configureCloudinary();
   console.log('Connected to Cloudinary');
 
+  everyTenMinutes(buildTemplatePreviews);
   everyFifteenMinutes(fetchAndStoreTemplatePreviews);
 };
 

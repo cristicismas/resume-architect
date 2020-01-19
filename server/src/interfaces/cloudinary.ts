@@ -1,4 +1,4 @@
-export interface IResume {
+export interface CloudinaryResource {
   public_id: string;
   format: string;
   version: number;

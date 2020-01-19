@@ -60,7 +60,7 @@ const populateTemplate = async () => {
   fs.writeFileSync(path.join(__dirname, '../../temp/populated_template.docx'), buffer);
 };
 
-export const fetchAndStoreTemplatePreviews = async () => {
+export const fetchAndStorePreviewLinks = async () => {
   const templates = await cloudinary.v2.api.resources({
     type: 'upload',
     prefix: 'resume_architect/previews',
@@ -69,9 +69,11 @@ export const fetchAndStoreTemplatePreviews = async () => {
 
   // Returns all template previews with a .png extension
   const templatePreviews = templates.resources.map((pdf: CloudinaryResource) => {
+    const pngUrl = `${pdf.secure_url.slice(0, -4)}.png`;
+
     return {
       name: pdf.public_id,
-      url: getPngURL(pdf.secure_url)
+      url: pngUrl
     };
   });
 
@@ -79,5 +81,3 @@ export const fetchAndStoreTemplatePreviews = async () => {
     console.log('Previews list updated');
   });
 };
-
-const getPngURL = (originalURL: string) => `${originalURL.slice(0, -4)}.png`;

@@ -1,0 +1,39 @@
+.template-preview-container {
+  position: relative;
+  display: block;
+  min-height: 775px;
+}
+
+.template-preview-container .spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.template-preview {
+  width: 550px;
+  max-width: 95%;
+  margin: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px 0px #bbb;
+  transition: all 0.3s;
+}
+
+.template-preview:hover {
+  box-shadow: 0 20px 30px 0px #aaa;
+  transform: translateY(-5px);
+}
+
+@media only screen and (max-width: 700px) {
+  .template-preview-container {
+    text-align: center;
+    min-height: 300px;
+  }
+
+  .template-preview {
+    max-width: 100%;
+    margin: 20px auto;
+  }
+}

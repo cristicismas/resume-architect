@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { apiCall } from '../utils/api';
 import './Templates.css';
 
+import TemplatePreview from './TemplatePreview';
 import Spinner from './Spinner';
 
 const Templates = () => {
@@ -26,11 +27,7 @@ const Templates = () => {
     }
   }, [isLoading, lastTemplatesIndex]);
 
-  const templatePreviews = templates.map(template => (
-    <a key={template.name} href="/">
-      <img src={template.url} alt="Template Preview" />
-    </a>
-  ));
+  const templatePreviews = templates.map(template => <TemplatePreview key={template.name} template={template} />);
 
   return (
     <section id="templates">

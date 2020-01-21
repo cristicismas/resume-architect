@@ -69,11 +69,12 @@ export const fetchAndStorePreviewLinks = async () => {
 
   // Returns all template previews with a .png extension
   const templatePreviews = templates.resources.map((pdf: CloudinaryResource) => {
-    const pngUrl = `${pdf.secure_url.slice(0, -4)}.png`;
+    const url = `${pdf.secure_url.slice(0, -4)}.png`;
+    const name = pdf.public_id.substring(pdf.public_id.lastIndexOf('/') +1);
 
     return {
-      name: pdf.public_id,
-      url: pngUrl
+      name,
+      url
     };
   });
 

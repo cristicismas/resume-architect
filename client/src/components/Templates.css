@@ -35,14 +35,3 @@
 #templates .show-more-btn:hover {
   opacity: 1;
 }
-
-@media only screen and (max-width: 700px) {
-  #templates .template-previews a {
-    text-align: center;
-  }
-
-  #templates .template-previews img {
-    max-width: 100%;
-    margin: 20px auto;
-  }
-}

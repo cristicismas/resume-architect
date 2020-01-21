@@ -19,7 +19,7 @@
   margin: 50px;
   padding: 30px 50px;
   background-color: #fff;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 #features .feature-cards .card::before {
@@ -34,7 +34,7 @@
   border-radius: 5px;
   z-index: -1;
   opacity: 0;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
 #features .feature-cards .card .card-title {
@@ -63,6 +63,17 @@
 @media only screen and (max-width: 1650px) {
   #features .feature-cards .card {
     margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #features .feature-cards .card::before {
+    display: none;
+  }
+
+  #features .feature-cards .card:hover {
+    color: #000;
+    background-color: #fff;
   }
 }
 

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { apiCall } from '../../utils/api';
 import './Templates.css';
 
-import TemplatePreview from '../TemplatePreview';
-import Spinner from '../Spinner';
+import TemplatePreview from '../misc/TemplatePreview';
+import Spinner from '../misc/Spinner';
 
 const Templates = () => {
   const [templates, setTemplates] = useState([]);

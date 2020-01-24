@@ -58,15 +58,15 @@
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
-#hero .resume-sample-link .resume-sample:hover {
-  transform: rotate(1deg);
-}
-
 #hero .resume-sample {
   box-shadow: 5px 10px 10px 0px rgba(0, 0, 0, 0.4);
-  transition: all .3s ease-out;
+  transition: all .3s;
   height: 700px;
   border-radius: 15px;
+}
+
+#hero .resume-sample-link:hover .resume-sample {
+  box-shadow: 10px 20px 20px 0px rgba(0, 0, 0, 0.4);
 }
 
 @media only screen and (max-width: 1425px) {

@@ -1,0 +1,12 @@
+#build-resume .title {
+  font-size: 36px;
+  text-align: center;
+  color: #333;
+}
+
+#build-resume .sub-title {
+  text-align: center;
+  color: #333;
+  font-weight: normal;
+  font-size: 26px;
+}

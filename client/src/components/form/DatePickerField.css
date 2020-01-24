@@ -1,0 +1,12 @@
+.dates-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-separator {
+  font-size: 30px;
+  height: 0;
+  width: 15px;
+  border: 1px solid #444;
+}

@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import ResumeForm from './pages/ResumeForm';
+import BuildResume from './pages/BuildResume';
 
 const App = () => (
   <Router>
     <Switch>
       <Route path="/build/:id">
-        <ResumeForm />
+        <BuildResume />
       </Route>
 
       <Route path="/">

@@ -1,19 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Hero from './layout/Hero';
-import Features from './layout/Features'
-import Templates from './layout/Templates';
-import Footer from './layout/Footer';;
+import Home from './pages/Home';
+import ResumeForm from './pages/ResumeForm';
 
 const App = () => (
-  <div className="app">
+  <Router>
+    <Switch>
+      <Route path="/build/:id">
+        <ResumeForm />
+      </Route>
 
-    <Hero />
-    <Features />
-    <Templates />
-
-    <Footer />
-  </div>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
+  </Router>
 );
 
 export default App;

@@ -1,10 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
   return (
-    <header>
-      <h1 className="title"><a href="/">ResumeArchitect</a></h1>
+    <header className={pathname === '/' ? 'light' : 'dark'}>
+      <h1 className="title">
+        <a href="/">ResumeArchitect</a>
+      </h1>
 
       <nav>
         <a href="#templates">Templates</a>

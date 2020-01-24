@@ -1,13 +1,9 @@
 import React from 'react';
 import './Hero.css';
 
-import Header from './Header';
-
 const Hero = () => {
   return (
     <section id="hero">
-      <Header />
-
       <div className="flex-group">
         <div className="hero-text">
           <h2 className="hero-title">A free resume builder, to make your job hunt easier.</h2>

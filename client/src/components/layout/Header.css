@@ -1,3 +1,7 @@
+header.dark * {
+  color: #333;
+}
+
 header {
   position: relative;
   z-index: 10;
@@ -19,6 +23,10 @@ header a {
   font-weight: bold;
 }
 
+header.dark a:hover {
+  color: rgb(0, 195, 255);
+}
+
 header a:hover {
   color: rgb(0, 255, 194);
 }
@@ -37,9 +45,14 @@ header nav a {
   font-size: 18px;
 }
 
+header.dark nav a:hover {
+  color: rgb(0, 195, 255);
+  border-bottom: 5px solid rgb(0, 195, 255);
+}
+
 header nav a:hover {
-  color: rgb(0, 255, 194);
-  border-bottom: 5px solid rgb(0, 255, 194);
+  color: rgb(0, 195, 255);
+  border-bottom: 5px solid rgb(0, 195, 255);
 }
 
 @media only screen and (max-width: 1425px) {

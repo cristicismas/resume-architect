@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
+import { buildResumeSchema } from '../../schemas/buildResume';
 import './ResumeForm.css';
 
 import DatePickerField from './DatePickerField';
@@ -22,18 +23,28 @@ const ResumeForm = () => {
   }, [handleGetSinglePreview]);
 
   const initialValues = {
+    name: '',
+    address: '',
+    phoneNumber: '',
+    email: '',
+    about: '',
+    company: '',
+    job: '',
     jobStartDate: '',
     jobEndDate: '',
+    responsibilities: '',
+    school: '',
+    degree: '',
     schoolStartDate: '',
-    schoolEndDate: ''
+    schoolEndDate: '',
+    extra: ''
   };
 
-  const validate = () => {};
   const handleSubmit = () => {};
 
   return (
     <section id="resume-form">
-      <Formik initialValues={initialValues} validate={validate} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={buildResumeSchema} onSubmit={handleSubmit}>
         {({ values, setFieldValue, isSubmitting }) => (
           <Form>
             <section id="template">
@@ -48,25 +59,25 @@ const ResumeForm = () => {
               <div className="group">
                 <label htmlFor="name">Full Name</label>
                 <Field type="text" placeholder="John Doe" name="name" />
-                <ErrorMessage name="name" component="div" />
+                <ErrorMessage className="field-error" name="name" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="address">Address</label>
                 <Field type="text" placeholder="55 Main Street, Azusa, New York 39531" name="address" />
-                <ErrorMessage name="address" component="div" />
+                <ErrorMessage className="field-error" name="address" component="div" />
               </div>
 
               <div className="group">
-                <label htmlFor="phone-number">Phone Number</label>
-                <Field type="tel" placeholder="555-555-5555" pattern="^\+?\d{0,13}" name="phone-number" />
-                <ErrorMessage name="phone-number" component="div" />
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <Field type="tel" placeholder="555-555-5555" name="phone-number" />
+                <ErrorMessage className="field-error" name="phone-number" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="email">Email</label>
                 <Field type="email" placeholder="johndoe@example.com" name="email" />
-                <ErrorMessage name="email" component="div" />
+                <ErrorMessage className="field-error" name="email" component="div" />
               </div>
             </section>
 
@@ -81,7 +92,7 @@ const ResumeForm = () => {
                   type="text"
                   name="about"
                 />
-                <ErrorMessage name="about" component="div" />
+                <ErrorMessage className="field-error" name="about" component="div" />
               </div>
             </section>
 
@@ -91,13 +102,13 @@ const ResumeForm = () => {
               <div className="group">
                 <label htmlFor="company">Company</label>
                 <Field type="text" placeholder="Gao Laboratories - Chicago" name="company" />
-                <ErrorMessage name="company" component="div" />
+                <ErrorMessage className="field-error" name="company" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="job">Job Title</label>
                 <Field type="text" placeholder="Human Resources Intern" name="job" />
-                <ErrorMessage name="job" component="div" />
+                <ErrorMessage className="field-error" name="job" component="div" />
               </div>
 
               <div className="group">
@@ -108,7 +119,8 @@ const ResumeForm = () => {
                   endDate={values.jobEndDate}
                   namePrefix="job"
                 />
-                <ErrorMessage name="job-date" component="div" />
+                <ErrorMessage className="field-error" name="jobStartDate" component="div" />
+                <ErrorMessage className="field-error" name="jobEndDate" component="div" />
               </div>
 
               <div className="group">
@@ -119,7 +131,7 @@ const ResumeForm = () => {
                   type="text"
                   name="responsibilities"
                 />
-                <ErrorMessage name="responsibilities" component="div" />
+                <ErrorMessage className="field-error" name="responsibilities" component="div" />
               </div>
             </section>
 
@@ -129,13 +141,13 @@ const ResumeForm = () => {
               <div className="group">
                 <label htmlFor="school">School</label>
                 <Field type="text" placeholder="Miami University" name="school" />
-                <ErrorMessage name="school" component="div" />
+                <ErrorMessage className="field-error" name="school" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="degree">Degree</label>
                 <Field type="text" placeholder="Bachelor of Science" name="degree" />
-                <ErrorMessage name="degree" component="div" />
+                <ErrorMessage className="field-error" name="degree" component="div" />
               </div>
 
               <div className="group">
@@ -147,7 +159,8 @@ const ResumeForm = () => {
                   endDate={values.schoolEndDate}
                   namePrefix="school"
                 />
-                <ErrorMessage name="school-date" component="div" />
+                <ErrorMessage className="field-error" name="schoolStartDate" component="div" />
+                <ErrorMessage className="field-error" name="schoolEndDate" component="div" />
               </div>
             </section>
 
@@ -162,7 +175,7 @@ const ResumeForm = () => {
                   type="text"
                   name="extra"
                 />
-                <ErrorMessage name="extra" component="div" />
+                <ErrorMessage className="field-error" name="extra" component="div" />
               </div>
             </section>
 

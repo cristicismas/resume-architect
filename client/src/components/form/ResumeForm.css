@@ -17,6 +17,10 @@
   display: block;
 }
 
+#resume-form .field-error {
+  color: red;
+}
+
 #resume-form label {
   display: block;
   font-size: 20px;

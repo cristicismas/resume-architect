@@ -12,7 +12,8 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
         selectsStart
         startDate={startDate}
         endDate={endDate}
-        maxDate={endDate}
+        maxDate={endDate ? endDate : new Date()}
+        placeholderText="Start Date"
       />
 
       <span className="date-separator" />
@@ -26,6 +27,7 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
         endDate={endDate}
         minDate={startDate}
         maxDate={new Date()}
+        placeholderText="End Date"
       />
     </div>
   );

@@ -41,31 +41,31 @@ const ResumeForm = () => {
 
               <TemplatePreview template={templateToBuild} />
             </section>
-            
+
             <section id="contact">
               <h2 className="sub-title">Contact</h2>
 
               <div className="group">
                 <label htmlFor="name">Full Name</label>
-                <Field type="text" name="name" />
+                <Field type="text" placeholder="John Doe" name="name" />
                 <ErrorMessage name="name" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="address">Address</label>
-                <Field type="text" name="address" />
+                <Field type="text" placeholder="55 Main Street, Azusa, New York 39531" name="address" />
                 <ErrorMessage name="address" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="phone-number">Phone Number</label>
-                <Field type="tel" pattern="^\+?\d{0,13}" name="phone-number" />
+                <Field type="tel" placeholder="555-555-5555" pattern="^\+?\d{0,13}" name="phone-number" />
                 <ErrorMessage name="phone-number" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="email">Email</label>
-                <Field type="email" name="email" />
+                <Field type="email" placeholder="johndoe@example.com" name="email" />
                 <ErrorMessage name="email" component="div" />
               </div>
             </section>
@@ -75,7 +75,7 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="about">About</label>
-                <Field as="textarea" type="text" name="about" />
+                <Field as="textarea" placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..." type="text" name="about" />
                 <ErrorMessage name="about" component="div" />
               </div>
             </section>
@@ -85,13 +85,13 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="company">Company</label>
-                <Field type="text" name="company" />
+                <Field type="text" placeholder="Gao Laboratories - Chicago" name="company" />
                 <ErrorMessage name="company" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="job">Job Title</label>
-                <Field type="text" name="job" />
+                <Field type="text" placeholder="Human Resources Intern" name="job" />
                 <ErrorMessage name="job" component="div" />
               </div>
 
@@ -108,7 +108,7 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="responsibilities">Responsibilities / About the job</label>
-                <Field as="textarea" type="text" name="responsibilities" />
+                <Field as="textarea" placeholder="Key role you played at the company. Try to keep it short and use bullet-points when you list the responsibilities you've had / important stuff you did while you worked there." type="text" name="responsibilities" />
                 <ErrorMessage name="responsibilities" component="div" />
               </div>
             </section>
@@ -118,13 +118,13 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="school">School</label>
-                <Field type="text" name="school" />
+                <Field type="text" placeholder="Miami University" name="school" />
                 <ErrorMessage name="school" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="degree">Degree</label>
-                <Field type="text" name="degree" />
+                <Field type="text" placeholder="Bachelor of Science" name="degree" />
                 <ErrorMessage name="degree" component="div" />
               </div>
 
@@ -145,7 +145,7 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="extra">Special Awards / Ending Note</label>
-                <Field as="textarea" type="text" name="extra" />
+                <Field as="textarea" placeholder="Any left-out special awards, diplomas, volunteering experience, etc..." type="text" name="extra" />
                 <ErrorMessage name="extra" component="div" />
               </div>
             </section>

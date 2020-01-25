@@ -12,12 +12,13 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
         selectsStart
         startDate={startDate}
         endDate={endDate}
-        maxDate={new Date()}
+        maxDate={endDate}
       />
 
       <span className="date-separator" />
 
       <DatePicker
+        todayButton="Present"
         selected={endDate ? new Date(endDate) : null}
         onChange={date => onChange(`${namePrefix}EndDate`, date)}
         selectsEnd

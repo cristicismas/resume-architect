@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { apiCall } from '../../utils/api';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPreviews } from '../../store/actions/previews';
 import './Templates.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import Spinner from '../misc/Spinner';
 
 const Templates = () => {
-  const [templates, setTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [lastTemplatesIndex, setLastTemplatesIndex] = useState(0);
-  const [anyMoreTemplates, setAnyMoreTemplates] = useState(true);
+  const { previewsList, shouldFetchMore } = useSelector(state => state.previews);
+  const dispatch = useDispatch();
 
-  const MAX_RESULTS = 6;
+  const handleGetPreviews = useCallback(() => {
+    dispatch(getPreviews());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading) {
-      apiCall('GET', `templates/previews/${lastTemplatesIndex}`).then(newTemplates => {
-        setTemplates(templates => [...templates, ...newTemplates]);
-
-        if (newTemplates.length < MAX_RESULTS) {
-          setAnyMoreTemplates(false);
-        }
-
-        setIsLoading(false);
-      });
+      handleGetPreviews();
+      setIsLoading(false);
     }
-  }, [isLoading, lastTemplatesIndex]);
+  }, [isLoading, handleGetPreviews]);
 
-  const templatePreviews = templates.map(template => <TemplatePreview key={template.name} template={template} />);
+  const templatePreviews = previewsList.map(template => <TemplatePreview key={template.name} template={template} />);
 
   return (
     <section id="templates">
@@ -41,13 +36,12 @@ const Templates = () => {
 
       <div className="template-previews">{templatePreviews}</div>
 
-      {anyMoreTemplates && (
+      {shouldFetchMore && (
         <button
           className="show-more-btn"
           type="button"
           onClick={() => {
             setIsLoading(true);
-            setLastTemplatesIndex(lastTemplatesIndex + MAX_RESULTS);
           }}>
           Show More
         </button>

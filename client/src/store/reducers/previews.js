@@ -1,8 +1,9 @@
-import { GET_PREVIEWS } from '../actionTypes';
+import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
 
 const initialState = {
   shouldFetchMore: true,
   lastIndex: 0,
+  templateToBuild: null,
   previewsList: []
 };
 
@@ -12,6 +13,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_PREVIEWS:
       return handleGetPreviews(state, action);
+    case GET_SINGLE_PREVIEW:
+      return { ...state, templateToBuild: action.payload };
     default:
       return state;
   }

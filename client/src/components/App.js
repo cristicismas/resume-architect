@@ -13,7 +13,7 @@ const App = () => (
     <Header />
 
     <Switch>
-      <Route path="/build/:id">
+      <Route path="/build/:template_name">
         <BuildResume />
       </Route>
 

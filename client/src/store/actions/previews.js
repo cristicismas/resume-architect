@@ -1,4 +1,4 @@
-import { GET_PREVIEWS } from '../actionTypes';
+import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const getPreviews = () => (dispatch, getState) => {
@@ -14,4 +14,13 @@ export const getPreviews = () => (dispatch, getState) => {
       return newTemplates;
     });
   } else return null;
+};
+
+export const getSinglePreview = previewName => dispatch => {
+  return apiCall('GET', `templates/single_preview/${previewName}`).then(template => {
+    dispatch({
+      type: GET_SINGLE_PREVIEW,
+      payload: template
+    });
+  });
 };

@@ -1,5 +1,5 @@
 import { Request } from 'hapi';
-import { getTemplatePreviewsLinks } from '../handlers/template';
+import { getTemplatePreviewsLinks, getSinglePreviewLink } from '../handlers/template';
 
 const templateLinksRoute = {
   method: 'GET',
@@ -7,4 +7,10 @@ const templateLinksRoute = {
   handler: (request: Request) => getTemplatePreviewsLinks(request)
 };
 
-export default [templateLinksRoute];
+const singleTemplateLinkRoute = {
+  method: 'GET',
+  path: '/templates/single_preview/{templateName}',
+  handler: (request: Request) => getSinglePreviewLink(request)
+};
+
+export default [templateLinksRoute, singleTemplateLinkRoute];

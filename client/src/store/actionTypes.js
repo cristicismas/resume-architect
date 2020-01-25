@@ -1,1 +1,2 @@
 export const GET_PREVIEWS = 'GET_PREVIEWS';
+export const GET_SINGLE_PREVIEW = 'GET_SINGLE_PREVIEW';

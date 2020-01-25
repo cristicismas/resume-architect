@@ -1,34 +1,21 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getPreviews } from '../../store/actions/previews';
+import React, { useState } from 'react';
+import { useTemplatePreviews } from '../../hooks/useTemplatePreviews';
 import './Templates.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import Spinner from '../misc/Spinner';
 
 const Templates = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { previewsList, shouldFetchMore } = useSelector(state => state.previews);
-  const dispatch = useDispatch();
+  const [shouldFetch, setShouldFetch] = useState(true);
 
-  const handleGetPreviews = useCallback(() => {
-    dispatch(getPreviews());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isLoading) {
-      handleGetPreviews();
-      setIsLoading(false);
-    }
-  }, [isLoading, handleGetPreviews]);
-
+  const { previewsList, shouldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
   const templatePreviews = previewsList.map(template => <TemplatePreview key={template.name} template={template} />);
 
   return (
     <section id="templates">
       <h1 className="title">Pick a template!</h1>
 
-      {isLoading && (
+      {shouldFetch && (
         <div className="templates-spinner">
           <Spinner />
         </div>
@@ -41,7 +28,7 @@ const Templates = () => {
           className="show-more-btn"
           type="button"
           onClick={() => {
-            setIsLoading(true);
+            setShouldFetch(true);
           }}>
           Show More
         </button>

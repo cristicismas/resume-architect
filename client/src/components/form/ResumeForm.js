@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSinglePreview } from '../../store/actions/previews';
 import './ResumeForm.css';
 
 import DatePickerField from './DatePickerField';
+import TemplatePreview from '../misc/TemplatePreview';
 
 const ResumeForm = () => {
-  const { id } = useParams();
+  const { template_name } = useParams();
+  const { templateToBuild } = useSelector(state => state.previews);
+  const dispatch = useDispatch();
+
+  const handleGetSinglePreview = useCallback(() => {
+    dispatch(getSinglePreview(template_name));
+  }, [dispatch, template_name]);
+
+  useEffect(() => {
+    handleGetSinglePreview();
+  }, [handleGetSinglePreview]);
 
   const initialValues = {
     jobStartDate: '',
@@ -16,16 +29,19 @@ const ResumeForm = () => {
   };
 
   const validate = () => {};
-
-  const handleSubmit = () => {
-    console.log('Submitted: ' + id);
-  };
+  const handleSubmit = () => {};
 
   return (
     <section id="resume-form">
       <Formik initialValues={initialValues} validate={validate} onSubmit={handleSubmit}>
         {({ values, setFieldValue, isSubmitting }) => (
           <Form>
+            <section id="template">
+              <h2 className="sub-title">Template</h2>
+
+              <TemplatePreview template={templateToBuild} />
+            </section>
+            
             <section id="contact">
               <h2 className="sub-title">Contact</h2>
 

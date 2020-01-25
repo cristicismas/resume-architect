@@ -4,6 +4,19 @@
   margin: auto;
 }
 
+#resume-form .group {
+  margin-bottom: 25px;
+}
+
+#resume-form .template-preview-container {
+  min-height: auto;
+}
+
+#resume-form .template-preview {
+  margin: 50px auto;
+  display: block;
+}
+
 #resume-form label {
   display: block;
   font-size: 20px;
@@ -26,10 +39,6 @@
   min-height: 100px;
   max-height: 400px;
   height: 150px;
-}
-
-#resume-form .group {
-  margin-bottom: 25px;
 }
 
 #resume-form section {

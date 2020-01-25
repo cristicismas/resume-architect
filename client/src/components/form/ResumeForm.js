@@ -75,7 +75,12 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="about">About</label>
-                <Field as="textarea" placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..." type="text" name="about" />
+                <Field
+                  as="textarea"
+                  placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..."
+                  type="text"
+                  name="about"
+                />
                 <ErrorMessage name="about" component="div" />
               </div>
             </section>
@@ -108,7 +113,12 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="responsibilities">Responsibilities / About the job</label>
-                <Field as="textarea" placeholder="Key role you played at the company. Try to keep it short and use bullet-points when you list the responsibilities you've had / important stuff you did while you worked there." type="text" name="responsibilities" />
+                <Field
+                  as="textarea"
+                  placeholder="Key role you played at the company. Try to keep it short and use bullet-points when you list the responsibilities you've had / important stuff you did while you worked there."
+                  type="text"
+                  name="responsibilities"
+                />
                 <ErrorMessage name="responsibilities" component="div" />
               </div>
             </section>
@@ -132,6 +142,7 @@ const ResumeForm = () => {
                 <label htmlFor="school-date">Date</label>
                 <DatePickerField
                   onChange={setFieldValue}
+                  monthYearPicker={true}
                   startDate={values.schoolStartDate}
                   endDate={values.schoolEndDate}
                   namePrefix="school"
@@ -145,7 +156,12 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="extra">Special Awards / Ending Note</label>
-                <Field as="textarea" placeholder="Any left-out special awards, diplomas, volunteering experience, etc..." type="text" name="extra" />
+                <Field
+                  as="textarea"
+                  placeholder="Any left-out special awards, diplomas, volunteering experience, etc..."
+                  type="text"
+                  name="extra"
+                />
                 <ErrorMessage name="extra" component="div" />
               </div>
             </section>

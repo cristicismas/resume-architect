@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import './DatePickerField.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
+const DatePickerField = ({ namePrefix, startDate, endDate, onChange, monthYearPicker=false }) => {
   return (
     <div className="dates-group">
       <DatePicker
@@ -13,6 +13,8 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
         startDate={startDate}
         endDate={endDate}
         maxDate={endDate ? endDate : new Date()}
+        dateFormat={monthYearPicker ? 'MM/yyyy' : 'dd/MM/yyyy'}
+        showMonthYearPicker={monthYearPicker}
         placeholderText="Start Date"
       />
 
@@ -27,6 +29,8 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange }) => {
         endDate={endDate}
         minDate={startDate}
         maxDate={new Date()}
+        dateFormat={monthYearPicker ? 'MM/yyyy' : 'dd/MM/yyyy'}
+        showMonthYearPicker={monthYearPicker}
         placeholderText="End Date"
       />
     </div>

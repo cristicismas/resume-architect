@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,8 +6,9 @@ import { getSinglePreview } from '../../store/actions/previews';
 import { buildResumeSchema } from '../../schemas/buildResume';
 import './ResumeForm.css';
 
-import DatePickerField from './DatePickerField';
 import TemplatePreview from '../misc/TemplatePreview';
+import JobFields from './JobFields';
+import SchoolFields from './SchoolFields';
 
 const ResumeForm = () => {
   const { template_name } = useParams();
@@ -107,129 +108,21 @@ const ResumeForm = () => {
             <section id="experience">
               <h2 className="sub-title">Experience</h2>
 
-              <FieldArray
-                name="jobs"
-                render={arrayHelpers => (
-                  <Fragment>
-                    {values.jobs.map((job, index) => (
-                      <Fragment key={index}>
-                        <button className="remove-field" type="button" onClick={() => arrayHelpers.remove(index)}>
-                          &#215; Remove this job &#8595;
-                        </button>
-
-                        <div className="group">
-                          <label htmlFor="company">Company</label>
-                          <Field type="text" placeholder="Gao Laboratories - Chicago" name={`jobs[${index}].company`} />
-                          <ErrorMessage className="field-error" name="company" component="div" />
-                        </div>
-
-                        <div className="group">
-                          <label htmlFor="job">Job Title</label>
-                          <Field type="text" placeholder="Human Resources Intern" name={`jobs[${index}].job`} />
-                          <ErrorMessage className="field-error" name="job" component="div" />
-                        </div>
-
-                        <div className="group">
-                          <label htmlFor="date">Date</label>
-                          <DatePickerField
-                            onChange={setFieldValue}
-                            startDate={values.jobs[index].jobStartDate}
-                            endDate={values.jobs[index].jobEndDate}
-                            namePrefix={`jobs[${index}].job`}
-                          />
-                          <ErrorMessage className="field-error" name="jobStartDate" component="div" />
-                          <ErrorMessage className="field-error" name="jobEndDate" component="div" />
-                        </div>
-
-                        <div className="group">
-                          <label htmlFor="responsibilities">Responsibilities / About the job</label>
-                          <Field
-                            as="textarea"
-                            placeholder="Key role you played at the company. Try to keep it short and use bullet-points when you list the responsibilities you've had / important stuff you did while you worked there."
-                            type="text"
-                            name={`jobs[${index}].responsibilities`}
-                          />
-                          <ErrorMessage className="field-error" name="responsibilities" component="div" />
-                        </div>
-                      </Fragment>
-                    ))}
-
-                    <button
-                      className="add-field"
-                      type="button"
-                      onClick={() =>
-                        arrayHelpers.push({
-                          company: '',
-                          job: '',
-                          jobStartDate: '',
-                          jobEndDate: '',
-                          responsibilities: ''
-                        })
-                      }>
-                      &#43; {values.jobs.length > 0 ? 'Add another job' : 'Add a job'}
-                    </button>
-                  </Fragment>
+              <FieldArray name="jobs">
+                {arrayHelpers => (
+                  <JobFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
                 )}
-              />
+              </FieldArray>
             </section>
 
             <section id="education">
               <h2 className="sub-title">Education</h2>
 
-              <FieldArray
-                name="schools"
-                render={arrayHelpers => (
-                  <Fragment>
-                    {values.schools.map((school, index) => (
-                      <Fragment key={index}>
-                        <button className="remove-field" type="button" onClick={() => arrayHelpers.remove(index)}>
-                          &#215; Remove this school &#8595;
-                        </button>
-
-                        <div className="group">
-                          <label htmlFor="school">School</label>
-                          <Field type="text" placeholder="Miami University" name={`schools[${index}].school`} />
-                          <ErrorMessage className="field-error" name="school" component="div" />
-                        </div>
-
-                        <div className="group">
-                          <label htmlFor="degree">Degree</label>
-                          <Field type="text" placeholder="Bachelor of Science" name={`schools[${index}].degree`} />
-                          <ErrorMessage className="field-error" name="degree" component="div" />
-                        </div>
-
-                        <div className="group">
-                          <label htmlFor="school-date">Date</label>
-                          <DatePickerField
-                            onChange={setFieldValue}
-                            monthYearPicker={true}
-                            startDate={values.schools[index].schoolStartDate}
-                            endDate={values.schools[index].schoolEndDate}
-                            namePrefix={`schools[${index}].school`}
-                          />
-                          <ErrorMessage className="field-error" name="schoolStartDate" component="div" />
-                          <ErrorMessage className="field-error" name="schoolEndDate" component="div" />
-                        </div>
-                      </Fragment>
-                    ))}
-
-                    <button
-                      className="add-field"
-                      type="button"
-                      onClick={() =>
-                        arrayHelpers.push({
-                          company: '',
-                          job: '',
-                          jobStartDate: '',
-                          jobEndDate: '',
-                          responsibilities: ''
-                        })
-                      }>
-                      &#43; {values.schools.length > 0 ? 'Add another school' : 'Add a school'}
-                    </button>
-                  </Fragment>
+              <FieldArray name="schools">
+                {arrayHelpers => (
+                  <SchoolFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
                 )}
-              />
+              </FieldArray>
             </section>
 
             <section id="extra">

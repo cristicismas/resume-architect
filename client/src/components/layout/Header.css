@@ -24,7 +24,7 @@ header a {
 }
 
 header.dark a:hover {
-  color: rgb(0, 195, 255);
+  color: rgb(0, 183, 255);
 }
 
 header a:hover {
@@ -46,12 +46,14 @@ header nav a {
 }
 
 header.dark nav a:hover {
-  color: rgb(0, 195, 255);
-  border-bottom: 5px solid rgb(0, 195, 255);
+  color: rgb(0, 183, 255);
+  background-color: rgba(0, 183, 255, .1);
+  border-bottom: 5px solid rgb(0, 183, 255);
 }
 
 header nav a:hover {
   color: rgb(0, 255, 194);
+  background-color: rgba(0, 255, 194, .1);
   border-bottom: 5px solid rgb(0, 255, 194);
 }
 

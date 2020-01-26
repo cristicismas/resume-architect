@@ -3,7 +3,6 @@ import React from 'react';
 import Hero from '../layout/Hero';
 import Features from '../layout/Features';
 import Templates from '../layout/Templates';
-import Footer from '../layout/Footer';
 
 const Home = () => {
   return (
@@ -12,8 +11,6 @@ const Home = () => {
 
       <Features />
       <Templates />
-
-      <Footer />
     </section>
   );
 };

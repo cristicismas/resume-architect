@@ -21,6 +21,38 @@
   color: red;
 }
 
+#resume-form .add-field,
+#resume-form .remove-field {
+  border: none;
+  display: block;
+  background-color: transparent;
+  margin: auto;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+#resume-form .add-field {
+  color: #00a2ff;
+}
+
+#resume-form .add-field:hover {
+  background-color: rgb(0, 162, 255, 0.15);
+}
+
+#resume-form .remove-field {
+  color: red;
+}
+
+#resume-form .remove-field:not(:first-of-type) {
+  margin-top: 70px;
+}
+
+#resume-form .remove-field:hover {
+  background-color: rgb(255, 0, 0, 0.1);
+}
+
 #resume-form label {
   display: block;
   font-size: 20px;

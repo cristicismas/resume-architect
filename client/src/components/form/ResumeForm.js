@@ -49,7 +49,9 @@ const ResumeForm = () => {
     extra: ''
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = data => {
+    console.log(data);
+  };
 
   return (
     <section id="resume-form">
@@ -79,8 +81,8 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="phoneNumber">Phone Number</label>
-                <Field type="tel" placeholder="555-555-5555" name="phone-number" />
-                <ErrorMessage className="field-error" name="phone-number" component="div" />
+                <Field type="tel" placeholder="555-555-5555" name="phoneNumber" />
+                <ErrorMessage className="field-error" name="phoneNumber" component="div" />
               </div>
 
               <div className="group">

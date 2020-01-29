@@ -3,12 +3,39 @@ import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
+import { buildResume } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
 import './ResumeForm.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
+
+const initialValues = {
+  name: '',
+  address: '',
+  phoneNumber: '',
+  email: '',
+  about: '',
+  jobs: [
+    {
+      company: '',
+      job: '',
+      jobStartDate: null,
+      jobEndDate: null,
+      responsibilities: ''
+    }
+  ],
+  schools: [
+    {
+      school: '',
+      degree: '',
+      schoolStartDate: null,
+      schoolEndDate: null
+    }
+  ],
+  extra: ''
+};
 
 const ResumeForm = () => {
   const { template_name } = useParams();
@@ -19,39 +46,21 @@ const ResumeForm = () => {
     dispatch(getSinglePreview(template_name));
   }, [dispatch, template_name]);
 
+  const handleBuildResume = useCallback(
+    data => {
+      dispatch(buildResume(data, template_name));
+    },
+    [dispatch, template_name]
+  );
+
+  const handleSubmit = (data, actions) => {
+    handleBuildResume(data);
+    actions.setSubmitting(false);
+  };
+
   useEffect(() => {
     handleGetSinglePreview();
   }, [handleGetSinglePreview]);
-
-  const initialValues = {
-    name: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-    about: '',
-    jobs: [
-      {
-        company: '',
-        job: '',
-        jobStartDate: null,
-        jobEndDate: null,
-        responsibilities: ''
-      }
-    ],
-    schools: [
-      {
-        school: '',
-        degree: '',
-        schoolStartDate: null,
-        schoolEndDate: null
-      }
-    ],
-    extra: ''
-  };
-
-  const handleSubmit = data => {
-    console.log(data);
-  };
 
   return (
     <section id="resume-form">

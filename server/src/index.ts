@@ -34,6 +34,9 @@ const init = async () => {
   await configureCloudinary();
   console.log('Connected to Cloudinary');
 
+  buildTemplatePreviews();
+  fetchAndStorePreviewLinks();
+
   everyTenMinutes(buildTemplatePreviews);
   everyFifteenMinutes(fetchAndStorePreviewLinks);
 };

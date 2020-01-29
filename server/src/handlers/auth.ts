@@ -27,6 +27,7 @@ export const signup = async (credentials: IUser) => {
       token: createToken(user)
     };
   } catch (err) {
+    console.log(err);
     return Boom.badImplementation('Signup failed.');
   }
 };
@@ -52,6 +53,7 @@ export const login = async (credentials: IUser) => {
       token: createToken(user)
     };
   } catch (err) {
+    console.log(err);
     return Boom.badImplementation('Login failed');
   }
 };

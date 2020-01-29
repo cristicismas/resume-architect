@@ -12,15 +12,15 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
           </button>
 
           <div className="group">
-            <label htmlFor="school">School</label>
+            <label htmlFor={`schools[${index}].school`}>School</label>
             <Field type="text" placeholder="Miami University" name={`schools[${index}].school`} />
-            <ErrorMessage className="field-error" name="school" component="div" />
+            <ErrorMessage className="field-error" name={`schools[${index}].school`} component="div" />
           </div>
 
           <div className="group">
-            <label htmlFor="degree">Degree</label>
+            <label htmlFor={`schools[${index}].degree`}>Degree</label>
             <Field type="text" placeholder="Bachelor of Science" name={`schools[${index}].degree`} />
-            <ErrorMessage className="field-error" name="degree" component="div" />
+            <ErrorMessage className="field-error" name={`schools[${index}].degree`} component="div" />
           </div>
 
           <div className="group">
@@ -32,8 +32,8 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
               endDate={values.schools[index].schoolEndDate}
               namePrefix={`schools[${index}].school`}
             />
-            <ErrorMessage className="field-error" name="schoolStartDate" component="div" />
-            <ErrorMessage className="field-error" name="schoolEndDate" component="div" />
+            <ErrorMessage className="field-error" name={`schools[${index}].schoolStartDate`} component="div" />
+            <ErrorMessage className="field-error" name={`schools[${index}].schoolEndDate`} component="div" />
           </div>
         </Fragment>
       ))}

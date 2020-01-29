@@ -6,6 +6,7 @@ import * as word2pdf from 'word2pdf';
 import * as Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 import * as Boom from '@hapi/boom';
+import CONSTANTS from '../constants';
 
 import { CloudinaryResource } from '../interfaces/cloudinary';
 
@@ -18,53 +19,55 @@ export const buildTemplatePreviews = async () => {
     });
 
     for (const template of templates.resources) {
-      await writeTemplateLocally(template);
-      await populateTemplate();
+      await writeTemplateLocally(template, '../temp/template.docx');
 
-      const pdf = await word2pdf(path.join(__dirname, '../../temp/populated_template.docx'), 'binary');
-      await fs.writeFile(path.join(__dirname, '../../temp/template_preview.pdf'), pdf);
+      const templateData = JSON.parse(fs.readFileSync('template_sample_data.json', 'UTF8'));
+      const populatedTemplate = await populateTemplate('../temp/template.docx', templateData);
+      fs.writeFileSync(path.join(CONSTANTS.srcDir, '../temp/populated_template.docx'), populatedTemplate);
 
-      // Change the pdf folder to previews, and the extension to pdf.
+      const pdf = await word2pdf(path.join(CONSTANTS.srcDir, '../temp/populated_template.docx'), 'binary');
+      await fs.writeFile(path.join(CONSTANTS.srcDir, '../temp/template_preview.pdf'), pdf);
+
+      // Change the resumes folder to previews, and the docx extension to pdf.
       const pdfFileName = template.public_id.replace('resumes/', 'previews/').replace('docx', 'pdf');
 
-      await cloudinary.v2.uploader.upload(path.join(__dirname, '../../temp/template_preview.pdf'), {
+      await cloudinary.v2.uploader.upload(path.join(CONSTANTS.srcDir, '../temp/template_preview.pdf'), {
         public_id: pdfFileName,
         resource_type: 'image'
       });
-
-      console.log('Previews uploaded');
     }
+
+    console.log('Previews uploaded');
   } catch (err) {
+    console.log(err);
     return Boom.badImplementation('Something went wrong building the templates.');
   }
 };
 
-const writeTemplateLocally = (template: CloudinaryResource) => {
+export const writeTemplateLocally = (template: CloudinaryResource, filePath: string) => {
   return new Promise((resolve, reject) => {
-    const writeStream = request(template.secure_url).pipe(
-      fs.createWriteStream(path.join(__dirname, '../../temp/template.docx'))
-    );
+    const writeStream = request(template.secure_url).pipe(fs.createWriteStream(path.join(CONSTANTS.srcDir, filePath)));
 
     writeStream.on('finish', resolve);
     writeStream.on('error', reject);
   });
 };
 
-const populateTemplate = async () => {
+export const populateTemplate = async (inputFilePath: string, templateData: any) => {
   try {
-    const template = await fs.readFile(path.join(__dirname, '../../temp/template.docx'), 'binary');
+    const template = await fs.readFile(path.join(CONSTANTS.srcDir, inputFilePath), 'binary');
 
     const zipContent = new PizZip(template);
     const doc = new Docxtemplater();
     await doc.loadZip(zipContent);
 
-    const template_sample_data = JSON.parse(fs.readFileSync('template_sample_data.json', 'UTF8'));
-    doc.setData(template_sample_data);
+    doc.setData(templateData);
     doc.render();
 
     const buffer = doc.getZip().generate({ type: 'nodebuffer' });
-    fs.writeFileSync(path.join(__dirname, '../../temp/populated_template.docx'), buffer);
+    return buffer;
   } catch (err) {
+    console.log(err);
     return Boom.badImplementation('Something went wrong filling a template.');
   }
 };
@@ -92,6 +95,7 @@ export const fetchAndStorePreviewLinks = async () => {
       console.log('Previews list updated');
     });
   } catch (err) {
+    console.log(err);
     return Boom.badImplementation('Something went wrong fetching and storing the preview links.');
   }
 };

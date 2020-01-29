@@ -1,2 +1,4 @@
 export const GET_PREVIEWS = 'GET_PREVIEWS';
 export const GET_SINGLE_PREVIEW = 'GET_SINGLE_PREVIEW';
+
+export const BUILD_RESUME = 'BUILD_RESUME';

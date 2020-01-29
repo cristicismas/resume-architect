@@ -1,10 +1,10 @@
-import { Request } from '@hapi/hapi';
+import { Request, ResponseToolkit } from '@hapi/hapi';
 import { buildResume } from '../handlers/resume';
 
 const buildResumeRoute = {
   method: 'POST',
-  path: '/resume',
-  handler: (request: Request) => buildResume(request.payload)
+  path: '/resume/build/{resumeName}',
+  handler: (request: Request, responseToolkit: ResponseToolkit) => buildResume(request, responseToolkit)
 };
 
 export default [buildResumeRoute];

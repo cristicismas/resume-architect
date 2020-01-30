@@ -1,26 +1,28 @@
 import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
-export const getPreviews = () => (dispatch, getState) => {
+export const getPreviews = () => async (dispatch, getState) => {
   const { shouldFetchMore, lastIndex } = getState().previews;
 
   if (shouldFetchMore) {
-    return apiCall('GET', `templates/previews/${lastIndex}`).then(newTemplates => {
-      dispatch({
-        type: GET_PREVIEWS,
-        payload: newTemplates
-      });
+    const newTemplates = await apiCall('GET', `templates/previews/${lastIndex}`);
 
-      return newTemplates;
+    dispatch({
+      type: GET_PREVIEWS,
+      payload: newTemplates
     });
+
+    return newTemplates;
   } else return null;
 };
 
-export const getSinglePreview = previewName => dispatch => {
-  return apiCall('GET', `templates/single_preview/${previewName}`).then(template => {
-    dispatch({
-      type: GET_SINGLE_PREVIEW,
-      payload: template
-    });
+export const getSinglePreview = previewName => async dispatch => {
+  const template = await apiCall('GET', `templates/single_preview/${previewName}`);
+
+  dispatch({
+    type: GET_SINGLE_PREVIEW,
+    payload: template
   });
+
+  return template;
 };

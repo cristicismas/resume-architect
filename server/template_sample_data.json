@@ -1,26 +1,29 @@
 {
-  "full_name": "John Doe",
+  "name": "John Doe",
   "address": "55 Main Street, Azusa, New York 39531",
-  "phone_number": "555-555-5555",
+  "phoneNumber": "555-555-5555",
   "email": "johndoe@sample.com",
-  "description": "Human Resources Generalist with +5 years of experience fulfilling organization staffing needs and requirements. Aiming to use my skills to help your company with your goals.",
-  "experience": [
+  "about": "Human Resources Generalist with +5 years of experience fulfilling organization staffing needs and requirements. Aiming to use my skills to help your company with your goals.",
+  "jobs": [
     {
-      "date": "15 April 2016 - 12 June 2018",
+      "jobStartDate": "15 April 2016",
+      "jobEndDate": "12 June 2018",
       "company": "Trenton Hospital - Boston",
       "job": "Human Resources Intern",
       "responsibilities": "Duis blandit mi a lorem maximus, quis pellentesque libero porta. Aenean non sem consectetur ipsum tristique congue. Nunc vitae neque augue. Etiam feugiat interdum magna, sit amet maximus velit convallis et. Fusce ut orci blandit, gravida quam vitae, lacinia dui."
     },
     {
-      "date": "15 June 2018 - Present",
+      "jobStartDate": "15 June 2018",
+      "jobEndDate": "Present",
       "company": "Gao Laboratories - Chicago",
       "job": "Human Resources Generalist",
       "responsibilities": "In quis elementum justo. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus scelerisque dolor neque, non laoreet urna auctor eget. Ut at dolor id nulla sagittis feugiat."
     }
   ],
-  "education": [
+  "schools": [
     {
-      "date": "2012 - 2016",
+      "schoolStartDate": "February 2012",
+      "schoolEndDate": "May 2016",
       "school": "Miami University",
       "degree": "B.A. H.R. Management"
     }

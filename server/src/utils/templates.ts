@@ -59,7 +59,7 @@ export const populateTemplate = async (inputFilePath: string, templateData: any)
 
     const zipContent = new PizZip(template);
     const doc = new Docxtemplater();
-    await doc.loadZip(zipContent);
+    await doc.loadZip(zipContent).setOptions({ parser: CONSTANTS.customDocxParser });
 
     doc.setData(templateData);
     doc.render();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -12,11 +12,11 @@ const Header = () => {
       </h1>
 
       <nav>
-        <a href="/#templates">Templates</a>
-        <a href="/">Build Your Own</a>
-        <a href="/">About</a>
-        <a href="/">Sign Up</a>
-        <a href="/">Log In</a>
+        <Link to="/templates">Templates</Link>
+        <Link to="/">Build Your Own</Link>
+        <Link to="/">About</Link>
+        <Link to="/">Sign Up</Link>
+        <Link to="/">Log In</Link>
       </nav>
     </header>
   );

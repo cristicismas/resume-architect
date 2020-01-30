@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
@@ -12,9 +13,9 @@ const Hero = () => {
             With <span className="bold">ResumeArchitect</span>, you can easily build a professional, scannable and printable resume by completing a simple form and choosing a template you like, for free.
           </p>
 
-          <a href="#templates" className="hero-cta">
+          <Link to="/templates" className="hero-cta">
             Choose a Template
-          </a>
+          </Link>
         </div>
 
         <a href="/" className="resume-sample-link"> 

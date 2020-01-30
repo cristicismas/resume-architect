@@ -40,7 +40,7 @@ export const buildTemplatePreviews = async () => {
     console.log('Previews uploaded');
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong building the templates.');
+    throw Boom.badImplementation('Something went wrong building the templates.');
   }
 };
 
@@ -68,7 +68,7 @@ export const populateTemplate = async (inputFilePath: string, templateData: any)
     return buffer;
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong filling a template.');
+    throw Boom.badImplementation('Something went wrong filling a template.');
   }
 };
 
@@ -96,6 +96,6 @@ export const fetchAndStorePreviewLinks = async () => {
     });
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong fetching and storing the preview links.');
+    throw Boom.badImplementation('Something went wrong fetching and storing the preview links.');
   }
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './BuildResume.css';
 
 import ResumeForm from '../form/ResumeForm';

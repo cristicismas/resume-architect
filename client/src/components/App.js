@@ -5,6 +5,7 @@ import ScrollToTop from './misc/ScrollToTop';
 import Header from './layout/Header';
 import Home from './pages/Home';
 import BuildResume from './pages/BuildResume';
+import Templates from './layout/Templates';
 import Footer from './layout/Footer';
 
 const App = () => (
@@ -15,6 +16,10 @@ const App = () => (
     <Switch>
       <Route path="/build/:template_name">
         <BuildResume />
+      </Route>
+
+      <Route path="/templates">
+        <Templates />
       </Route>
 
       <Route path="/">

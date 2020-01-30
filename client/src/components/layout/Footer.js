@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="right-side">
         <nav>
           <Link to="/templates">Templates</Link>
-          <Link to="/">Build Your Template</Link>
+          <Link to="/">Tips</Link>
           <Link to="/">About Us</Link>
           <Link to="/">Privacy Policy</Link>
           <Link to="/">Terms of Use</Link>

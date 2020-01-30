@@ -16,19 +16,18 @@ const Features = () => {
         </div>
 
         <div className="card">
-          <h3 className="card-title">Build your own!</h3>
+          <h3 className="card-title">Professional resumes</h3>
           <p className="card-description">
-            We offer professional, scannable and printable resumes that can be downloaded in a variety of formats. If
-            none of our templates satisfy your needs, you can upload your own template and use our service to fill it
-            out!
+            We offer professional resumes that can be downloaded in a variety of formats. This is a completely free
+            service, that helps you build and customise your resume with ease.
           </p>
         </div>
 
         <div className="card">
           <h3 className="card-title">We'll help you out</h3>
           <p className="card-description">
-            No idea what to write? No problem. We tell you what you need to fill out and give you useful examples. Just
-            pick the design you like and in 10 minutes you'll have a brand-new resume.
+            No idea what to write? No problem. We tell you exactly what you need to fill out and give you useful examples. Just
+            pick the design you like and get started! You'll be done in no time.
           </p>
         </div>
       </div>

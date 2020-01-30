@@ -1,5 +1,5 @@
 import * as path from 'path';
 
 export default {
-  srcDir: path.dirname(require.main.filename)
+  rootDir: path.resolve(path.dirname(require.main.filename), '../')
 };

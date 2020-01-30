@@ -21,11 +21,11 @@ export const buildResume = async (request: Request, responseToolkit: ResponseToo
     const remoteResumePath = `resume_architect/resumes/${resumeName.slice(0, -4)}.docx`;
     const foundResume = resumes.resources.find((resume: CloudinaryResource) => resume.public_id === remoteResumePath);
 
-    const localResumePath = `../temp/${resumeName.slice(0, -4)}.docx`;
+    const localResumePath = `temp/${resumeName.slice(0, -4)}.docx`;
     if (!fs.existsSync(localResumePath)) await writeTemplateLocally(foundResume, localResumePath);
 
     const populatedResume = await populateTemplate(localResumePath, resumeData);
-    await fs.unlink(path.join(CONSTANTS.srcDir, localResumePath));
+    await fs.unlink(path.join(CONSTANTS.rootDir, localResumePath));
 
     return responseToolkit
       .response(populatedResume)

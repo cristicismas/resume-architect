@@ -19,19 +19,19 @@ export const buildTemplatePreviews = async () => {
     });
 
     for (const template of templates.resources) {
-      await writeTemplateLocally(template, '../temp/template.docx');
+      await writeTemplateLocally(template, 'temp/template.docx');
 
       const templateData = JSON.parse(fs.readFileSync('template_sample_data.json', 'UTF8'));
-      const populatedTemplate = await populateTemplate('../temp/template.docx', templateData);
-      fs.writeFileSync(path.join(CONSTANTS.srcDir, '../temp/populated_template.docx'), populatedTemplate);
+      const populatedTemplate = await populateTemplate('temp/template.docx', templateData);
+      fs.writeFileSync(path.join(CONSTANTS.rootDir, 'temp/populated_template.docx'), populatedTemplate);
 
-      const pdf = await word2pdf(path.join(CONSTANTS.srcDir, '../temp/populated_template.docx'), 'binary');
-      await fs.writeFile(path.join(CONSTANTS.srcDir, '../temp/template_preview.pdf'), pdf);
+      const pdf = await word2pdf(path.join(CONSTANTS.rootDir, 'temp/populated_template.docx'), 'binary');
+      await fs.writeFile(path.join(CONSTANTS.rootDir, 'temp/template_preview.pdf'), pdf);
 
       // Change the resumes folder to previews, and the docx extension to pdf.
       const pdfFileName = template.public_id.replace('resumes/', 'previews/').replace('docx', 'pdf');
 
-      await cloudinary.v2.uploader.upload(path.join(CONSTANTS.srcDir, '../temp/template_preview.pdf'), {
+      await cloudinary.v2.uploader.upload(path.join(CONSTANTS.rootDir, 'temp/template_preview.pdf'), {
         public_id: pdfFileName,
         resource_type: 'image'
       });
@@ -46,7 +46,7 @@ export const buildTemplatePreviews = async () => {
 
 export const writeTemplateLocally = (template: CloudinaryResource, filePath: string) => {
   return new Promise((resolve, reject) => {
-    const writeStream = request(template.secure_url).pipe(fs.createWriteStream(path.join(CONSTANTS.srcDir, filePath)));
+    const writeStream = request(template.secure_url).pipe(fs.createWriteStream(path.join(CONSTANTS.rootDir, filePath)));
 
     writeStream.on('finish', resolve);
     writeStream.on('error', reject);
@@ -55,7 +55,7 @@ export const writeTemplateLocally = (template: CloudinaryResource, filePath: str
 
 export const populateTemplate = async (inputFilePath: string, templateData: any) => {
   try {
-    const template = await fs.readFile(path.join(CONSTANTS.srcDir, inputFilePath), 'binary');
+    const template = await fs.readFile(path.join(CONSTANTS.rootDir, inputFilePath), 'binary');
 
     const zipContent = new PizZip(template);
     const doc = new Docxtemplater();

@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 temp
+resumes_list.json
 template_previews.json
 
 # dependencies

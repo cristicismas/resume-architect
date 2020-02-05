@@ -9,6 +9,7 @@ import routes from './routes/index';
 
 import { everyTenMinutes, everyFifteenMinutes } from './utils/cron';
 import { buildTemplatePreviews, fetchAndStorePreviewLinks } from './utils/templates';
+import { fetchAndStoreResumeLinks } from './utils/resume';
 
 const init = async () => {
   dotenv.config();
@@ -36,9 +37,11 @@ const init = async () => {
 
   buildTemplatePreviews();
   fetchAndStorePreviewLinks();
+  fetchAndStoreResumeLinks();
 
   everyTenMinutes(buildTemplatePreviews);
   everyFifteenMinutes(fetchAndStorePreviewLinks);
+  everyFifteenMinutes(fetchAndStoreResumeLinks);
 };
 
 process.on('unhandledRejection', err => {

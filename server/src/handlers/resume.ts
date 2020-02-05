@@ -1,35 +1,27 @@
-import * as fs from 'fs-extra';
-import * as path from 'path';
-import * as cloudinary from 'cloudinary';
 import * as Boom from '@hapi/boom';
 import { Request, ResponseToolkit } from 'hapi';
-import { CloudinaryResource } from '../interfaces/cloudinary';
-import { writeTemplateLocally, populateTemplate } from '../utils/templates';
+import { getResumeDOCX, getResumePDF } from '../utils/resume';
 import CONSTANTS from '../constants';
 
-export const buildResume = async (request: Request, responseToolkit: ResponseToolkit) => {
+export const buildResume = async (request: Request, res: ResponseToolkit) => {
   try {
-    const resumeData = JSON.parse(request.payload.toString());
-    const { resumeName } = request.params;
+    const { resumeType, resumeName } = request.params;
+    let resumeData = request.payload;
 
-    const resumes = await cloudinary.v2.api.resources({
-      resource_type: 'raw',
-      type: 'upload',
-      prefix: 'resume_architect/resumes'
-    });
+    if (typeof request.payload === 'string') {
+      resumeData = JSON.parse(request.payload);
+    }
 
-    const remoteResumePath = `resume_architect/resumes/${resumeName.slice(0, -4)}.docx`;
-    const foundResume = resumes.resources.find((resume: CloudinaryResource) => resume.public_id === remoteResumePath);
-
-    const localResumePath = `temp/${resumeName.slice(0, -4)}.docx`;
-    if (!fs.existsSync(localResumePath)) await writeTemplateLocally(foundResume, localResumePath);
-
-    const populatedResume = await populateTemplate(localResumePath, resumeData);
-    await fs.unlink(path.join(CONSTANTS.rootDir, localResumePath));
-
-    return responseToolkit
-      .response(populatedResume)
-      .type('application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    switch (resumeType.toLowerCase()) {
+      case 'docx':
+        const docxBuffer = await getResumeDOCX(resumeName, resumeData);
+        return res.response(docxBuffer).header('content-type', CONSTANTS.mimeTypes.docx);
+      case 'pdf':
+        const pdfBuffer = await getResumePDF(resumeName, resumeData);
+        return res.response(pdfBuffer).header('content-type', CONSTANTS.mimeTypes.pdf);
+      default:
+        return Boom.badRequest('The resume type must be either docx or pdf.');
+    }
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Something went wrong building the resume.');

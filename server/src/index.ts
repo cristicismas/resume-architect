@@ -7,9 +7,7 @@ import configureCloudinary from './utils/cloudinary';
 import { configureJWT } from './plugins/jwt';
 import routes from './routes/index';
 
-import { everyTenMinutes, everyFifteenMinutes } from './utils/cron';
-import { buildTemplatePreviews, fetchAndStorePreviewLinks } from './utils/templates';
-import { fetchAndStoreResumeLinks } from './utils/resume';
+import { runCronJobs } from './utils/cron';
 
 const init = async () => {
   dotenv.config();
@@ -35,13 +33,7 @@ const init = async () => {
   await configureCloudinary();
   console.log('Connected to Cloudinary');
 
-  buildTemplatePreviews();
-  fetchAndStorePreviewLinks();
-  fetchAndStoreResumeLinks();
-
-  everyTenMinutes(buildTemplatePreviews);
-  everyFifteenMinutes(fetchAndStorePreviewLinks);
-  everyFifteenMinutes(fetchAndStoreResumeLinks);
+  runCronJobs();
 };
 
 process.on('unhandledRejection', err => {

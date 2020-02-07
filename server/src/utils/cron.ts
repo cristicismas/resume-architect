@@ -1,9 +1,17 @@
 import * as cron from 'node-cron';
+import { buildTemplatePreviews, fetchAndStorePreviewLinks } from '../utils/templates';
+import { fetchAndStoreResumeLinks } from '../utils/resume';
 
-export const everyFifteenMinutes = (callback: Function) => {
-  cron.schedule('*/15 * * * *', callback);
+export const runCronJobs = async () => {
+  buildTemplatePreviews();
+  fetchAndStorePreviewLinks();
+  fetchAndStoreResumeLinks();
+
+  everyThirtyMinutes(buildTemplatePreviews);
+  everyThirtyMinutes(fetchAndStorePreviewLinks);
+  everyThirtyMinutes(fetchAndStoreResumeLinks);
 };
 
-export const everyTenMinutes = (callback: Function) => {
-  cron.schedule('*/10 * * * *', callback);
+const everyThirtyMinutes = (callback: Function) => {
+  cron.schedule('*/15 * * * *', callback);
 };

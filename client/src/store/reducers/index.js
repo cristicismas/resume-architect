@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import previews from './previews';
-import resumes from './resumes';
+import resume from './resume';
 
 export default combineReducers({
   previews,
-  resumes
+  resume
 });

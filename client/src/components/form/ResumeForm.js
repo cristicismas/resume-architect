@@ -3,43 +3,20 @@ import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
-import { buildResume } from '../../store/actions/resumes';
+import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
+import CONSTANTS from '../../constants';
 import './ResumeForm.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 
-const initialValues = {
-  name: '',
-  address: '',
-  phoneNumber: '',
-  email: '',
-  about: '',
-  jobs: [
-    {
-      company: '',
-      job: '',
-      jobStartDate: null,
-      jobEndDate: null,
-      responsibilities: ''
-    }
-  ],
-  schools: [
-    {
-      school: '',
-      degree: '',
-      schoolStartDate: null,
-      schoolEndDate: null
-    }
-  ],
-  extra: ''
-};
-
 const ResumeForm = () => {
   const { template_name } = useParams();
   const { templateToBuild } = useSelector(state => state.previews);
+  const { docx, pdf } = useSelector(state => state.resume);
+
   const dispatch = useDispatch();
 
   const handleGetSinglePreview = useCallback(() => {
@@ -47,16 +24,20 @@ const ResumeForm = () => {
   }, [dispatch, template_name]);
 
   const handleBuildResume = useCallback(
-    data => {
-      dispatch(buildResume(data, template_name));
+    (data, actions) => {
+      dispatch(resetDownloadLinks())
+        .then(() => {
+          return dispatch(buildResume(data, 'docx', template_name));
+        })
+        .then(() => {
+          return dispatch(buildResume(data, 'pdf', template_name));
+        })
+        .then(() => {
+          actions.setSubmitting(false);
+        });
     },
     [dispatch, template_name]
   );
-
-  const handleSubmit = (data, actions) => {
-    handleBuildResume(data);
-    actions.setSubmitting(false);
-  };
 
   useEffect(() => {
     handleGetSinglePreview();
@@ -64,8 +45,11 @@ const ResumeForm = () => {
 
   return (
     <section id="resume-form">
-      <Formik initialValues={initialValues} validationSchema={buildResumeSchema} onSubmit={handleSubmit}>
-        {({ values, setFieldValue, isSubmitting }) => (
+      <Formik
+        initialValues={CONSTANTS.RESUME_FORM_INITIAL_VALUES}
+        validationSchema={buildResumeSchema}
+        onSubmit={handleBuildResume}>
+        {({ values, setFieldValue, isSubmitting, submitCount }) => (
           <Form>
             <section id="template">
               <h2 className="sub-title">Template</h2>
@@ -154,6 +138,18 @@ const ResumeForm = () => {
             <button id="submit-btn" type="submit" disabled={isSubmitting}>
               Submit
             </button>
+
+            {submitCount > 0 && (
+              <div className="download-group">
+                <a download href={docx} className={docx ? null : 'disabled'} id="docx-btn">
+                  DOCX
+                </a>
+
+                <a download href={pdf} className={pdf ? null : 'disabled'} id="pdf-btn">
+                  PDF
+                </a>
+              </div>
+            )}
           </Form>
         )}
       </Formik>

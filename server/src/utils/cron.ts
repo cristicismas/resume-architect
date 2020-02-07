@@ -13,5 +13,5 @@ export const runCronJobs = async () => {
 };
 
 const everyThirtyMinutes = (callback: Function) => {
-  cron.schedule('*/15 * * * *', callback);
+  cron.schedule('*/30 * * * *', callback);
 };

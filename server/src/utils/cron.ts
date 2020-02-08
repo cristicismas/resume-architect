@@ -3,9 +3,9 @@ import { buildTemplatePreviews, fetchAndStorePreviewLinks } from '../utils/templ
 import { fetchAndStoreResumeLinks } from '../utils/resume';
 
 export const runCronJobs = async () => {
-  buildTemplatePreviews();
-  fetchAndStorePreviewLinks();
-  fetchAndStoreResumeLinks();
+  await buildTemplatePreviews();
+  await fetchAndStorePreviewLinks();
+  await fetchAndStoreResumeLinks();
 
   everyThirtyMinutes(buildTemplatePreviews);
   everyThirtyMinutes(fetchAndStorePreviewLinks);

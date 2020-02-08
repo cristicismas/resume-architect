@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { IUser } from '../interfaces/user';
 
 export const createToken = (user: IUser) => {

@@ -1,4 +1,4 @@
-import * as cron from 'node-cron';
+import cron from 'node-cron';
 import { buildTemplatePreviews, fetchAndStorePreviewLinks } from '../utils/templates';
 import { fetchAndStoreResumeLinks } from '../utils/resume';
 
@@ -12,6 +12,6 @@ export const runCronJobs = async () => {
   everyThirtyMinutes(fetchAndStoreResumeLinks);
 };
 
-const everyThirtyMinutes = (callback: Function) => {
+const everyThirtyMinutes = (callback: () => void) => {
   cron.schedule('*/30 * * * *', callback);
 };

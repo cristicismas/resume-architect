@@ -1,5 +1,5 @@
 import { Server } from '@hapi/hapi';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 import connectToDatabase from './models/index';
 import configureCloudinary from './utils/cloudinary';

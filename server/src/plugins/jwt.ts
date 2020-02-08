@@ -1,4 +1,4 @@
-import { Server, Request, ResponseToolkit } from '@hapi/hapi';
+import { Server, Request, ResponseToolkit } from 'hapi';
 
 import { IUser } from '../interfaces/user';
 import User from '../models/user';

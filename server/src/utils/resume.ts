@@ -1,8 +1,8 @@
-import * as fs from 'fs-extra';
-import * as path from 'path';
-import * as cloudinary from 'cloudinary';
-import * as word2pdf from 'word2pdf';
-import * as Boom from '@hapi/boom';
+import fs from 'fs-extra';
+import path from 'path';
+import word2pdf from 'word2pdf';
+import cloudinary from 'cloudinary';
+import Boom from '@hapi/boom';
 import { CloudinaryResource } from '../interfaces/cloudinary';
 import { getUniqueFileName } from '../utils/random';
 import { writeTemplateLocally, populateTemplate } from '../utils/templates';

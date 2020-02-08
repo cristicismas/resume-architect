@@ -1,6 +1,6 @@
-import * as path from 'path';
-import * as expressions from 'angular-expressions';
-import * as merge from 'lodash.merge';
+import path from 'path';
+import expressions from 'angular-expressions';
+import merge from 'lodash.merge';
 
 const customDocxParser = (tag: string) => {
   if (tag === '.') {

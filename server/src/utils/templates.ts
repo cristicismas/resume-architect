@@ -1,11 +1,11 @@
-import * as cloudinary from 'cloudinary';
-import * as request from 'request';
-import * as fs from 'fs-extra';
-import * as path from 'path';
-import * as word2pdf from 'word2pdf';
-import * as Docxtemplater from 'docxtemplater';
-import * as PizZip from 'pizzip';
-import * as Boom from '@hapi/boom';
+import cloudinary from 'cloudinary';
+import fs from 'fs-extra';
+import path from 'path';
+import Boom from '@hapi/boom';
+import request from 'request';
+import word2pdf from 'word2pdf';
+import Docxtemplater from 'docxtemplater';
+import PizZip from 'pizzip';
 import CONSTANTS from '../constants';
 
 import { CloudinaryResource } from '../interfaces/cloudinary';

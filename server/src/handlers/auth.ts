@@ -1,5 +1,5 @@
-import * as bcrypt from 'bcrypt';
-import * as Boom from '@hapi/boom';
+import bcrypt from 'bcrypt';
+import Boom from '@hapi/boom';
 
 import { createToken } from '../utils/jwt';
 import { IUser } from '../interfaces/user';
@@ -54,6 +54,6 @@ export const login = async (credentials: IUser) => {
     };
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Login failed');
+    return Boom.badImplementation('Login failed.');
   }
 };

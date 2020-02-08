@@ -1,4 +1,4 @@
-import { Request, ResponseToolkit } from '@hapi/hapi';
+import { Request, ResponseToolkit } from 'hapi';
 import { buildResume } from '../handlers/resume';
 
 const buildResumeRoute = {

@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 const connectToDatabase = async () => {
   mongoose.connect(process.env.DATABASE_URL, {

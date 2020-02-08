@@ -1,4 +1,4 @@
-import * as cloudinary from 'cloudinary';
+import cloudinary from 'cloudinary';
 
 const configureCloudinary = async () => {
   const { CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET } = process.env;

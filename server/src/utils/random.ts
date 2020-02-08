@@ -1,4 +1,4 @@
-import * as fs from 'fs-extra';
+import fs from 'fs-extra';
 
 export const getUniqueFileName = (path: string, extension: string) => {
   let fileName = path + getRandomInt(100000) + extension;

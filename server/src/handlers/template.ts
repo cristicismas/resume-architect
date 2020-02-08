@@ -1,7 +1,7 @@
 import { Request } from 'hapi';
 import { ITemplatePreview } from '../interfaces/template';
-import * as fs from 'fs-extra';
-import * as Boom from '@hapi/boom';
+import fs from 'fs-extra';
+import Boom from '@hapi/boom';
 
 const max_results = 6;
 

@@ -13,13 +13,13 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
 
           <div className="group">
             <label htmlFor={`jobs[${index}].company`}>Company</label>
-            <Field type="text" placeholder="Gao Laboratories - Chicago" name={`jobs[${index}].company`} />
+            <Field type="text" placeholder="Company Name" name={`jobs[${index}].company`} />
             <ErrorMessage className="field-error" name={`jobs[${index}].company`} component="div" />
           </div>
 
           <div className="group">
             <label htmlFor={`jobs[${index}].job`}>Job Title</label>
-            <Field type="text" placeholder="Human Resources Intern" name={`jobs[${index}].job`} />
+            <Field type="text" placeholder="Job Title / Position" name={`jobs[${index}].job`} />
             <ErrorMessage className="field-error" name={`jobs[${index}].job`} component="div" />
           </div>
 
@@ -39,7 +39,7 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
             <label htmlFor={`jobs[${index}].responsibilities`}>Responsibilities / About the job</label>
             <Field
               as="textarea"
-              placeholder="Key role you played at the company. Try to keep it short and use bullet-points when you list the responsibilities you've had / important stuff you did while you worked there."
+              placeholder="Key role you played at the company. Try to keep it short. Use bullet-points to list the responsibilities you've had / the important stuff you did while you worked there."
               type="text"
               name={`jobs[${index}].responsibilities`}
             />

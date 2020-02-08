@@ -13,13 +13,13 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
 
           <div className="group">
             <label htmlFor={`schools[${index}].school`}>School</label>
-            <Field type="text" placeholder="Miami University" name={`schools[${index}].school`} />
+            <Field type="text" placeholder="Your university / school / college" name={`schools[${index}].school`} />
             <ErrorMessage className="field-error" name={`schools[${index}].school`} component="div" />
           </div>
 
           <div className="group">
             <label htmlFor={`schools[${index}].degree`}>Degree</label>
-            <Field type="text" placeholder="Bachelor of Science" name={`schools[${index}].degree`} />
+            <Field type="text" placeholder="Your diploma / degree" name={`schools[${index}].degree`} />
             <ErrorMessage className="field-error" name={`schools[${index}].degree`} component="div" />
           </div>
 

@@ -62,13 +62,13 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="name">Full Name</label>
-                <Field type="text" placeholder="John Doe" name="name" />
+                <Field type="text" placeholder="Your Name" name="name" />
                 <ErrorMessage className="field-error" name="name" component="div" />
               </div>
 
               <div className="group">
                 <label htmlFor="address">Address</label>
-                <Field type="text" placeholder="55 Main Street, Azusa, New York 39531" name="address" />
+                <Field type="text" placeholder="Your Address" name="address" />
                 <ErrorMessage className="field-error" name="address" component="div" />
               </div>
 
@@ -80,7 +80,7 @@ const ResumeForm = () => {
 
               <div className="group">
                 <label htmlFor="email">Email</label>
-                <Field type="email" placeholder="johndoe@example.com" name="email" />
+                <Field type="email" placeholder="youremail@example.com" name="email" />
                 <ErrorMessage className="field-error" name="email" component="div" />
               </div>
             </section>

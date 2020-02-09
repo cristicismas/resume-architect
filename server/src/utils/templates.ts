@@ -2,12 +2,11 @@ import cloudinary from 'cloudinary';
 import fs from 'fs-extra';
 import path from 'path';
 import Boom from '@hapi/boom';
-import request from 'request';
 import word2pdf from 'word2pdf';
 import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
+import { readJSON, writeStreamFromURL, writeToTemp } from '../utils/files';
 import CONSTANTS from '../constants';
-
 import { CloudinaryResource } from '../interfaces/cloudinary';
 
 export const buildTemplatePreviews = async () => {
@@ -19,14 +18,14 @@ export const buildTemplatePreviews = async () => {
     });
 
     for (const template of templates.resources) {
-      await writeTemplateLocally(template, 'temp/template.docx');
+      await writeStreamFromURL(template.secure_url, 'temp/template.docx');
 
-      const templateData = JSON.parse(fs.readFileSync('template_sample_data.json', 'UTF8'));
+      const templateData = await readJSON('template_sample_data.json');
       const populatedTemplate = await populateTemplate('temp/template.docx', templateData);
-      fs.writeFileSync(path.join(CONSTANTS.rootDir, 'temp/populated_template.docx'), populatedTemplate);
+      await writeToTemp('populated_template.docx', populatedTemplate);
 
       const pdf = await word2pdf(path.join(CONSTANTS.rootDir, 'temp/populated_template.docx'), 'binary');
-      await fs.writeFile(path.join(CONSTANTS.rootDir, 'temp/template_preview.pdf'), pdf);
+      await writeToTemp('template_preview.pdf', pdf);
 
       // Change the resumes folder to previews, and the docx extension to pdf.
       const pdfFileName = template.public_id.replace('resumes/', 'previews/').replace('docx', 'pdf');
@@ -42,15 +41,6 @@ export const buildTemplatePreviews = async () => {
     console.log(err);
     throw Boom.badImplementation('Something went wrong building the templates.');
   }
-};
-
-export const writeTemplateLocally = (template: CloudinaryResource, filePath: string) => {
-  return new Promise((resolve, reject) => {
-    const writeStream = request(template.secure_url).pipe(fs.createWriteStream(path.join(CONSTANTS.rootDir, filePath)));
-
-    writeStream.on('finish', resolve);
-    writeStream.on('error', reject);
-  });
 };
 
 export const populateTemplate = async (inputFilePath: string, templateData: any) => {
@@ -91,9 +81,8 @@ export const fetchAndStorePreviewLinks = async () => {
       };
     });
 
-    fs.writeFile('template_previews.json', JSON.stringify(templatePreviews), () => {
-      console.log('Previews list updated');
-    });
+    await fs.writeFile('template_previews.json', JSON.stringify(templatePreviews));
+    console.log('Previews list updated');
   } catch (err) {
     console.log(err);
     throw Boom.badImplementation('Something went wrong fetching and storing the preview links.');

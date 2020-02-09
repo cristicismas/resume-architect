@@ -1,16 +1,15 @@
 import { Request } from 'hapi';
 import { ITemplatePreview } from '../interfaces/template';
-import fs from 'fs-extra';
+import { readJSON } from '../utils/files';
 import Boom from '@hapi/boom';
 
 const max_results = 6;
 
 export const getTemplatePreviewsLinks = async (request: Request) => {
   try {
-    const linksFile = await fs.readFile('template_previews.json', 'UTF8');
     const { indexToFetch } = request.params;
 
-    let templateLinks = JSON.parse(linksFile);
+    let templateLinks = await readJSON('template_previews.json');
 
     if (indexToFetch + max_results > templateLinks.length) {
       templateLinks = templateLinks.slice(indexToFetch, templateLinks.length);
@@ -27,10 +26,9 @@ export const getTemplatePreviewsLinks = async (request: Request) => {
 
 export const getSinglePreviewLink = async (request: Request) => {
   try {
-    const linksFile = await fs.readFile('template_previews.json', 'UTF8');
     const { templateName } = request.params;
 
-    let templateLinks = JSON.parse(linksFile);
+    const templateLinks = await readJSON('template_previews.json');
 
     const template = templateLinks.find((template: ITemplatePreview) => {
       if (template.name === templateName) return true;

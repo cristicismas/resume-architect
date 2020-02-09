@@ -4,13 +4,13 @@ import word2pdf from 'word2pdf';
 import cloudinary from 'cloudinary';
 import Boom from '@hapi/boom';
 import { CloudinaryResource } from '../interfaces/cloudinary';
-import { getUniqueFileName } from '../utils/random';
-import { writeTemplateLocally, populateTemplate } from '../utils/templates';
+import { getTempFileName, readJSON, removeFile, writeStreamFromURL } from '../utils/files';
+import { populateTemplate } from '../utils/templates';
 import CONSTANTS from '../constants';
 
 const getResumeLink = async (resumeName: string) => {
   try {
-    const resumes = await getResumesList();
+    const resumes = await readJSON('resumes_list.json');
 
     const remoteResumePath = `resume_architect/resumes/${resumeName.slice(0, -4)}.docx`;
     const foundResume = resumes.find((resume: CloudinaryResource) => resume.public_id === remoteResumePath);
@@ -19,16 +19,6 @@ const getResumeLink = async (resumeName: string) => {
   } catch (err) {
     console.log(err);
     return Boom.badImplementation("Couldn't find the requested resume.");
-  }
-};
-
-const getResumesList = async () => {
-  try {
-    const resumeLinks = await fs.readFile('resumes_list.json', 'UTF8');
-    return JSON.parse(resumeLinks);
-  } catch (err) {
-    console.log(err);
-    return Boom.badImplementation('Something went wrong getting the template preview links');
   }
 };
 
@@ -61,11 +51,11 @@ export const getResumeDOCX = async (resumeName: string, resumeData: any) => {
   try {
     const resume = await getResumeLink(resumeName);
 
-    const localResumePath = getUniqueFileName('temp/', '.docx');
-    await writeTemplateLocally(resume, localResumePath);
+    const localResumePath = getTempFileName('.docx');
+    await writeStreamFromURL(resume.secure_url, localResumePath);
 
     const populatedResume = await populateTemplate(localResumePath, resumeData);
-    fs.unlink(path.join(CONSTANTS.rootDir, localResumePath));
+    removeFile(localResumePath);
 
     return populatedResume;
   } catch (err) {
@@ -77,7 +67,7 @@ export const getResumeDOCX = async (resumeName: string, resumeData: any) => {
 export const getResumePDF = async (resumeName: string, resumeData: any) => {
   try {
     const docxBuffer = await getResumeDOCX(resumeName, resumeData);
-    const docxPath = path.join(CONSTANTS.rootDir, getUniqueFileName('temp/', '.docx'));
+    const docxPath = path.join(CONSTANTS.rootDir, getTempFileName('.docx'));
     await fs.writeFile(docxPath, docxBuffer);
 
     const pdfBuffer = await word2pdf(docxPath);

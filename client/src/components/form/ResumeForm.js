@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +11,10 @@ import './ResumeForm.css';
 import TemplatePreview from '../misc/TemplatePreview';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
+import LoadingButton from '../misc/LoadingButton';
 
 const ResumeForm = () => {
+  const [showDownloadButtons, setShowDownloadButtons] = useState(false);
   const { template_name } = useParams();
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
@@ -25,6 +27,8 @@ const ResumeForm = () => {
 
   const handleBuildResume = useCallback(
     (data, actions) => {
+      setShowDownloadButtons(true);
+
       dispatch(resetDownloadLinks())
         .then(() => {
           return dispatch(buildResume(data, 'docx', template_name));
@@ -49,7 +53,7 @@ const ResumeForm = () => {
         initialValues={CONSTANTS.RESUME_FORM_INITIAL_VALUES}
         validationSchema={buildResumeSchema}
         onSubmit={handleBuildResume}>
-        {({ values, setFieldValue, isSubmitting, submitCount }) => (
+        {({ values, setFieldValue, isSubmitting }) => (
           <Form>
             <section id="template">
               <h2 className="sub-title">Template</h2>
@@ -135,19 +139,19 @@ const ResumeForm = () => {
               </div>
             </section>
 
-            <button id="submit-btn" type="submit" disabled={isSubmitting}>
+            <LoadingButton id="submit-btn" type="submit" loading={isSubmitting}>
               Submit
-            </button>
+            </LoadingButton>
 
-            {submitCount > 0 && (
+            {showDownloadButtons && (
               <div className="download-group">
-                <a download href={docx} className={docx ? null : 'disabled'} id="docx-btn">
+                <LoadingButton download loading={!docx} href={docx} id="docx-btn">
                   DOCX
-                </a>
+                </LoadingButton>
 
-                <a download href={pdf} className={pdf ? null : 'disabled'} id="pdf-btn">
+                <LoadingButton download loading={!pdf} href={pdf} id="pdf-btn">
                   PDF
-                </a>
+                </LoadingButton>
               </div>
             )}
           </Form>

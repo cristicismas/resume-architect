@@ -1,0 +1,17 @@
+.loading-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-btn.is-loading {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.loading-btn .spinner {
+  width: 27px;
+  height: 27px;
+  margin: 0 5px 0 10px;
+  border-left: 6px solid #fff;
+  border-right: 6px solid #fff;
+}

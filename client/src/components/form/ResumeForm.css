@@ -125,3 +125,8 @@
 #resume-form .download-group #pdf-btn {
   background-color: #ff4d4d;
 }
+
+#resume-form .errors-warning {
+  color: red;
+  text-align: center;
+}

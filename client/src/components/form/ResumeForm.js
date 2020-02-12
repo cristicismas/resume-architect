@@ -53,7 +53,7 @@ const ResumeForm = () => {
         initialValues={CONSTANTS.RESUME_FORM_INITIAL_VALUES}
         validationSchema={buildResumeSchema}
         onSubmit={handleBuildResume}>
-        {({ values, setFieldValue, isSubmitting }) => (
+        {({ values, errors, setFieldValue, isSubmitting, submitCount }) => (
           <Form>
             <section id="template">
               <h2 className="sub-title">Template</h2>
@@ -152,6 +152,14 @@ const ResumeForm = () => {
                 <LoadingButton download loading={!pdf} href={pdf} id="pdf-btn">
                   PDF
                 </LoadingButton>
+              </div>
+            )}
+
+            {Object.keys(errors).length > 0 && submitCount > 0 && (
+              <div className="errors-warning">
+                You have one or more errors above.
+                <br />
+                Please correct them and then you can submit the form.
               </div>
             )}
           </Form>

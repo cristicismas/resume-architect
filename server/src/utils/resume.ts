@@ -4,6 +4,7 @@ import word2pdf from 'word2pdf';
 import cloudinary from 'cloudinary';
 import Boom from '@hapi/boom';
 import { CloudinaryResource } from '../interfaces/cloudinary';
+import { IResumeData } from '../interfaces/resume';
 import { getTempFileName, readJSON, removeFile, writeStreamFromURL } from '../utils/files';
 import { populateTemplate } from '../utils/templates';
 import CONSTANTS from '../constants';
@@ -45,6 +46,18 @@ export const fetchAndStoreResumeLinks = async () => {
     console.log(err);
     return Boom.badImplementation('Something went wrong fetching or storing the resume links.');
   }
+};
+
+export const sanitizeResumeFormData = (data: IResumeData) => {
+  data.jobs = data.jobs.filter(job => {
+    return job.jobStartDate || job.jobEndDate || job.company || job.job || job.responsibilities;
+  });
+
+  data.schools = data.schools.filter(school => {
+    return school.schoolStartDate || school.schoolEndDate || school.degree || school.school;
+  });
+
+  return data;
 };
 
 export const getResumeDOCX = async (resumeName: string, resumeData: any) => {

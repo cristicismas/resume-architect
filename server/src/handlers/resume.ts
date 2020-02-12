@@ -1,6 +1,6 @@
 import Boom from '@hapi/boom';
 import { Request, ResponseToolkit } from 'hapi';
-import { getResumeDOCX, getResumePDF } from '../utils/resume';
+import { getResumeDOCX, getResumePDF, sanitizeResumeFormData } from '../utils/resume';
 import CONSTANTS from '../constants';
 
 export const buildResume = async (request: Request, res: ResponseToolkit) => {
@@ -9,7 +9,7 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
     let resumeData = request.payload;
 
     if (typeof request.payload === 'string') {
-      resumeData = JSON.parse(request.payload);
+      resumeData = sanitizeResumeFormData(JSON.parse(request.payload));
     }
 
     switch (resumeType.toLowerCase()) {

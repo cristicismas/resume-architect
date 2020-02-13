@@ -2,6 +2,28 @@ import path from 'path';
 import expressions from 'angular-expressions';
 import merge from 'lodash.merge';
 
+const rootDir = path.resolve(path.dirname(require.main.filename), '../');
+
+const mimeTypes = {
+  docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  pdf: 'application/pdf'
+};
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
 const customDocxParser = (tag: string) => {
   if (tag === '.') {
     return {
@@ -27,10 +49,8 @@ const customDocxParser = (tag: string) => {
 };
 
 export default {
-  rootDir: path.resolve(path.dirname(require.main.filename), '../'),
-  mimeTypes: {
-    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    pdf: 'application/pdf'
-  },
-  customDocxParser
+  rootDir,
+  mimeTypes,
+  customDocxParser,
+  months
 };

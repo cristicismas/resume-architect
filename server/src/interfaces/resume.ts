@@ -1,4 +1,4 @@
-interface IJob {
+export interface IJob {
   jobStartDate: string;
   jobEndDate: string;
   company: string;
@@ -6,7 +6,7 @@ interface IJob {
   responsibilities: string;
 }
 
-interface ISchool {
+export interface ISchool {
   schoolStartDate: string;
   schoolEndDate: string;
   degree: string;

@@ -4,7 +4,7 @@ import word2pdf from 'word2pdf';
 import cloudinary from 'cloudinary';
 import Boom from '@hapi/boom';
 import { CloudinaryResource } from '../interfaces/cloudinary';
-import { IResumeData } from '../interfaces/resume';
+import { IResumeData, IJob, ISchool } from '../interfaces/resume';
 import { getTempFileName, readJSON, removeFile, writeStreamFromURL } from '../utils/files';
 import { populateTemplate } from '../utils/templates';
 import CONSTANTS from '../constants';
@@ -48,7 +48,7 @@ export const fetchAndStoreResumeLinks = async () => {
   }
 };
 
-export const sanitizeResumeFormData = (data: IResumeData) => {
+export const sanitizeAndFormatFormData = (data: IResumeData) => {
   data.jobs = data.jobs.filter(job => {
     return job.jobStartDate || job.jobEndDate || job.company || job.job || job.responsibilities;
   });
@@ -57,7 +57,38 @@ export const sanitizeResumeFormData = (data: IResumeData) => {
     return school.schoolStartDate || school.schoolEndDate || school.degree || school.school;
   });
 
+  data.jobs = formatJobDates(data.jobs);
+  data.schools = formatSchoolDates(data.schools);
+
   return data;
+};
+
+const formatJobDates = (jobs: IJob[]) => {
+  return jobs.map(job => {
+    job.jobStartDate = formatDate(job.jobStartDate);
+    job.jobEndDate = formatDate(job.jobEndDate);
+
+    return job;
+  });
+};
+
+const formatSchoolDates = (schools: ISchool[]) => {
+  return schools.map(school => {
+    school.schoolStartDate = formatDate(school.schoolStartDate);
+    school.schoolEndDate = formatDate(school.schoolEndDate);
+
+    return school;
+  });
+};
+
+const formatDate = (date: string) => {
+  const parsedDate = new Date(date);
+
+  const day = parsedDate.getDate();
+  const month = CONSTANTS.months[parsedDate.getMonth()];
+  const year = parsedDate.getFullYear();
+
+  return `${day} ${month} ${year}`;
 };
 
 export const getResumeDOCX = async (resumeName: string, resumeData: any) => {

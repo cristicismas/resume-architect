@@ -7,6 +7,7 @@
 .date-separator {
   font-size: 30px;
   height: 0;
-  width: 15px;
+  min-width: 15px;
+  margin: 10px;
   border: 1px solid #444;
 }

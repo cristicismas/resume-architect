@@ -1,3 +1,16 @@
+.dates-group .react-datepicker__header {
+  padding-top: 12px;
+}
+
+.dates-group .react-datepicker-year-header {
+  font-size: 1.44rem;
+}
+
+.dates-group .react-datepicker__month-text {
+  font-size: 1.20rem;
+  padding: 5px;
+}
+
 .dates-group {
   display: flex;
   align-items: center;

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
-import CONSTANTS from '../../constants';
+import { RESUME_FORM_INITIAL_VALUES } from '../../constants';
 import './ResumeForm.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
@@ -50,7 +50,7 @@ const ResumeForm = () => {
   return (
     <section id="resume-form">
       <Formik
-        initialValues={CONSTANTS.RESUME_FORM_INITIAL_VALUES}
+        initialValues={RESUME_FORM_INITIAL_VALUES}
         validationSchema={buildResumeSchema}
         onSubmit={handleBuildResume}>
         {({ values, errors, setFieldValue, isSubmitting, submitCount }) => (

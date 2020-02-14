@@ -126,6 +126,11 @@
   background-color: #ff4d4d;
 }
 
+#resume-form #submit-btn .icon,
+#resume-form .download-group .icon {
+  margin: 3px 0 0 8px;
+}
+
 #resume-form .errors-warning {
   color: red;
   text-align: center;

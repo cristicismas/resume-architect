@@ -159,7 +159,7 @@ const ResumeForm = () => {
               <div className="errors-warning">
                 You have one or more errors above.
                 <br />
-                Please correct them and then you can submit the form.
+                Please correct them, and then submit the form again.
               </div>
             )}
           </Form>

@@ -3,7 +3,7 @@ import './LoadingButton.css';
 
 import Spinner from './Spinner';
 import Icon from './Icon';
-import { ICONS } from '../../constants';
+import ICONS from '../../constants/icons';
 
 const LoadingButton = ({ loading, children, download, ...otherProps }) => {
   if (download) {

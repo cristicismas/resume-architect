@@ -14,15 +14,15 @@ const App = () => (
     <Header />
 
     <Switch>
-      <Route path="/build/:template_name">
+      <Route exact path="/build/:template_name">
         <BuildResume />
       </Route>
 
-      <Route path="/templates">
+      <Route exact path="/templates">
         <Templates />
       </Route>
 
-      <Route path="/">
+      <Route exact path="/">
         <Home />
       </Route>
     </Switch>

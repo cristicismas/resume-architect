@@ -7,9 +7,11 @@ import Spinner from '../misc/Spinner';
 
 const Templates = () => {
   const [shouldFetch, setShouldFetch] = useState(true);
-
   const { previewsList, shouldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
-  const templatePreviews = previewsList.map(template => <TemplatePreview key={template.name} template={template} />);
+
+  const templatePreviews = previewsList.map(template => (
+    <TemplatePreview key={template.name} linkTo={`/build/${template.name}`} template={template} />
+  ));
 
   return (
     <section id="templates">

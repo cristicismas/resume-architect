@@ -13,7 +13,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: 100vh;
   margin: 70px 50px;
 }
 

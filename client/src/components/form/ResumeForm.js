@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
@@ -8,6 +8,8 @@ import { buildResumeSchema } from '../../schemas/buildResume';
 import INITIAL_VALUES from '../../constants/initialValues';
 import './ResumeForm.css';
 
+import Overlay from '../misc/Overlay';
+import Templates from '../layout/Templates';
 import TemplatePreview from '../misc/TemplatePreview';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
@@ -16,6 +18,7 @@ import LoadingButton from '../misc/LoadingButton';
 const ResumeForm = () => {
   const [showDownloadButtons, setShowDownloadButtons] = useState(false);
   const { template_name } = useParams();
+  const history = useHistory();
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
 
@@ -24,6 +27,10 @@ const ResumeForm = () => {
   const handleGetSinglePreview = useCallback(() => {
     dispatch(getSinglePreview(template_name));
   }, [dispatch, template_name]);
+
+  useEffect(() => {
+    if (template_name !== '/change_template') handleGetSinglePreview();
+  }, [handleGetSinglePreview, template_name]);
 
   const handleBuildResume = useCallback(
     (data, actions) => {
@@ -43,12 +50,14 @@ const ResumeForm = () => {
     [dispatch, template_name]
   );
 
-  useEffect(() => {
-    handleGetSinglePreview();
-  }, [handleGetSinglePreview]);
-
   return (
     <section id="resume-form">
+      <Route exact path="/build/change_template">
+        <Overlay closeOverlay={history.goBack}>
+          <Templates />
+        </Overlay>
+      </Route>
+
       <Formik
         initialValues={INITIAL_VALUES.RESUME_FORM}
         validationSchema={buildResumeSchema}
@@ -58,7 +67,7 @@ const ResumeForm = () => {
             <section id="template">
               <h2 className="sub-title">Template</h2>
 
-              <TemplatePreview template={templateToBuild} />
+              <TemplatePreview template={templateToBuild} linkTo="/build/change_template" />
             </section>
 
             <section id="contact">

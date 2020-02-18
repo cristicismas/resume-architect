@@ -4,12 +4,12 @@ import './TemplatePreview.css';
 
 import Spinner from './Spinner';
 
-const TemplatePreview = ({ template }) => {
+const TemplatePreview = ({ template, linkTo }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   if (template)
     return (
-      <Link to={`/build/${template.name}`} className="template-preview-container">
+      <Link to={linkTo} className="template-preview-container">
         <img src={template.url} alt="template-preview" className="template-preview" onLoad={() => setIsLoaded(true)} />
 
         {!isLoaded && (

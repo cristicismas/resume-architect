@@ -17,10 +17,10 @@ import LoadingButton from '../misc/LoadingButton';
 
 const ResumeForm = () => {
   const [showDownloadButtons, setShowDownloadButtons] = useState(false);
-  const { template_name } = useParams();
-  const history = useHistory();
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
+  const { template_name } = useParams();
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -37,12 +37,8 @@ const ResumeForm = () => {
       setShowDownloadButtons(true);
 
       dispatch(resetDownloadLinks())
-        .then(() => {
-          return dispatch(buildResume(data, 'docx', template_name));
-        })
-        .then(() => {
-          return dispatch(buildResume(data, 'pdf', template_name));
-        })
+        .then(() => dispatch(buildResume(data, 'docx', template_name)))
+        .then(() => dispatch(buildResume(data, 'pdf', template_name)))
         .then(() => {
           actions.setSubmitting(false);
         });

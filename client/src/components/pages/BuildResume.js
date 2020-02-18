@@ -1,9 +1,12 @@
 import React from 'react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import './BuildResume.css';
 
 import ResumeForm from '../form/ResumeForm';
 
 const BuildResume = () => {
+  useScrollToTop();
+
   return (
     <section id="build-resume">
       <h1 className="title">Welcome!</h1>

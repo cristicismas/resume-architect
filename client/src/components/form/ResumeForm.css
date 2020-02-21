@@ -12,6 +12,11 @@
   min-height: auto;
 }
 
+#resume-form .template-preview-container:hover .template-preview {
+  box-shadow: 0 5px 30px 10px #bbb;
+  transform: none;
+}
+
 #resume-form .template-preview {
   margin: 50px auto;
   display: block;

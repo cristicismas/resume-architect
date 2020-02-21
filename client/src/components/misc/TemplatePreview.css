@@ -21,9 +21,15 @@
   transition: all 0.3s;
 }
 
-.template-preview:hover {
+.template-preview-container:hover .template-preview {
   box-shadow: 0 20px 30px 0px #aaa;
   transform: translateY(-5px);
+}
+
+.template-preview-container figcaption {
+  text-align: center;
+  position: relative;
+  top: -35px;
 }
 
 @media only screen and (max-width: 700px) {

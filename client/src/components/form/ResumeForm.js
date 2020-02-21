@@ -63,7 +63,7 @@ const ResumeForm = () => {
             <section id="template">
               <h2 className="sub-title">Template</h2>
 
-              <TemplatePreview template={templateToBuild} linkTo="/build/change_template" />
+              <TemplatePreview template={templateToBuild} linkTo="/build/change_template" caption="(click to change)" />
             </section>
 
             <section id="contact">

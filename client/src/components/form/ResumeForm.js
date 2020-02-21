@@ -29,7 +29,7 @@ const ResumeForm = () => {
   }, [dispatch, template_name]);
 
   useEffect(() => {
-    if (template_name !== '/change_template') handleGetSinglePreview();
+    if (template_name !== 'change_template') handleGetSinglePreview();
   }, [handleGetSinglePreview, template_name]);
 
   const handleBuildResume = useCallback(

@@ -7,7 +7,8 @@ import { CloudinaryResource } from '../interfaces/cloudinary';
 import { IResumeData, IJob, ISchool } from '../interfaces/resume';
 import { getTempFileName, readJSON, removeFile, writeStreamFromURL } from '../utils/files';
 import { populateTemplate } from '../utils/templates';
-import CONSTANTS from '../constants';
+import rootDir from '../constants/rootDir';
+import MONTHS from '../constants/months';
 
 const getResumeLink = async (resumeName: string) => {
   try {
@@ -85,7 +86,7 @@ const formatDate = (date: string) => {
   const parsedDate = new Date(date);
 
   const day = parsedDate.getDate();
-  const month = CONSTANTS.months[parsedDate.getMonth()];
+  const month = MONTHS[parsedDate.getMonth()];
   const year = parsedDate.getFullYear();
 
   return `${day} ${month} ${year}`;
@@ -111,7 +112,7 @@ export const getResumeDOCX = async (resumeName: string, resumeData: any) => {
 export const getResumePDF = async (resumeName: string, resumeData: any) => {
   try {
     const docxBuffer = await getResumeDOCX(resumeName, resumeData);
-    const docxPath = path.join(CONSTANTS.rootDir, getTempFileName('.docx'));
+    const docxPath = path.join(rootDir, getTempFileName('.docx'));
     await fs.writeFile(docxPath, docxBuffer);
 
     const pdfBuffer = await word2pdf(docxPath);

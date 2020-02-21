@@ -6,7 +6,8 @@ import word2pdf from 'word2pdf';
 import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 import { readJSON, writeStreamFromURL, writeToTemp } from '../utils/files';
-import CONSTANTS from '../constants';
+import rootDir from '../constants/rootDir';
+import docxParser from '../constants/docxParser';
 import { CloudinaryResource } from '../interfaces/cloudinary';
 
 export const buildTemplatePreviews = async () => {
@@ -24,13 +25,13 @@ export const buildTemplatePreviews = async () => {
       const populatedTemplate = await populateTemplate('temp/template.docx', templateData);
       await writeToTemp('populated_template.docx', populatedTemplate);
 
-      const pdf = await word2pdf(path.join(CONSTANTS.rootDir, 'temp/populated_template.docx'), 'binary');
+      const pdf = await word2pdf(path.join(rootDir, 'temp/populated_template.docx'), 'binary');
       await writeToTemp('template_preview.pdf', pdf);
 
       // Change the resumes folder to previews, and the docx extension to pdf.
       const pdfFileName = template.public_id.replace('resumes/', 'previews/').replace('docx', 'pdf');
 
-      await cloudinary.v2.uploader.upload(path.join(CONSTANTS.rootDir, 'temp/template_preview.pdf'), {
+      await cloudinary.v2.uploader.upload(path.join(rootDir, 'temp/template_preview.pdf'), {
         public_id: pdfFileName,
         resource_type: 'image'
       });
@@ -45,11 +46,11 @@ export const buildTemplatePreviews = async () => {
 
 export const populateTemplate = async (inputFilePath: string, templateData: any) => {
   try {
-    const template = await fs.readFile(path.join(CONSTANTS.rootDir, inputFilePath), 'binary');
+    const template = await fs.readFile(path.join(rootDir, inputFilePath), 'binary');
 
     const zipContent = new PizZip(template);
     const doc = new Docxtemplater();
-    await doc.loadZip(zipContent).setOptions({ parser: CONSTANTS.customDocxParser });
+    await doc.loadZip(zipContent).setOptions({ parser: docxParser });
 
     doc.setData(templateData);
     doc.render();

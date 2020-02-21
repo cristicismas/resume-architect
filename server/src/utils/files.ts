@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import request from 'request';
-import CONSTANTS from '../constants';
+import rootDir from '../constants/rootDir';
 
 export const getTempFileName = (suffix: string) => {
   const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
@@ -21,12 +21,12 @@ export const readJSON = async (localPath: string) => {
 };
 
 export const removeFile = async (localPath: string) => {
-  return fs.unlink(path.join(CONSTANTS.rootDir, localPath));
+  return fs.unlink(path.join(rootDir, localPath));
 };
 
 export const writeStreamFromURL = (url: string, localPath: string) => {
   return new Promise((resolve, reject) => {
-    const writeStream = request(url).pipe(fs.createWriteStream(path.join(CONSTANTS.rootDir, localPath)));
+    const writeStream = request(url).pipe(fs.createWriteStream(path.join(rootDir, localPath)));
 
     writeStream.on('finish', resolve);
     writeStream.on('error', reject);
@@ -34,5 +34,5 @@ export const writeStreamFromURL = (url: string, localPath: string) => {
 };
 
 export const writeToTemp = async (filename: string, content: ArrayBuffer) => {
-  return fs.writeFile(path.join(CONSTANTS.rootDir, `temp/${filename}`), content);
+  return fs.writeFile(path.join(rootDir, `temp/${filename}`), content);
 };

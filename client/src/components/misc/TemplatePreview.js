@@ -18,7 +18,7 @@ const TemplatePreview = ({ template, linkTo, caption }) => {
             onLoad={() => setIsLoaded(true)}
           />
 
-          {caption && <figcaption>{caption}</figcaption>}
+          {isLoaded && caption && <figcaption>{caption}</figcaption>}
         </figure>
 
         {!isLoaded && (

@@ -34,3 +34,9 @@
 #templates .show-more-btn:hover {
   opacity: 1;
 }
+
+@media only screen and (max-width: 550px) {
+  #templates .template-previews {
+    margin: 0 10px;
+  }
+}

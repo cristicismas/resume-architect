@@ -74,6 +74,8 @@
   }
 
   .overlay .close-overlay-btn {
-    top: 55px;
+    top: 15px;
+    right: 15px;
+    transform: scale(.8);
   }
 }

@@ -41,6 +41,7 @@ header nav {
 header nav a {
   border-bottom: 5px solid transparent;
   padding: 20px;
+  padding-right: 28px;
   margin: 0;
   font-size: 18px;
 }
@@ -55,6 +56,25 @@ header nav a:hover {
   color: rgb(0, 255, 194);
   background-color: rgba(0, 255, 194, .1);
   border-bottom: 5px solid rgb(0, 255, 194);
+}
+
+header.dark .icon {
+  fill: #333;
+}
+
+header .icon {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  transition: all .2s;
+}
+
+header.dark nav a:hover .icon {
+  fill: rgb(0, 183, 255);
+}
+
+header nav a:hover .icon {
+  fill: rgb(0, 255, 194);
 }
 
 @media only screen and (max-width: 1425px) {

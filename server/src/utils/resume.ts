@@ -92,7 +92,7 @@ const formatDate = (date: string) => {
   return `${day} ${month} ${year}`;
 };
 
-export const getResumeDOCX = async (resumeName: string, resumeData: any) => {
+export const getResumeDOCX = async (resumeName: string, resumeData: IResumeData) => {
   try {
     const resume = await getResumeLink(resumeName);
 
@@ -109,7 +109,7 @@ export const getResumeDOCX = async (resumeName: string, resumeData: any) => {
   }
 };
 
-export const getResumePDF = async (resumeName: string, resumeData: any) => {
+export const getResumePDF = async (resumeName: string, resumeData: IResumeData) => {
   try {
     const docxBuffer = await getResumeDOCX(resumeName, resumeData);
     const docxPath = path.join(rootDir, getTempFileName('.docx'));

@@ -15,27 +15,27 @@ const Header = () => {
       </h1>
 
       <nav>
-        <Link to="/templates">
+        <Link className={pathname.includes('templates') ? 'active' : ''} to="/templates">
           Templates
           <Icon size={24} fill="#eee" icon={ICONS.RESUME} />
         </Link>
 
-        <Link to="/">
+        <Link className={pathname.includes('tips') ? 'active' : ''} to="/tips">
           Tips
           <Icon size={24} fill="#eee" icon={ICONS.TIP} />
         </Link>
 
-        <Link to="/">
+        <Link className={pathname.includes('about') ? 'active' : ''} to="/about">
           About
           <Icon size={24} fill="#eee" icon={ICONS.ABOUT} />
         </Link>
 
-        <Link to="/">
+        <Link className={pathname.includes('signup') ? 'active' : ''} to="/signup">
           Sign Up
           <Icon size={24} fill="#eee" icon={ICONS.SIGNUP} />
         </Link>
 
-        <Link to="/">
+        <Link className={pathname.includes('login') ? 'active' : ''} to="/login">
           Log In
           <Icon size={24} fill="#eee" icon={ICONS.LOGIN} />
         </Link>

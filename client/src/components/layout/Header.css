@@ -46,13 +46,19 @@ header nav a {
   font-size: 18px;
 }
 
-header.dark nav a:hover {
+header nav a.active:not(:hover) {
+  background-color: transparent !important;
+}
+
+header.dark nav a:hover,
+header.dark nav a.active {
   color: rgb(0, 183, 255);
   background-color: rgba(0, 183, 255, .1);
   border-bottom: 5px solid rgb(0, 183, 255);
 }
 
-header nav a:hover {
+header nav a:hover,
+header nav a.active {
   color: rgb(0, 255, 194);
   background-color: rgba(0, 255, 194, .1);
   border-bottom: 5px solid rgb(0, 255, 194);
@@ -69,11 +75,13 @@ header .icon {
   transition: all .2s;
 }
 
-header.dark nav a:hover .icon {
+header.dark nav a:hover .icon,
+header.dark nav a.active .icon {
   fill: rgb(0, 183, 255);
 }
 
-header nav a:hover .icon {
+header nav a:hover .icon,
+header nav a.active .icon {
   fill: rgb(0, 255, 194);
 }
 

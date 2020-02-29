@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import HeaderLink from './HeaderLink';
+import { useLocation } from 'react-router-dom'
 import './Header.css';
 
-import Icon from '../misc/Icon';
 import ICONS from '../../constants/icons';
 
 const Header = () => {
@@ -15,30 +15,15 @@ const Header = () => {
       </h1>
 
       <nav>
-        <Link className={pathname.includes('templates') ? 'active' : ''} to="/templates">
-          Templates
-          <Icon size={24} fill="#eee" icon={ICONS.RESUME} />
-        </Link>
+        <HeaderLink path="/templates" icon={ICONS.RESUME} text="Templates" />
 
-        <Link className={pathname.includes('tips') ? 'active' : ''} to="/tips">
-          Tips
-          <Icon size={24} fill="#eee" icon={ICONS.TIP} />
-        </Link>
+        <HeaderLink path="/tips" icon={ICONS.TIP} text="Tips" />
 
-        <Link className={pathname.includes('about') ? 'active' : ''} to="/about">
-          About
-          <Icon size={24} fill="#eee" icon={ICONS.ABOUT} />
-        </Link>
+        <HeaderLink path="/about" icon={ICONS.ABOUT} text="About" />
 
-        <Link className={pathname.includes('signup') ? 'active' : ''} to="/signup">
-          Sign Up
-          <Icon size={24} fill="#eee" icon={ICONS.SIGNUP} />
-        </Link>
+        <HeaderLink path="/signup" icon={ICONS.SIGNUP} text="Sign Up" />
 
-        <Link className={pathname.includes('login') ? 'active' : ''} to="/login">
-          Log In
-          <Icon size={24} fill="#eee" icon={ICONS.LOGIN} />
-        </Link>
+        <HeaderLink path="/login" icon={ICONS.LOGIN} text="Log In" />
       </nav>
     </header>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './layout/Header';
+import Auth from './pages/Auth';
 import Home from './pages/Home';
 import BuildResume from './pages/BuildResume';
 import Templates from './layout/Templates';
@@ -12,6 +13,14 @@ const App = () => (
     <Header />
 
     <Switch>
+      <Route exact path="/login">
+        <Auth type="login" />
+      </Route>
+
+      <Route exact path="/signup">
+        <Auth type="signup" />
+      </Route>
+
       <Route exact path="/build/:template_name">
         <BuildResume />
       </Route>

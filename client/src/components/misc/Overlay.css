@@ -24,16 +24,17 @@
   padding: 50px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%);
+  opacity: 0;
   border-top: 5px solid #1e69ca;
   background-color: #eee;
   text-align: center;
-  animation: scalein forwards 0.2s;
+  animation: fadein forwards 0.5s;
 }
 
-@keyframes scalein {
+@keyframes fadein {
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
@@ -69,8 +70,6 @@
     width: 100vw;
     height: 100vh;
     padding: 0;
-    transform: translate(-50%, -50%) scale(1);
-    animation: none;
   }
 
   .overlay .close-overlay-btn {

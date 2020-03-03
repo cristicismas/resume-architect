@@ -7,7 +7,7 @@
   position: absolute;
   top: 0;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
-  background: linear-gradient(to bottom right, rgb(7, 0, 124) 0%, rgb(0, 255, 194) 100%);
+  background: linear-gradient(to bottom right, rgb(0, 33, 124) 0%, rgb(0, 255, 194) 100%);
   width: 100%;
   min-height: 100vh;
 }

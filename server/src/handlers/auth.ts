@@ -2,12 +2,13 @@ import bcrypt from 'bcrypt';
 import Boom from '@hapi/boom';
 
 import { createToken } from '../utils/jwt';
+import { safelyParseJSON } from '../utils/json';
 import { IUser } from '../interfaces/user';
 import User from '../models/user';
 
 export const signup = async (credentials: IUser) => {
   try {
-    const { username, password } = credentials;
+    const { username, password } = safelyParseJSON(credentials);
 
     const saltRounds = 10;
     const encryptedPassword = await bcrypt.hash(password, saltRounds);
@@ -34,7 +35,7 @@ export const signup = async (credentials: IUser) => {
 
 export const login = async (credentials: IUser) => {
   try {
-    const { username, password } = credentials;
+    const { username, password } = safelyParseJSON(credentials);
 
     const user = await User.findOne({ username: username });
 

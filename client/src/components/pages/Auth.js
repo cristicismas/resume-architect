@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { login, signup } from '../../store/actions/user';
 import { authFormSchema } from '../../schemas/authForm';
 import './Auth.css';
 
@@ -7,7 +9,25 @@ import Icon from '../misc/Icon';
 import ICONS from '../../constants/icons';
 
 const Auth = ({ type }) => {
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleLogin = useCallback((data) => {
+    dispatch(login(data));
+  }, [dispatch]);
+
+  const handleSignup = useCallback((data) => {
+    dispatch(signup(data));
+  }, [dispatch]);
+
+  const handleSubmit = (data, actions) => {
+    if (type === 'login') {
+      handleLogin(data)
+    } else {
+      handleSignup(data);
+    }
+
+    actions.setSubmitting(false);
+  };
 
   const formTitle = type === 'login' ? 'Log In' : 'Sign Up';
 

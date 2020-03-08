@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import { useParams, useHistory, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
@@ -8,8 +8,6 @@ import { buildResumeSchema } from '../../schemas/buildResume';
 import INITIAL_VALUES from '../../constants/initialValues';
 import './ResumeForm.css';
 
-import Overlay from '../misc/Overlay';
-import Templates from '../layout/Templates';
 import TemplatePreview from '../misc/TemplatePreview';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
@@ -20,7 +18,6 @@ const ResumeForm = () => {
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
   const { template_name } = useParams();
-  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -48,12 +45,6 @@ const ResumeForm = () => {
 
   return (
     <section id="resume-form">
-      <Route exact path="/build/change_template">
-        <Overlay closeOverlay={history.goBack}>
-          <Templates />
-        </Overlay>
-      </Route>
-
       <Formik
         initialValues={INITIAL_VALUES.RESUME_FORM}
         validationSchema={buildResumeSchema}

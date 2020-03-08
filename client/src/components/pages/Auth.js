@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, signup } from '../../store/actions/user';
 import { authFormSchema } from '../../schemas/authForm';
@@ -9,24 +10,32 @@ import Icon from '../misc/Icon';
 import ICONS from '../../constants/icons';
 
 const Auth = ({ type }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogin = useCallback((data) => {
-    dispatch(login(data));
-  }, [dispatch]);
+  const handleLogin = useCallback(
+    data => {
+      dispatch(login(data));
+    },
+    [dispatch]
+  );
 
-  const handleSignup = useCallback((data) => {
-    dispatch(signup(data));
-  }, [dispatch]);
+  const handleSignup = useCallback(
+    data => {
+      dispatch(signup(data));
+    },
+    [dispatch]
+  );
 
   const handleSubmit = (data, actions) => {
     if (type === 'login') {
-      handleLogin(data)
+      handleLogin(data);
     } else {
       handleSignup(data);
     }
 
     actions.setSubmitting(false);
+    history.push('/welcome');
   };
 
   const formTitle = type === 'login' ? 'Log In' : 'Sign Up';

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import HeaderLink from './HeaderLink';
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 import ICONS from '../../constants/icons';
@@ -8,10 +9,12 @@ import ICONS from '../../constants/icons';
 const Header = () => {
   const { pathname } = useLocation();
 
+  const loggedIn = useSelector(state => state.user.loggedIn);
+
   return (
     <header className={pathname === '/' ? 'light' : 'dark'}>
       <h1 className="title">
-        <a href="/">ResumeArchitect</a>
+        <Link to="/">ResumeArchitect</Link>
       </h1>
 
       <nav>
@@ -21,9 +24,15 @@ const Header = () => {
 
         <HeaderLink path="/about" icon={ICONS.ABOUT} text="About" />
 
-        <HeaderLink path="/signup" icon={ICONS.SIGNUP} text="Sign Up" />
+        {loggedIn ? (
+          <HeaderLink path="/logout" icon={ICONS.LOGIN} text="Log Out" />
+        ) : (
+          <Fragment>
+            <HeaderLink path="/signup" icon={ICONS.SIGNUP} text="Sign Up" />
 
-        <HeaderLink path="/login" icon={ICONS.LOGIN} text="Log In" />
+            <HeaderLink path="/login" icon={ICONS.LOGIN} text="Log In" />
+          </Fragment>
+        )}
       </nav>
     </header>
   );

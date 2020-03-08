@@ -1,6 +1,9 @@
-export const apiCall = async (method, path, data) => {
+export const apiCall = async (method, path, data, token) => {
   return fetch(`${process.env.REACT_APP_API_URL}/${path}`, {
     method,
+    headers: {
+      Authorization: token
+    },
     body: data ? JSON.stringify(data) : null
   })
     .then(res => {

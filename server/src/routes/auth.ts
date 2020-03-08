@@ -14,4 +14,16 @@ const loginRoute = {
   handler: (request: Request, h: ResponseToolkit) => login(request.payload as IUser)
 };
 
-export default [signupRoute, loginRoute];
+const checkTokenRoute = {
+  method: 'POST',
+  config: {
+    auth: 'jwt'
+  },
+  path: '/auth/check',
+  handler: (request: Request) => {
+    // If the handle runs, it means it passed jwt validation so the token is valid.
+    return request.auth.credentials;
+  }
+};
+
+export default [signupRoute, loginRoute, checkTokenRoute];

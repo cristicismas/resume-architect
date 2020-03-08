@@ -6,3 +6,4 @@ export const GET_RESUME_DOCX = 'GET_RESUME_DOCX';
 export const RESET_DOWNLOAD_LINKS = 'RESET_DOWNLOAD_LINKS';
 
 export const LOGGED_IN = 'LOGGED_IN';
+export const LOGGED_OUT = 'LOGGED_OUT';

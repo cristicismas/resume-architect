@@ -1,0 +1,28 @@
+#logout {
+  text-align: center;
+  color: #333;
+  padding-top: 100px;
+}
+
+#logout h1 {
+  font-size: 36px;
+}
+
+#logout h3 {
+  font-size: 28px;
+}
+
+#logout a {
+  color: #0077ff;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  line-height: 50px;
+  border-radius: 5px;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+#logout a:hover {
+  color: #0099ff;
+  border-color:#0099ff;
+}

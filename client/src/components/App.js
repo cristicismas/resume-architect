@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './layout/Header';
@@ -7,35 +8,53 @@ import Home from './pages/Home';
 import BuildResume from './pages/BuildResume';
 import Templates from './layout/Templates';
 import Footer from './layout/Footer';
+import Logout from './pages/Logout';
+import { checkToken } from '../store/actions/user';
 
-const App = () => (
-  <Router>
-    <Header />
+const App = () => {
+  const dispatch = useDispatch();
 
-    <Switch>
-      <Route exact path="/login">
-        <Auth type="login" />
-      </Route>
+  const handleCheckToken = useCallback(() => {
+    dispatch(checkToken());
+  }, [dispatch]);
 
-      <Route exact path="/signup">
-        <Auth type="signup" />
-      </Route>
+  useEffect(() => {
+    handleCheckToken();
+  }, [handleCheckToken]);
 
-      <Route exact path="/build/:template_name">
-        <BuildResume />
-      </Route>
+  return (
+    <Router>
+      <Header />
 
-      <Route exact path="/templates">
-        <Templates />
-      </Route>
+      <Switch>
+        <Route exact path="/logout">
+          <Logout />
+        </Route>
 
-      <Route exact path="/">
-        <Home />
-      </Route>
-    </Switch>
+        <Route exact path="/login">
+          <Auth type="login" />
+        </Route>
 
-    <Footer />
-  </Router>
-);
+        <Route exact path="/signup">
+          <Auth type="signup" />
+        </Route>
+
+        <Route exact path="/build/:template_name">
+          <BuildResume />
+        </Route>
+
+        <Route exact path="/templates">
+          <Templates />
+        </Route>
+
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+
+      <Footer />
+    </Router>
+  );
+};
 
 export default App;

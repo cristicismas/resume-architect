@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import { useTemplatePreviews } from '../../hooks/useTemplatePreviews';
 import './Templates.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import Spinner from '../misc/Spinner';
 
-const Templates = () => {
+const Templates = ({ shouldScrollToTop = false }) => {
+  useScrollToTop(shouldScrollToTop);
+
   const [shouldFetch, setShouldFetch] = useState(true);
   const { previewsList, couldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
 

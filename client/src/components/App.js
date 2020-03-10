@@ -49,7 +49,7 @@ const App = () => {
         </Route>
 
         <Route exact path="/templates">
-          <Templates />
+          <Templates shouldScrollToTop={true} />
         </Route>
 
         <Route exact path="/">

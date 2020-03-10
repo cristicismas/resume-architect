@@ -25,7 +25,11 @@ const Header = () => {
         <HeaderLink path="/about" icon={ICONS.ABOUT} text="About" />
 
         {loggedIn ? (
-          <HeaderLink path="/logout" icon={ICONS.LOGIN} text="Log Out" />
+          <Fragment>
+            <HeaderLink path="/resumes" icon={ICONS.MANY_RESUMES} text="My Resumes" />
+
+            <HeaderLink path="/logout" icon={ICONS.LOGIN} text="Log Out" />
+          </Fragment>
         ) : (
           <Fragment>
             <HeaderLink path="/signup" icon={ICONS.SIGNUP} text="Sign Up" />

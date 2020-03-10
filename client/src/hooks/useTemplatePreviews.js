@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPreviews } from '../store/actions/previews';
 
 export const useTemplatePreviews = (shouldFetch, setShouldFetch) => {
-  const { previewsList, shouldFetchMore } = useSelector(state => state.previews);
+  const { previewsList, couldFetchMore } = useSelector(state => state.previews);
   const dispatch = useDispatch();
 
   const handleGetPreviews = useCallback(() => {
@@ -17,5 +17,5 @@ export const useTemplatePreviews = (shouldFetch, setShouldFetch) => {
     }
   }, [shouldFetch, setShouldFetch, handleGetPreviews]);
 
-  return { previewsList, shouldFetchMore };
+  return { previewsList, couldFetchMore };
 };

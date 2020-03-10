@@ -2,9 +2,9 @@ import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const getPreviews = () => async (dispatch, getState) => {
-  const { shouldFetchMore, lastIndex } = getState().previews;
+  const { couldFetchMore, lastIndex } = getState().previews;
 
-  if (shouldFetchMore) {
+  if (couldFetchMore) {
     const newTemplates = await apiCall('GET', `templates/previews/${lastIndex}`);
 
     dispatch({

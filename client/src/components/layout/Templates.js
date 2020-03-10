@@ -7,7 +7,7 @@ import Spinner from '../misc/Spinner';
 
 const Templates = () => {
   const [shouldFetch, setShouldFetch] = useState(true);
-  const { previewsList, shouldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
+  const { previewsList, couldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
 
   const templatePreviews = previewsList.map(template => (
     <TemplatePreview key={template.name} linkTo={`/build/${template.name}`} template={template} />
@@ -25,7 +25,7 @@ const Templates = () => {
 
       <div className="template-previews">{templatePreviews}</div>
 
-      {shouldFetchMore && (
+      {couldFetchMore && (
         <button
           className="show-more-btn"
           type="button"

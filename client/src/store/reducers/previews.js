@@ -1,7 +1,7 @@
 import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
 
 const initialState = {
-  shouldFetchMore: true,
+  couldFetchMore: true,
   lastIndex: 0,
   templateToBuild: null,
   previewsList: []
@@ -30,7 +30,7 @@ const handleGetPreviews = (state, action) => {
   if (action.payload.length < MAX_RESULTS) {
     return {
       ...updatedState,
-      shouldFetchMore: false
+      couldFetchMore: false
     };
   } else {
     return updatedState;

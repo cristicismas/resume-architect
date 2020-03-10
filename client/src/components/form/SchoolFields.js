@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Field, ErrorMessage } from 'formik';
 import DatePickerField from './DatePickerField';
+import FormLabel from './FormLabel';
 
-const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
+const SchoolFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
   return (
     <Fragment>
       {values.schools.map((school, index) => (
@@ -12,19 +13,25 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
           </button>
 
           <div className="group">
-            <label htmlFor={`schools[${index}].school`}>School</label>
+            <FormLabel linkTo={`/build/${templateName}/school`} htmlFor={`schools[${index}].school`}>
+              School
+            </FormLabel>
             <Field type="text" placeholder="Your university / school / college" name={`schools[${index}].school`} />
             <ErrorMessage className="field-error" name={`schools[${index}].school`} component="div" />
           </div>
 
           <div className="group">
-            <label htmlFor={`schools[${index}].degree`}>Degree</label>
+            <FormLabel linkTo={`/build/${templateName}/schoolDegree`} htmlFor={`schools[${index}].degree`}>
+              Degree
+            </FormLabel>
             <Field type="text" placeholder="Your diploma / degree" name={`schools[${index}].degree`} />
             <ErrorMessage className="field-error" name={`schools[${index}].degree`} component="div" />
           </div>
 
           <div className="group">
-            <label htmlFor="school-date">Date</label>
+            <FormLabel linkTo={`/build/${templateName}/schoolDate`} htmlFor="school-date">
+              Date
+            </FormLabel>
             <DatePickerField
               onChange={setFieldValue}
               monthYearPicker={true}

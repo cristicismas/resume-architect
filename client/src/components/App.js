@@ -44,7 +44,7 @@ const App = () => {
           <Auth type="signup" />
         </Route>
 
-        <Route exact path="/build/:template_name">
+        <Route path="/build/:template_name">
           <BuildResume />
         </Route>
 

@@ -32,7 +32,7 @@ const useOwnScrollbar = () => {
   }, []);
 };
 
-const Overlay = ({ hideCloseOverlayButton, closeOverlay, children }) => {
+const Overlay = ({ hideCloseOverlayButton, closeOverlay, isFullscreen, children }) => {
   const modalRoot = document.getElementById('modal-root');
 
   const overlayRef = useRef(null);
@@ -43,7 +43,7 @@ const Overlay = ({ hideCloseOverlayButton, closeOverlay, children }) => {
   const childrenWithCloseOverlay = Children.map(children, child => cloneElement(child, { closeOverlay }));
 
   return createPortal(
-    <div className="overlay-container" style={{ height: window.innerHeight }}>
+    <div className={`overlay-container ${isFullscreen ? 'fullscreen' : ''}`}>
       <div className="overlay" ref={hideCloseOverlayButton ? null : overlayRef}>
         {!hideCloseOverlayButton && (
           <button type="button" className="close-overlay-btn" onClick={() => closeOverlay()}>

@@ -3,6 +3,7 @@ import { useHistory, Route } from 'react-router-dom';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import './BuildResume.css';
 
+import TipRoutes from '../form/tips/TipRoutes';
 import Overlay from '../misc/Overlay';
 import Templates from '../layout/Templates';
 import ResumeForm from '../form/ResumeForm';
@@ -22,10 +23,12 @@ const BuildResume = () => {
       </h2>
 
       <Route exact path="/build/change_template">
-        <Overlay closeOverlay={history.goBack}>
+        <Overlay isFullscreen={true} closeOverlay={history.goBack}>
           <Templates />
         </Overlay>
       </Route>
+
+      <TipRoutes />
 
       <ResumeForm />
     </section>

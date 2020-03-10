@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Field, ErrorMessage } from 'formik';
 import DatePickerField from './DatePickerField';
+import FormLabel from './FormLabel';
 
-const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
+const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
   return (
     <Fragment>
       {values.jobs.map((job, index) => (
@@ -12,19 +13,25 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
           </button>
 
           <div className="group">
-            <label htmlFor={`jobs[${index}].company`}>Company</label>
+            <FormLabel linkTo={`/build/${templateName}/jobCompany`} htmlFor={`jobs[${index}].company`}>
+              Company
+            </FormLabel>
             <Field type="text" placeholder="Company Name" name={`jobs[${index}].company`} />
             <ErrorMessage className="field-error" name={`jobs[${index}].company`} component="div" />
           </div>
 
           <div className="group">
-            <label htmlFor={`jobs[${index}].job`}>Job Title</label>
+            <FormLabel linkTo={`/build/${templateName}/jobTitle`} htmlFor={`jobs[${index}].job`}>
+              Job Title
+            </FormLabel>
             <Field type="text" placeholder="Job Title / Position" name={`jobs[${index}].job`} />
             <ErrorMessage className="field-error" name={`jobs[${index}].job`} component="div" />
           </div>
 
           <div className="group">
-            <label htmlFor="date">Date</label>
+            <FormLabel linkTo={`/build/${templateName}/jobDate`} htmlFor="date">
+              Date
+            </FormLabel>
             <DatePickerField
               onChange={setFieldValue}
               startDate={values.jobs[index].jobStartDate}
@@ -36,7 +43,11 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
           </div>
 
           <div className="group">
-            <label htmlFor={`jobs[${index}].responsibilities`}>Responsibilities / About the job</label>
+            <FormLabel
+              linkTo={`/build/${templateName}/jobResponsibilities`}
+              htmlFor={`jobs[${index}].responsibilities`}>
+              Responsibilities / About the job
+            </FormLabel>
             <Field
               as="textarea"
               placeholder="Key role you played at the company. Try to keep it short. Use bullet-points to list the responsibilities you've had / the important stuff you did while you worked there."
@@ -66,4 +77,4 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
   );
 };
 
-export default SchoolFields;
+export default JobFields;

@@ -1,0 +1,11 @@
+#tip {
+  padding: 0 50px;
+}
+
+#tip .title {
+  font-size: 36px;
+}
+
+#tip .text {
+  font-size: 22px;
+}

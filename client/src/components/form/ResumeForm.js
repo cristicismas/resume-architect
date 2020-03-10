@@ -9,6 +9,7 @@ import INITIAL_VALUES from '../../constants/initialValues';
 import './ResumeForm.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
+import FormLabel from './FormLabel';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
@@ -61,25 +62,33 @@ const ResumeForm = () => {
               <h2 className="sub-title">Contact</h2>
 
               <div className="group">
-                <label htmlFor="name">Full Name</label>
+                <FormLabel linkTo={`/build/${template_name}/name`} htmlFor="name">
+                  Full Name
+                </FormLabel>
                 <Field type="text" placeholder="Your Name" name="name" />
                 <ErrorMessage className="field-error" name="name" component="div" />
               </div>
 
               <div className="group">
-                <label htmlFor="address">Address</label>
+                <FormLabel linkTo={`/build/${template_name}/address`} htmlFor="address">
+                  Address
+                </FormLabel>
                 <Field type="text" placeholder="Your Address" name="address" />
                 <ErrorMessage className="field-error" name="address" component="div" />
               </div>
 
               <div className="group">
-                <label htmlFor="phoneNumber">Phone Number</label>
+                <FormLabel linkTo={`/build/${template_name}/phone`} htmlFor="phoneNumber">
+                  Phone Number
+                </FormLabel>
                 <Field type="tel" placeholder="555-555-5555" name="phoneNumber" />
                 <ErrorMessage className="field-error" name="phoneNumber" component="div" />
               </div>
 
               <div className="group">
-                <label htmlFor="email">Email</label>
+                <FormLabel linkTo={`/build/${template_name}/email`} htmlFor="email">
+                  Email
+                </FormLabel>
                 <Field type="email" placeholder="youremail@example.com" name="email" />
                 <ErrorMessage className="field-error" name="email" component="div" />
               </div>
@@ -89,7 +98,9 @@ const ResumeForm = () => {
               <h2 className="sub-title">Description</h2>
 
               <div className="group">
-                <label htmlFor="about">About</label>
+                <FormLabel linkTo={`/build/${template_name}/about`} htmlFor="about">
+                  About
+                </FormLabel>
                 <Field
                   as="textarea"
                   placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..."
@@ -105,7 +116,12 @@ const ResumeForm = () => {
 
               <FieldArray name="jobs">
                 {arrayHelpers => (
-                  <JobFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
+                  <JobFields
+                    templateName={template_name}
+                    values={values}
+                    setFieldValue={setFieldValue}
+                    arrayHelpers={arrayHelpers}
+                  />
                 )}
               </FieldArray>
             </section>
@@ -115,7 +131,12 @@ const ResumeForm = () => {
 
               <FieldArray name="schools">
                 {arrayHelpers => (
-                  <SchoolFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
+                  <SchoolFields
+                    templateName={template_name}
+                    values={values}
+                    setFieldValue={setFieldValue}
+                    arrayHelpers={arrayHelpers}
+                  />
                 )}
               </FieldArray>
             </section>
@@ -124,7 +145,9 @@ const ResumeForm = () => {
               <h2 className="sub-title">Extra</h2>
 
               <div className="group">
-                <label htmlFor="extra">Special Awards / Ending Note</label>
+                <FormLabel linkTo={`/build/${template_name}/extra`} htmlFor="extra">
+                  Special Awards / Ending Note
+                </FormLabel>
                 <Field
                   as="textarea"
                   placeholder="Any left-out special awards, diplomas, volunteering experience, etc..."

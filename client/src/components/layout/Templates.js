@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useScrollToTop from '../../hooks/useScrollToTop';
-import { useTemplatePreviews } from '../../hooks/useTemplatePreviews';
+import useTemplatePreviews from '../../hooks/useTemplatePreviews';
 import './Templates.css';
 
 import TemplatePreview from '../misc/TemplatePreview';

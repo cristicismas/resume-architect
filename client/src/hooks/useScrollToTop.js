@@ -6,7 +6,7 @@ const useScrollToTop = (restoreScroll) => {
   useEffect(() => {
     if (restoreScroll)
       window.scrollTo(0, 0);
-  }, []);
+  }, [restoreScroll]);
 };
 
 export default useScrollToTop;

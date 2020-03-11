@@ -40,7 +40,15 @@ const Overlay = ({ hideCloseOverlayButton, closeOverlay, isFullscreen, children 
 
   useOwnScrollbar();
 
-  const childrenWithCloseOverlay = Children.map(children, child => cloneElement(child, { closeOverlay }));
+  const childrenWithCloseOverlay = Children.map(children, child => {
+    // If typeof child.type is a string, then the element is an html element,
+    // not a React element, in which case the closeOverlay prop shouldn't be passed.
+    if (typeof child.type === 'string') {
+      return cloneElement(child);
+    } else {
+      return cloneElement(child, { closeOverlay });
+    }
+  });
 
   return createPortal(
     <div className={`overlay-container ${isFullscreen ? 'fullscreen' : ''}`}>

@@ -28,19 +28,19 @@ const App = () => {
       <Header />
 
       <Switch>
-        <Route exact path="/welcome">
+        <Route path="/welcome">
           <Welcome />
         </Route>
 
-        <Route exact path="/logout">
+        <Route path="/logout">
           <Logout />
         </Route>
 
-        <Route exact path="/login">
+        <Route path="/login">
           <Auth type="login" />
         </Route>
 
-        <Route exact path="/signup">
+        <Route path="/signup">
           <Auth type="signup" />
         </Route>
 
@@ -48,11 +48,11 @@ const App = () => {
           <BuildResume />
         </Route>
 
-        <Route exact path="/templates">
+        <Route path="/templates">
           <Templates shouldScrollToTop={true} />
         </Route>
 
-        <Route exact path="/">
+        <Route path="/">
           <Home />
         </Route>
       </Switch>

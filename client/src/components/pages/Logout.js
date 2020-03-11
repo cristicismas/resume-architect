@@ -1,20 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/actions/user';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Logout.css';
 
 const Logout = () => {
-  const dispatch = useDispatch();
-
-  const handleLogout = useCallback(() => {
-    dispatch(logout());
-  }, [dispatch]);
-
-  useEffect(() => {
-    handleLogout();
-  }, [handleLogout]);
-
   return (
     <section id="logout">
       <h1 className="title">You are now logged out.</h1>

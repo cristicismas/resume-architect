@@ -1,18 +1,24 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import HeaderLink from './HeaderLink';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Route } from 'react-router-dom';
+import ICONS from '../../constants/icons';
 import './Header.css';
 
-import ICONS from '../../constants/icons';
+import ConfirmLogout from '../misc/ConfirmLogout';
+import HeaderLink from './HeaderLink';
 
 const Header = () => {
   const { pathname } = useLocation();
 
   const loggedIn = useSelector(state => state.user.loggedIn);
 
+  // Render confirm_logout route on every path.
+  const confirmLogoutPath = pathname === '/' ? '/confirm_logout' : `${pathname}/confirm_logout`;
+
+  const headerClassName = pathname === '/' || pathname === '/confirm_logout' ? 'light' : 'dark';
+
   return (
-    <header className={pathname === '/' ? 'light' : 'dark'}>
+    <header className={headerClassName}>
       <h1 className="title">
         <Link to="/">ResumeArchitect</Link>
       </h1>
@@ -28,7 +34,7 @@ const Header = () => {
           <Fragment>
             <HeaderLink path="/resumes" icon={ICONS.MANY_RESUMES} text="My Resumes" />
 
-            <HeaderLink path="/logout" icon={ICONS.LOGIN} text="Log Out" />
+            <HeaderLink path={confirmLogoutPath} icon={ICONS.LOGIN} text="Log Out" />
           </Fragment>
         ) : (
           <Fragment>
@@ -38,6 +44,10 @@ const Header = () => {
           </Fragment>
         )}
       </nav>
+
+      <Route path="*/confirm_logout">
+        <ConfirmLogout />
+      </Route>
     </header>
   );
 };

@@ -2,43 +2,59 @@ import { LOGGED_IN, LOGGED_OUT } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const login = credentials => async dispatch => {
-  const response = await apiCall('POST', `auth/login`, credentials);
+  try {
+    const response = await apiCall('POST', `auth/login`, credentials);
 
-  localStorage.setItem('token', response.token);
+    localStorage.setItem('token', response.token);
 
-  dispatch({
-    type: LOGGED_IN,
-    payload: response
-  });
-};
-
-export const signup = credentials => async dispatch => {
-  const response = await apiCall('POST', `auth/signup`, credentials);
-
-  localStorage.setItem('token', response.token);
-
-  dispatch({
-    type: LOGGED_IN,
-    payload: response
-  });
-};
-
-export const checkToken = () => async (disptach, getState) => {
-  const token = getState().user.information.token;
-  const response = await apiCall('POST', 'auth/check', null, token);
-
-  if (!response.error) {
-    disptach({
+    dispatch({
       type: LOGGED_IN,
       payload: response
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const signup = credentials => async dispatch => {
+  try {
+    const response = await apiCall('POST', `auth/signup`, credentials);
+
+    localStorage.setItem('token', response.token);
+
+    dispatch({
+      type: LOGGED_IN,
+      payload: response
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const checkToken = () => async (disptach, getState) => {
+  try {
+    const token = getState().user.information.token;
+    const response = await apiCall('POST', 'auth/check', null, token);
+
+    if (!response.error) {
+      disptach({
+        type: LOGGED_IN,
+        payload: response
+      });
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
 export const logout = () => async dispatch => {
-  localStorage.removeItem('token');
+  try {
+    localStorage.removeItem('token');
 
-  dispatch({
-    type: LOGGED_OUT
-  });
+    dispatch({
+      type: LOGGED_OUT
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };

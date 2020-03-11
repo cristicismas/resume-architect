@@ -39,7 +39,7 @@ header nav {
 }
 
 header nav a {
-  border-bottom: 5px solid transparent;
+  border: 5px solid transparent;
   padding: 20px;
   padding-right: 28px;
   margin: 0;
@@ -112,6 +112,9 @@ header nav a.active .icon {
   }
 
   header nav a {
+    margin-top: 10px;
+    flex-grow: 1;
+    text-align: center;
     padding: 10px 15px;
   }
 }

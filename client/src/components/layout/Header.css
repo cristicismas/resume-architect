@@ -24,7 +24,7 @@ header a {
 }
 
 header.dark a:hover {
-  color: rgb(0, 183, 255);
+  color: rgb(0, 132, 255);
 }
 
 header a:hover {
@@ -52,9 +52,9 @@ header nav a.active:not(:hover) {
 
 header.dark nav a:hover,
 header.dark nav a.active {
-  color: rgb(0, 183, 255);
+  color: rgb(0, 132, 255);
   background-color: rgba(0, 183, 255, .1);
-  border-bottom: 5px solid rgb(0, 183, 255);
+  border-bottom: 5px solid rgb(0, 132, 255);
 }
 
 header nav a:hover,
@@ -77,7 +77,7 @@ header .icon {
 
 header.dark nav a:hover .icon,
 header.dark nav a.active .icon {
-  fill: rgb(0, 183, 255);
+  fill: rgb(0, 132, 255);
 }
 
 header nav a:hover .icon,
@@ -93,7 +93,7 @@ header nav a.active .icon {
   }
 
   header.dark nav {
-    border-bottom: 2px solid rgb(0, 183, 255);
+    border-bottom: 2px solid rgb(0, 132, 255);
 
   }
 

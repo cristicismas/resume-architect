@@ -1,19 +1,19 @@
 export default {
   name: {
-    title: 'title',
-    text: 'text'
+    title: 'Full Name',
+    text: 'Your full name. Pretty self-explanatory if you ask me.'
   },
   address: {
-    title: 'title',
-    text: 'text'
+    title: 'Address',
+    text: 'Where you currently live. Street, city, region and/or postal code if you wish to include it.'
   },
   phone: {
-    title: 'title',
-    text: 'text'
+    title: 'Phone Number',
+    text: 'Your active phone number. Expect to receive calls on this number after sending your resumes. Include a prefix if you wish to work abroad.'
   },
   email: {
-    title: 'title',
-    text: 'text'
+    title: 'Email',
+    text: 'Your personal email address. Expect to receive emails to this address after sending your resumes. The email should follow this format: youremail@example.com'
   },
   about: {
     title: 'title',

@@ -18,6 +18,20 @@ header .title {
   font-size: 30px;
 }
 
+header .title a {
+  padding: 15px;
+  border: 5px solid transparent;
+}
+
+
+header.dark .title a:hover {
+  border-bottom-color: rgb(0, 132, 255);
+}
+
+header .title a:hover {
+  border-bottom-color: rgb(0, 255, 194);
+}
+
 header a {
   color: #eee;
   font-weight: bold;

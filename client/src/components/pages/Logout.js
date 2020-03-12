@@ -7,7 +7,7 @@ const Logout = () => {
     <section id="logout">
       <h1 className="title">You are now logged out.</h1>
 
-      <h3>
+      <h3 className="text">
         Would you like to <Link to="/login">log in</Link> with another account?
       </h3>
     </section>

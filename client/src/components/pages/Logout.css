@@ -1,21 +1,22 @@
-#logout {
-  text-align: center;
-  color: #333;
-  padding-top: 100px;
-}
-
-#logout h1 {
+#logout .title {
   font-size: 36px;
 }
 
-#logout h3 {
+#logout .text {
   font-size: 28px;
+  max-width: 900px;
+  line-height: 40px;
+  margin: 50px auto;
+}
+
+#logout {
+  text-align: center;
+  padding: 100px;
 }
 
 #logout a {
   color: #0077ff;
-  padding: 10px;
-  line-height: 50px;
+  padding: 5px;
   border-radius: 5px;
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { checkToken } from '../store/actions/user';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './layout/Header';
@@ -10,7 +11,9 @@ import Templates from './layout/Templates';
 import Footer from './layout/Footer';
 import Logout from './pages/Logout';
 import Welcome from './pages/Welcome';
-import { checkToken } from '../store/actions/user';
+import Tips from './pages/Tips';
+import About from './pages/About';
+import Resumes from './pages/Resumes';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,6 +45,18 @@ const App = () => {
 
         <Route path="/signup">
           <Auth type="signup" />
+        </Route>
+
+        <Route path="/tips">
+          <Tips />
+        </Route>
+
+        <Route path="/about">
+          <About />
+        </Route>
+
+        <Route path="/resumes">
+          <Resumes />
         </Route>
 
         <Route path="/build/:template_name">

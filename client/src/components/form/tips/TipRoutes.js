@@ -16,7 +16,7 @@ const TipRoutes = () => {
             <Overlay closeOverlay={history.goBack}>
               <section id="tip">
                 <h2 className="title">{TIPS[tip].title}</h2>
-                <p className="text">{TIPS[tip].text}</p>
+                <p className="text" dangerouslySetInnerHTML={{ __html: TIPS[tip].text }}></p>
               </section>
             </Overlay>
           </Route>

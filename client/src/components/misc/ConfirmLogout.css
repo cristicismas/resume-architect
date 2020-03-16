@@ -26,7 +26,7 @@
 }
 
 #confirm-logout .buttons > .secondary:hover {
-  background-color: #dadada;
+  background-color: rgba(0, 162, 255, 0.15);
 }
 
 #confirm-logout .buttons > .primary {

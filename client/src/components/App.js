@@ -11,7 +11,6 @@ import Templates from './layout/Templates';
 import Footer from './layout/Footer';
 import Logout from './pages/Logout';
 import Welcome from './pages/Welcome';
-import Tips from './pages/Tips';
 import About from './pages/About';
 import Resumes from './pages/Resumes';
 
@@ -45,10 +44,6 @@ const App = () => {
 
         <Route path="/signup">
           <Auth type="signup" />
-        </Route>
-
-        <Route path="/tips">
-          <Tips />
         </Route>
 
         <Route path="/about">

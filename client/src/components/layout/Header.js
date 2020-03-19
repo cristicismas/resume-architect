@@ -26,8 +26,6 @@ const Header = () => {
       <nav>
         <HeaderLink path="/templates" icon={ICONS.RESUME} text="Templates" />
 
-        <HeaderLink path="/tips" icon={ICONS.TIP} text="Tips" />
-
         <HeaderLink path="/about" icon={ICONS.ABOUT} text="About" />
 
         {loggedIn ? (

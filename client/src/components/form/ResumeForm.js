@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { saveResumeData } from '../../utils/buildResumeForm';
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
@@ -33,6 +34,8 @@ const ResumeForm = () => {
   const handleBuildResume = useCallback(
     (data, actions) => {
       setShowDownloadButtons(true);
+
+      saveResumeData(data);
 
       dispatch(resetDownloadLinks())
         .then(() => dispatch(buildResume(data, 'docx', template_name)))

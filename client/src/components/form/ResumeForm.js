@@ -35,7 +35,7 @@ const ResumeForm = () => {
     (data, actions) => {
       setShowDownloadButtons(true);
 
-      saveResumeData(data);
+      saveResumeData(data, template_name);
 
       dispatch(resetDownloadLinks())
         .then(() => dispatch(buildResume(data, 'docx', template_name)))

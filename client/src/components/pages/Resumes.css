@@ -1,0 +1,16 @@
+#resumes .title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 45px;
+}
+
+#resumes .resume-previews {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#resumes .resume-previews .template-preview-container figcaption {
+  position: relative;
+  top: -25px;
+}

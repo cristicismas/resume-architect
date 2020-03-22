@@ -1,9 +1,16 @@
-export const saveResumeData = data => {
-  const dataString = JSON.stringify(data);
+export const saveResumeData = (data, template_name) => {
+  const stringifiedData = JSON.stringify({
+    data,
+    meta: {
+      template_name,
+      draft_date: new Date()
+    }
+  });
+
   const resume = localStorage.getItem('latestResumeDraft');
 
   // Fast object comparison. Property order matters.
-  if (resume !== dataString) {
-    localStorage.setItem('latestResumeDraft', dataString);
+  if (resume !== stringifiedData) {
+    localStorage.setItem('latestResumeDraft', stringifiedData);
   }
 };

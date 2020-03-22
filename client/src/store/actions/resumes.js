@@ -1,4 +1,4 @@
-import { GET_RESUME_DOCX, GET_RESUME_PDF, RESET_DOWNLOAD_LINKS } from '../actionTypes';
+import { GET_RESUME_DOCX, GET_RESUME_PDF, RESET_DOWNLOAD_LINKS, GET_USER_RESUMES } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const buildResume = (data, resumeType, resumeName) => async dispatch => {
@@ -36,6 +36,19 @@ export const resetDownloadLinks = () => async (dispatch, getState) => {
     });
 
     return;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserResumes = () => async dispatch => {
+  try {
+    dispatch({
+      type: GET_USER_RESUMES,
+      payload: []
+    });
+
+    return [];
   } catch (err) {
     console.log(err);
   }

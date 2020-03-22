@@ -1,4 +1,4 @@
-import { GET_PREVIEWS, GET_SINGLE_PREVIEW } from '../actionTypes';
+import { GET_PREVIEWS, GET_SINGLE_PREVIEW, GET_PREVIEWS_FOR_EACH } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const getPreviews = () => async (dispatch, getState) => {
@@ -15,6 +15,29 @@ export const getPreviews = () => async (dispatch, getState) => {
 
       return newTemplates;
     } else return null;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getPreviewsForEachResume = () => async dispatch => {
+  try {
+    const latestDraft = JSON.parse(localStorage.getItem('latestResumeDraft'));
+    const resumes = [latestDraft];
+
+    let previews = [];
+
+    for (let resume of resumes) {
+      const template = await apiCall('GET', `templates/single_preview/${resume.meta.template_name}`);
+      previews.push(template);
+    }
+
+    dispatch({
+      type: GET_PREVIEWS_FOR_EACH,
+      payload: previews
+    });
+
+    return previews;
   } catch (err) {
     console.log(err);
   }

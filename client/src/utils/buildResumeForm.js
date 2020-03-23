@@ -3,6 +3,7 @@ export const saveResumeData = (data, template_name) => {
     data,
     meta: {
       template_name,
+      isAutoSaved: true,
       draft_date: new Date()
     }
   });

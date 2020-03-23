@@ -30,10 +30,11 @@ const Resumes = () => {
   const resumePreviewsList = resumes.map(resume => {
     const resumeDate = new Date(resume.meta.draft_date).toLocaleString();
     const resumeName = resume.meta.template_name;
+    const resumeCaption = resume.meta.isAutoSaved ? 'Latest Auto Saved Resume' : resumeDate;
 
     const templateForResume = previews.find(preview => preview.name === resumeName);
 
-    return <TemplatePreview key={resumeDate} caption={resumeDate} template={templateForResume} linkTo="/" />;
+    return <TemplatePreview key={resumeDate} caption={resumeCaption} template={templateForResume} linkTo="/" />;
   });
 
   return (

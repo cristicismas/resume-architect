@@ -34,7 +34,17 @@ const Resumes = () => {
 
     const templateForResume = previews.find(preview => preview.name === resumeName);
 
-    return <TemplatePreview key={resumeDate} caption={resumeCaption} template={templateForResume} linkTo="/" />;
+    return (
+      <TemplatePreview
+        key={resumeDate}
+        caption={resumeCaption}
+        template={templateForResume}
+        linkTo={{
+          pathname: `/draft/${resumeName}/${resume.meta.draft_date}`,
+          state: { resumeData: resume.data }
+        }}
+      />
+    );
   });
 
   return (

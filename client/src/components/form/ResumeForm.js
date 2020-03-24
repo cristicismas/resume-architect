@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveResumeData } from '../../utils/buildResumeForm';
 import { getSinglePreview } from '../../store/actions/previews';
@@ -16,10 +16,13 @@ import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
 
 const ResumeForm = () => {
+  const { template_name } = useParams();
+  const locationState = useLocation().state;
+  const resumeData = locationState ? locationState.resumeData : null;
+
   const [showDownloadButtons, setShowDownloadButtons] = useState(false);
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
-  const { template_name } = useParams();
 
   const dispatch = useDispatch();
 
@@ -50,7 +53,7 @@ const ResumeForm = () => {
   return (
     <section id="resume-form">
       <Formik
-        initialValues={INITIAL_VALUES.RESUME_FORM}
+        initialValues={resumeData ? resumeData : INITIAL_VALUES.RESUME_FORM}
         validationSchema={buildResumeSchema}
         onSubmit={handleBuildResume}>
         {({ values, errors, setFieldValue, isSubmitting, submitCount }) => (

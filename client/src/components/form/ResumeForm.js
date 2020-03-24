@@ -7,6 +7,7 @@ import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
 import INITIAL_VALUES from '../../constants/initialValues';
+import ICONS from '../../constants/icons';
 import './ResumeForm.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
@@ -164,17 +165,17 @@ const ResumeForm = () => {
               </div>
             </section>
 
-            <LoadingButton id="submit-btn" type="submit" loading={isSubmitting}>
+            <LoadingButton id="submit-btn" type="submit" staleIcon={ICONS.SUBMIT} loading={isSubmitting}>
               Submit
             </LoadingButton>
 
             {showDownloadButtons && (
               <div className="download-group">
-                <LoadingButton download loading={!docx} href={docx} id="docx-btn">
+                <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!docx} href={docx} id="docx-btn">
                   DOCX
                 </LoadingButton>
 
-                <LoadingButton download loading={!pdf} href={pdf} id="pdf-btn">
+                <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!pdf} href={pdf} id="pdf-btn">
                   PDF
                 </LoadingButton>
               </div>

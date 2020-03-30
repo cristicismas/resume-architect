@@ -1,0 +1,41 @@
+#save-resume .title {
+  font-size: 30px;
+}
+
+#save-resume label {
+  display: block;
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+#save-resume input {
+  font-size: 20px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px 10px;
+}
+
+#save-resume .submit-btn {
+  background-color: rgb(50, 205, 97);
+  display: flex;
+  justify-content: center;
+  border: none;
+  margin: 50px auto 0px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 12px 19px 12px 15px;
+  border-radius: 5px;
+}
+
+#save-resume .submit-btn:hover {
+  opacity: 0.8;
+}
+
+#save-resume .submit-btn .icon {
+  position: relative;
+  top: 3px;
+  left: 7px;
+}

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { Fragment, useState, useEffect, useCallback } from 'react';
+import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 'formik';
+import { Route, Link, useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveResumeData } from '../../utils/buildResumeForm';
+import { saveResumeData, formatResumeToSave } from '../../utils/buildResumeForm';
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
@@ -15,11 +15,19 @@ import FormLabel from './FormLabel';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
+import SaveResume from '../misc/SaveResume';
+import Overlay from '../misc/Overlay';
+import Icon from '../misc/Icon';
 
 const ResumeForm = () => {
   const { template_name } = useParams();
-  const locationState = useLocation().state;
+  const location = useLocation();
+  const history = useHistory();
+
+  const locationState = location.state;
   const resumeData = locationState ? locationState.resumeData : null;
+
+  const currentPathname = location.pathname;
 
   const [showDownloadButtons, setShowDownloadButtons] = useState(false);
   const { templateToBuild } = useSelector(state => state.previews);
@@ -51,6 +59,18 @@ const ResumeForm = () => {
     [dispatch, template_name]
   );
 
+  const ConfirmSaveModal = () => {
+    const formData = useFormikContext().values;
+
+    return (
+      <Route exact path={['/draft/:template_name/:draft_date/save', '/build/:template_name/save']}>
+        <Overlay closeOverlay={history.goBack}>
+          <SaveResume resume={formatResumeToSave(formData, template_name)} />
+        </Overlay>
+      </Route>
+    );
+  };
+
   return (
     <section id="resume-form">
       <Formik
@@ -58,137 +78,149 @@ const ResumeForm = () => {
         validationSchema={buildResumeSchema}
         onSubmit={handleBuildResume}>
         {({ values, errors, setFieldValue, isSubmitting, submitCount }) => (
-          <Form>
-            <section id="template">
-              <h2 className="sub-title">Template</h2>
+          <Fragment>
+            <Form>
+              <section id="template">
+                <h2 className="sub-title">Template</h2>
 
-              <TemplatePreview template={templateToBuild} linkTo="/build/change_template" caption="(click to change)" />
-            </section>
-
-            <section id="contact">
-              <h2 className="sub-title">Contact</h2>
-
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/name`} htmlFor="name">
-                  Full Name
-                </FormLabel>
-                <Field type="text" placeholder="Your Name" name="name" />
-                <ErrorMessage className="field-error" name="name" component="div" />
-              </div>
-
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/address`} htmlFor="address">
-                  Address
-                </FormLabel>
-                <Field type="text" placeholder="Your Address" name="address" />
-                <ErrorMessage className="field-error" name="address" component="div" />
-              </div>
-
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/phone`} htmlFor="phoneNumber">
-                  Phone Number
-                </FormLabel>
-                <Field type="tel" placeholder="555-555-5555" name="phoneNumber" />
-                <ErrorMessage className="field-error" name="phoneNumber" component="div" />
-              </div>
-
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/email`} htmlFor="email">
-                  Email
-                </FormLabel>
-                <Field type="email" placeholder="youremail@example.com" name="email" />
-                <ErrorMessage className="field-error" name="email" component="div" />
-              </div>
-            </section>
-
-            <section id="description">
-              <h2 className="sub-title">Description</h2>
-
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/about`} htmlFor="about">
-                  About
-                </FormLabel>
-                <Field
-                  as="textarea"
-                  placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..."
-                  type="text"
-                  name="about"
+                <TemplatePreview
+                  template={templateToBuild}
+                  linkTo="/build/change_template"
+                  caption="(click to change)"
                 />
-                <ErrorMessage className="field-error" name="about" component="div" />
-              </div>
-            </section>
+              </section>
 
-            <section id="experience">
-              <h2 className="sub-title">Experience</h2>
+              <section id="contact">
+                <h2 className="sub-title">Contact</h2>
 
-              <FieldArray name="jobs">
-                {arrayHelpers => (
-                  <JobFields
-                    templateName={template_name}
-                    values={values}
-                    setFieldValue={setFieldValue}
-                    arrayHelpers={arrayHelpers}
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/name`} htmlFor="name">
+                    Full Name
+                  </FormLabel>
+                  <Field type="text" placeholder="Your Name" name="name" />
+                  <ErrorMessage className="field-error" name="name" component="div" />
+                </div>
+
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/address`} htmlFor="address">
+                    Address
+                  </FormLabel>
+                  <Field type="text" placeholder="Your Address" name="address" />
+                  <ErrorMessage className="field-error" name="address" component="div" />
+                </div>
+
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/phone`} htmlFor="phoneNumber">
+                    Phone Number
+                  </FormLabel>
+                  <Field type="tel" placeholder="555-555-5555" name="phoneNumber" />
+                  <ErrorMessage className="field-error" name="phoneNumber" component="div" />
+                </div>
+
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/email`} htmlFor="email">
+                    Email
+                  </FormLabel>
+                  <Field type="email" placeholder="youremail@example.com" name="email" />
+                  <ErrorMessage className="field-error" name="email" component="div" />
+                </div>
+              </section>
+
+              <section id="description">
+                <h2 className="sub-title">Description</h2>
+
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/about`} htmlFor="about">
+                    About
+                  </FormLabel>
+                  <Field
+                    as="textarea"
+                    placeholder="A few words about yourself, what you can do, what you're passionate about, what special skills you have..."
+                    type="text"
+                    name="about"
                   />
-                )}
-              </FieldArray>
-            </section>
+                  <ErrorMessage className="field-error" name="about" component="div" />
+                </div>
+              </section>
 
-            <section id="education">
-              <h2 className="sub-title">Education</h2>
+              <section id="experience">
+                <h2 className="sub-title">Experience</h2>
 
-              <FieldArray name="schools">
-                {arrayHelpers => (
-                  <SchoolFields
-                    templateName={template_name}
-                    values={values}
-                    setFieldValue={setFieldValue}
-                    arrayHelpers={arrayHelpers}
+                <FieldArray name="jobs">
+                  {arrayHelpers => (
+                    <JobFields
+                      templateName={template_name}
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      arrayHelpers={arrayHelpers}
+                    />
+                  )}
+                </FieldArray>
+              </section>
+
+              <section id="education">
+                <h2 className="sub-title">Education</h2>
+
+                <FieldArray name="schools">
+                  {arrayHelpers => (
+                    <SchoolFields
+                      templateName={template_name}
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      arrayHelpers={arrayHelpers}
+                    />
+                  )}
+                </FieldArray>
+              </section>
+
+              <section id="extra">
+                <h2 className="sub-title">Extra</h2>
+
+                <div className="group">
+                  <FormLabel linkTo={`/build/${template_name}/extra`} htmlFor="extra">
+                    Special Awards / Ending Note
+                  </FormLabel>
+                  <Field
+                    as="textarea"
+                    placeholder="Any left-out special awards, diplomas, volunteering experience, etc..."
+                    type="text"
+                    name="extra"
                   />
-                )}
-              </FieldArray>
-            </section>
+                  <ErrorMessage className="field-error" name="extra" component="div" />
+                </div>
+              </section>
 
-            <section id="extra">
-              <h2 className="sub-title">Extra</h2>
+              <LoadingButton id="submit-btn" type="submit" staleIcon={ICONS.SUBMIT} loading={isSubmitting}>
+                Submit
+              </LoadingButton>
 
-              <div className="group">
-                <FormLabel linkTo={`/build/${template_name}/extra`} htmlFor="extra">
-                  Special Awards / Ending Note
-                </FormLabel>
-                <Field
-                  as="textarea"
-                  placeholder="Any left-out special awards, diplomas, volunteering experience, etc..."
-                  type="text"
-                  name="extra"
-                />
-                <ErrorMessage className="field-error" name="extra" component="div" />
-              </div>
-            </section>
+              {showDownloadButtons && (
+                <div className="download-group">
+                  <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!docx} href={docx} id="docx-btn">
+                    DOCX
+                  </LoadingButton>
 
-            <LoadingButton id="submit-btn" type="submit" staleIcon={ICONS.SUBMIT} loading={isSubmitting}>
-              Submit
-            </LoadingButton>
+                  <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!pdf} href={pdf} id="pdf-btn">
+                    PDF
+                  </LoadingButton>
+                </div>
+              )}
 
-            {showDownloadButtons && (
-              <div className="download-group">
-                <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!docx} href={docx} id="docx-btn">
-                  DOCX
-                </LoadingButton>
+              <Link to={`${currentPathname}/save`} id="save-btn">
+                Save Resume <Icon icon={ICONS.SAVE} size={26} fill="#fff" />
+              </Link>
 
-                <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!pdf} href={pdf} id="pdf-btn">
-                  PDF
-                </LoadingButton>
-              </div>
-            )}
+              {Object.keys(errors).length > 0 && submitCount > 0 && (
+                <div className="errors-warning">
+                  You have one or more errors above.
+                  <br />
+                  Please correct them, and then submit the form again.
+                </div>
+              )}
+            </Form>
 
-            {Object.keys(errors).length > 0 && submitCount > 0 && (
-              <div className="errors-warning">
-                You have one or more errors above.
-                <br />
-                Please correct them, and then submit the form again.
-              </div>
-            )}
-          </Form>
+            <ConfirmSaveModal />
+          </Fragment>
         )}
       </Formik>
     </section>

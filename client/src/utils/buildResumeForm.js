@@ -1,12 +1,6 @@
 export const saveResumeData = (data, template_name) => {
-  const stringifiedData = JSON.stringify({
-    data,
-    meta: {
-      template_name,
-      isAutoSaved: true,
-      draft_date: new Date()
-    }
-  });
+  const formattedData = formatResumeToSave(data, template_name);
+  const stringifiedData = JSON.stringify(formattedData);
 
   const resume = localStorage.getItem('latestResumeDraft');
 
@@ -14,4 +8,15 @@ export const saveResumeData = (data, template_name) => {
   if (resume !== stringifiedData) {
     localStorage.setItem('latestResumeDraft', stringifiedData);
   }
+};
+
+export const formatResumeToSave = (data, template_name) => {
+  return {
+    data,
+    meta: {
+      template_name,
+      isAutoSaved: true,
+      draft_date: new Date()
+    }
+  };
 };

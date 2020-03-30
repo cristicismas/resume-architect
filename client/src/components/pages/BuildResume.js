@@ -5,9 +5,9 @@ import ICONS from '../../constants/icons';
 import './BuildResume.css';
 
 import TipRoutes from '../form/tips/TipRoutes';
-import Overlay from '../misc/Overlay';
 import Templates from '../layout/Templates';
 import ResumeForm from '../form/ResumeForm';
+import Overlay from '../misc/Overlay';
 import Icon from '../misc/Icon';
 
 const BuildResume = () => {
@@ -21,7 +21,8 @@ const BuildResume = () => {
       <h2 className="sub-title">
         This form will take about 10 minutes to complete.
         <br />
-        If you ever feel stuck you can view a tip for each field by clicking the '<Icon icon={ICONS.INFO} size={20} />' icon.
+        If you ever feel stuck you can view a tip for each field by clicking the '<Icon icon={ICONS.INFO} size={20} />'
+        icon.
       </h2>
 
       <Route exact path="/build/change_template">

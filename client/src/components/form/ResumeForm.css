@@ -86,7 +86,8 @@
   margin-bottom: 70px;
 }
 
-#resume-form #submit-btn {
+#resume-form #submit-btn,
+#resume-form #save-btn {
   border: none;
   margin: 50px auto 50px;
   color: white;
@@ -99,8 +100,20 @@
   border-radius: 5px;
 }
 
-#resume-form #submit-btn:hover {
+#resume-form #submit-btn:hover,
+#resume-form #save-btn:hover {
   opacity: 0.8;
+}
+
+#resume-form #save-btn {
+  background-color: rgb(50, 205, 97);
+  display: flex;
+  justify-content: center;
+  width: 210px;
+}
+
+#resume-form #save-btn .icon {
+  margin-left: 10px;
 }
 
 #resume-form .download-group {

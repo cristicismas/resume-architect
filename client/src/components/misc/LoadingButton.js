@@ -4,24 +4,26 @@ import './LoadingButton.css';
 import Spinner from './Spinner';
 import Icon from './Icon';
 
-const LoadingButton = ({ loading, children, download, staleIcon, ...otherProps }) => {
+const ButtonWrapper = ({ children, download, ...otherProps }) => {
   if (download) {
     return (
-      <a download className={`loading-btn ${loading ? 'is-loading' : 'undefined'}`} {...otherProps}>
+      <a download {...otherProps}>
         {children}
-
-        {loading ? <Spinner /> : <Icon icon={staleIcon} size={26} fill="#fff" />}
       </a>
     );
   } else {
-    return (
-      <button className={`loading-btn ${loading ? 'is-loading' : 'undefined'}`} {...otherProps}>
-        {children}
-
-        {loading ? <Spinner /> : <Icon icon={staleIcon} size={26} fill="#fff" />}
-      </button>
-    );
+    return <button {...otherProps}>{children}</button>;
   }
+};
+
+const LoadingButton = ({ loading, children, download, staleIcon, ...otherProps }) => {
+  return (
+    <ButtonWrapper download={download} className={`loading-btn ${loading ? 'is-loading' : ''}`} {...otherProps}>
+      {children}
+
+      {loading ? <Spinner /> : <Icon icon={staleIcon} size={26} fill="#fff" />}
+    </ButtonWrapper>
+  );
 };
 
 export default LoadingButton;

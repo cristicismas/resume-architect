@@ -4,7 +4,7 @@ import { saveUserResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './SaveResume.css';
 
-import Icon from './Icon';
+import LoadingButton from './LoadingButton';
 
 const SaveResume = ({ resume }) => {
   const [resumeName, setResumeName] = useState('');
@@ -39,10 +39,9 @@ const SaveResume = ({ resume }) => {
           type="text"
         />
 
-        <button type="submit" className="submit-btn">
+        <LoadingButton loading={false} staleIcon={ICONS.SAVE} type="submit" className="submit-btn">
           Save
-          <Icon icon={ICONS.SAVE} size={26} fill="#fff" />
-        </button>
+        </LoadingButton>
       </form>
     </section>
   );

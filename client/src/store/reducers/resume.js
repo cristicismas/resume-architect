@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
     case RESET_DOWNLOAD_LINKS:
       return { ...state, docx: '', pdf: '' };
     case GET_USER_RESUMES:
-      return { ...state, resumes: [...state.resumes, ...action.payload] };
+      return { ...state, resumes: [...initialResumes, ...action.payload] };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit } from 'hapi';
-import { buildResume, saveResume } from '../handlers/resume';
+import { buildResume, saveResume, getResumes } from '../handlers/resume';
 
 const buildResumeRoute = {
   method: 'POST',
@@ -13,4 +13,10 @@ const saveResumeRoute = {
   handler: (request: Request, responseToolkit: ResponseToolkit) => saveResume(request, responseToolkit)
 }
 
-export default [buildResumeRoute, saveResumeRoute];
+const getResumesRoute = {
+  method: 'GET',
+  path: '/resumes',
+  handler: (request: Request, responseToolkit: ResponseToolkit) => getResumes(request, responseToolkit)
+}
+
+export default [buildResumeRoute, saveResumeRoute, getResumesRoute];

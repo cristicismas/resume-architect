@@ -63,7 +63,7 @@ const ResumeForm = () => {
     const formData = useFormikContext().values;
 
     return (
-      <Route exact path={['/draft/:template_name/:draft_date/save', '/build/:template_name/save']}>
+      <Route exact path={['/draft/:template_name/:resume_name/save', '/build/:template_name/save']}>
         <Overlay closeOverlay={history.goBack}>
           <SaveResume resume={formatResumeToSave(formData, template_name)} />
         </Overlay>

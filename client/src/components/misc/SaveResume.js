@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { saveUserResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './SaveResume.css';
@@ -7,6 +8,8 @@ import './SaveResume.css';
 import LoadingButton from './LoadingButton';
 
 const SaveResume = ({ resume }) => {
+  const history = useHistory();
+
   const [resumeName, setResumeName] = useState('');
   const dispatch = useDispatch();
 
@@ -21,6 +24,7 @@ const SaveResume = ({ resume }) => {
   const handleSubmit = e => {
     e.preventDefault();
     handleSave();
+    history.goBack();
   };
 
   return (

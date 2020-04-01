@@ -48,3 +48,14 @@ export const saveResume = async (request: Request, res: ResponseToolkit) => {
     return Boom.badImplementation('Something went wrong saving the resume.');
   }
 };
+
+export const getResumes = async (request: Request, res: ResponseToolkit) => {
+  try {
+    const resumes = await Resume.find();
+
+    return res.response(resumes);
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Something went wrong fetching the resumes');
+  }
+};

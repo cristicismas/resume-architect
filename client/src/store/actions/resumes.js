@@ -50,12 +50,14 @@ export const resetDownloadLinks = () => async (dispatch, getState) => {
 
 export const getUserResumes = () => async dispatch => {
   try {
+    const resumes = await apiCall('GET', 'resumes');
+
     dispatch({
       type: GET_USER_RESUMES,
-      payload: []
+      payload: resumes
     });
 
-    return [];
+    return resumes;
   } catch (err) {
     console.log(err);
   }

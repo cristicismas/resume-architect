@@ -30,9 +30,9 @@ const resumeModel = new mongoose.Schema({
     extra: { type: String }
   },
   meta: {
-    template_name: { type: String },
+    templateName: { type: String },
     isAutoSaved: { type: Boolean },
-    draft_date: { type: String },
+    draftDate: { type: String },
     resumeName: { type: String, required: true, unique: true }
   }
 });

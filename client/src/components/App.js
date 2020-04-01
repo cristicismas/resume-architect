@@ -54,7 +54,7 @@ const App = () => {
           <Resumes />
         </Route>
 
-        <Route path={['/build/:template_name', '/draft/:template_name/:resume_date']}>
+        <Route path={['/build/:templateName', '/draft/:templateName/:resumeName']}>
           <BuildResume />
         </Route>
 

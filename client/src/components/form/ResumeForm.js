@@ -21,7 +21,7 @@ import Overlay from '../misc/Overlay';
 import Icon from '../misc/Icon';
 
 const ResumeForm = () => {
-  const { template_name } = useParams();
+  const { templateName } = useParams();
   const location = useLocation();
   const history = useHistory();
 
@@ -46,36 +46,36 @@ const ResumeForm = () => {
   const dispatch = useDispatch();
 
   const handleGetSinglePreview = useCallback(() => {
-    dispatch(getSinglePreview(template_name));
-  }, [dispatch, template_name]);
+    dispatch(getSinglePreview(templateName));
+  }, [dispatch, templateName]);
 
   useEffect(() => {
-    if (template_name !== 'change_template') handleGetSinglePreview();
-  }, [handleGetSinglePreview, template_name]);
+    if (templateName !== 'change_template') handleGetSinglePreview();
+  }, [handleGetSinglePreview, templateName]);
 
   const handleBuildResume = useCallback(
     (data, actions) => {
       setShowDownloadButtons(true);
 
-      saveResumeData(data, template_name);
+      saveResumeData(data, templateName);
 
       dispatch(resetDownloadLinks())
-        .then(() => dispatch(buildResume(data, 'docx', template_name)))
-        .then(() => dispatch(buildResume(data, 'pdf', template_name)))
+        .then(() => dispatch(buildResume(data, 'docx', templateName)))
+        .then(() => dispatch(buildResume(data, 'pdf', templateName)))
         .then(() => {
           actions.setSubmitting(false);
         });
     },
-    [dispatch, template_name]
+    [dispatch, templateName]
   );
 
   const ConfirmSaveModal = () => {
     const formData = useFormikContext().values;
 
     return (
-      <Route exact path={['/draft/:template_name/:resume_name/save', '/build/:template_name/save']}>
+      <Route exact path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
         <Overlay closeOverlay={history.goBack}>
-          <SaveResume resume={formatResumeToSave(formData, template_name)} />
+          <SaveResume resume={formatResumeToSave(formData, templateName)} />
         </Overlay>
       </Route>
     );

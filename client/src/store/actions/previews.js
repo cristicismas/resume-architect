@@ -20,15 +20,14 @@ export const getPreviews = () => async (dispatch, getState) => {
   }
 };
 
-export const getPreviewsForEachResume = () => async dispatch => {
+export const getPreviewsForEachResume = () => async (dispatch, getState) => {
   try {
-    const latestDraft = JSON.parse(localStorage.getItem('latestResumeDraft'));
-    const resumes = [latestDraft];
+    const { resumes } = getState().resume;
 
     let previews = [];
 
     for (let resume of resumes) {
-      const template = await apiCall('GET', `templates/single_preview/${resume.meta.template_name}`);
+      const template = await apiCall('GET', `templates/single_preview/${resume.meta.templateName}`);
       previews.push(template);
     }
 

@@ -18,7 +18,7 @@ const Resumes = () => {
 
   useEffect(() => {
     fetchPreviews();
-  }, [fetchPreviews]);
+  }, [fetchPreviews, resumes.length]);
 
   const fetchResumes = useCallback(() => {
     dispatch(getUserResumes());
@@ -29,8 +29,8 @@ const Resumes = () => {
   }, [fetchResumes]);
 
   const resumePreviewsList = resumes.map(resume => {
-    const resumeDate = new Date(resume.meta.draft_date).toLocaleString();
-    const templateName = resume.meta.template_name;
+    const resumeDate = new Date(resume.meta.draftDate).toLocaleString();
+    const templateName = resume.meta.templateName;
     const resumeName = resume.meta.isAutoSaved ? 'Latest Auto Saved Resume' : resume.meta.resumeName;
 
     const templateForResume = previews.find(preview => preview.name === templateName);

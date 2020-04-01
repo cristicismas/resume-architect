@@ -27,8 +27,8 @@ export interface IResumeData {
 export interface IResumeToSave {
   data: IResumeData;
   meta: {
-    template_name: string;
+    templateName: string;
     isAutoSaved: boolean;
-    draft_date: string;
+    draftDate: string;
   };
 }

@@ -1,5 +1,5 @@
-export const saveResumeData = (data, template_name) => {
-  const formattedData = formatResumeToSave(data, template_name, true);
+export const saveResumeData = (data, templateName) => {
+  const formattedData = formatResumeToSave(data, templateName, true);
   const stringifiedData = JSON.stringify(formattedData);
 
   const resume = localStorage.getItem('latestResumeDraft');
@@ -10,13 +10,13 @@ export const saveResumeData = (data, template_name) => {
   }
 };
 
-export const formatResumeToSave = (data, template_name, isAutoSaved = false) => {
+export const formatResumeToSave = (data, templateName, isAutoSaved = false) => {
   return {
     data,
     meta: {
-      template_name,
+      templateName,
       isAutoSaved,
-      draft_date: new Date()
+      draftDate: new Date()
     }
   };
 };

@@ -27,7 +27,7 @@ const BuildResume = () => {
 
       <Route
         exact
-        path={['/build/:template_name/change_template', '/draft/:template_name/:resume_name/change_template']}>
+        path={['/build/:templateName/change_template', '/draft/:templateName/:resumeName/change_template']}>
         <Overlay isFullscreen={true} closeOverlay={history.goBack}>
           <Templates />
         </Overlay>

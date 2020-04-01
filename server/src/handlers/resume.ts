@@ -1,10 +1,11 @@
 import Boom from '@hapi/boom';
+import Resume from '../models/resume';
 import { Request, ResponseToolkit } from 'hapi';
 import { getResumeDOCX, getResumePDF, sanitizeAndFormatFormData } from '../utils/resume';
 import { safelyParseJSON } from '../utils/json';
+import { IResumeData, IResumeToSave } from '../interfaces/resume';
 import SCHEMAS from '../constants/schemas';
 import MIME_TYPES from '../constants/mimeTypes';
-import { IResumeData } from '../interfaces/resume';
 
 export const buildResume = async (request: Request, res: ResponseToolkit) => {
   try {
@@ -33,5 +34,17 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Something went wrong building the resume.');
+  }
+};
+
+export const saveResume = async (request: Request, res: ResponseToolkit) => {
+  try {
+    const resume = safelyParseJSON(request.payload as IResumeToSave);
+    await Resume.create(resume);
+
+    return res.response(resume);
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Something went wrong saving the resume.');
   }
 };

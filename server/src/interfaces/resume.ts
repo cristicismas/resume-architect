@@ -23,3 +23,12 @@ export interface IResumeData {
   schools?: ISchool[];
   extra: string;
 }
+
+export interface IResumeToSave {
+  data: IResumeData;
+  meta: {
+    template_name: string;
+    isAutoSaved: boolean;
+    draft_date: string;
+  };
+}

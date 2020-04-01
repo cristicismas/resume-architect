@@ -61,9 +61,17 @@ export const getUserResumes = () => async dispatch => {
   }
 };
 
-export const saveUserResume = resume => async dispatch => {
+export const saveUserResume = (resume, resumeName) => async dispatch => {
   try {
-    const savedResume = await apiCall('POST', 'resume/save', resume);
+    const resumeToSave = {
+      ...resume,
+      meta: {
+        ...resume.meta,
+        resumeName
+      }
+    };
+
+    const savedResume = await apiCall('POST', 'resume/save', resumeToSave);
 
     dispatch({
       type: SAVE_USER_RESUME,

@@ -15,8 +15,8 @@ const SaveResume = ({ resume }) => {
   }, []);
 
   const handleSave = useCallback(() => {
-    dispatch(saveUserResume(resume));
-  }, [dispatch, resume]);
+    dispatch(saveUserResume(resume, resumeName));
+  }, [dispatch, resume, resumeName]);
 
   const handleSubmit = e => {
     e.preventDefault();

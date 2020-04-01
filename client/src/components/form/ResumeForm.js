@@ -81,6 +81,8 @@ const ResumeForm = () => {
     );
   };
 
+  const changeTemplatePath = useAddToPathname('change_template');
+
   return (
     <section id="resume-form">
       <Formik
@@ -93,11 +95,7 @@ const ResumeForm = () => {
               <section id="template">
                 <h2 className="sub-title">Template</h2>
 
-                <TemplatePreview
-                  template={templateToBuild}
-                  linkTo="/build/change_template"
-                  caption="(click to change)"
-                />
+                <TemplatePreview template={templateToBuild} linkTo={changeTemplatePath} caption="(click to change)" />
               </section>
 
               <section id="contact">

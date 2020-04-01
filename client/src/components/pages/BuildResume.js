@@ -25,7 +25,9 @@ const BuildResume = () => {
         icon.
       </h2>
 
-      <Route exact path="/build/change_template">
+      <Route
+        exact
+        path={['/build/:template_name/change_template', '/draft/:template_name/:resume_name/change_template']}>
         <Overlay isFullscreen={true} closeOverlay={history.goBack}>
           <Templates />
         </Overlay>

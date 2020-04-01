@@ -1,3 +1,3 @@
 export const whiteSpaceToSnakeCase = string => {
-  return string.replace(' ', '_');
+  return string.replace(/ /g, '_');
 };

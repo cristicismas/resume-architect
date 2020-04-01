@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, Route } from 'react-router-dom';
+import useAddToPathname from '../../hooks/useAddToPathname';
 import ICONS from '../../constants/icons';
 import './Header.css';
 
@@ -13,7 +14,7 @@ const Header = () => {
   const loggedIn = useSelector(state => state.user.loggedIn);
 
   // Render confirm_logout route on every path.
-  const confirmLogoutPath = pathname === '/' ? '/confirm_logout' : `${pathname}/confirm_logout`;
+  const confirmLogoutPath = useAddToPathname('confirm_logout');
 
   const headerClassName = pathname === '/' || pathname === '/confirm_logout' ? 'light' : 'dark';
 

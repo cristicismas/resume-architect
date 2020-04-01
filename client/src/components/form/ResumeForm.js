@@ -6,6 +6,7 @@ import { saveResumeData, formatResumeToSave } from '../../utils/buildResumeForm'
 import { getSinglePreview } from '../../store/actions/previews';
 import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
+import useAddToPathname from '../../hooks/useAddToPathname';
 import INITIAL_VALUES from '../../constants/initialValues';
 import ICONS from '../../constants/icons';
 import './ResumeForm.css';
@@ -27,7 +28,7 @@ const ResumeForm = () => {
   const locationState = location.state;
   const resumeData = locationState ? locationState.resumeData : null;
 
-  const currentPathname = location.pathname;
+  const saveResumePathname = useAddToPathname('save');
 
   const [showDownloadButtons, setShowDownloadButtons] = useState(false);
   const { templateToBuild } = useSelector(state => state.previews);
@@ -206,7 +207,7 @@ const ResumeForm = () => {
                 </div>
               )}
 
-              <Link to={`${currentPathname}/save`} id="save-btn">
+              <Link to={saveResumePathname} id="save-btn">
                 Save Resume <Icon icon={ICONS.SAVE} size={26} fill="#fff" />
               </Link>
 

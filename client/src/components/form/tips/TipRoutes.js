@@ -12,7 +12,7 @@ const TipRoutes = () => {
     <Fragment>
       {Object.keys(TIPS).map(tip => {
         return (
-          <Route key={tip} exact path={`/build/:template_name/${tip}`}>
+          <Route key={tip} exact path={[`/build/:template_name/${tip}`, `/draft/:template_name/:resume_name/${tip}`]}>
             <Overlay closeOverlay={history.goBack}>
               <section id="tip">
                 <h2 className="title">{TIPS[tip].title}</h2>

@@ -1,9 +1,16 @@
 import React, { Fragment } from 'react';
 import { Field, ErrorMessage } from 'formik';
+import useAddToPathname from '../../hooks/useAddToPathname';
+
 import DatePickerField from './DatePickerField';
 import FormLabel from './FormLabel';
 
-const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
+const JobFields = ({ values, setFieldValue, arrayHelpers }) => {
+  const companyTipPath = useAddToPathname('jobCompany');
+  const titleTipPath = useAddToPathname('jobTitle');
+  const dateTipPath = useAddToPathname('jobDate');
+  const responsibilitiesTipPath = useAddToPathname('jobResponsibilities');
+
   return (
     <Fragment>
       {values.jobs.map((job, index) => (
@@ -13,7 +20,7 @@ const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
           </button>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/jobCompany`} htmlFor={`jobs[${index}].company`}>
+            <FormLabel linkTo={companyTipPath} htmlFor={`jobs[${index}].company`}>
               Company
             </FormLabel>
             <Field type="text" placeholder="Company Name" name={`jobs[${index}].company`} />
@@ -21,7 +28,7 @@ const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
           </div>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/jobTitle`} htmlFor={`jobs[${index}].job`}>
+            <FormLabel linkTo={titleTipPath} htmlFor={`jobs[${index}].job`}>
               Job Title
             </FormLabel>
             <Field type="text" placeholder="Job Title / Position" name={`jobs[${index}].job`} />
@@ -29,7 +36,7 @@ const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
           </div>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/jobDate`} htmlFor="date">
+            <FormLabel linkTo={dateTipPath} htmlFor="date">
               Date
             </FormLabel>
             <DatePickerField
@@ -43,9 +50,7 @@ const JobFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
           </div>
 
           <div className="group">
-            <FormLabel
-              linkTo={`/build/${templateName}/jobResponsibilities`}
-              htmlFor={`jobs[${index}].responsibilities`}>
+            <FormLabel linkTo={responsibilitiesTipPath} htmlFor={`jobs[${index}].responsibilities`}>
               Responsibilities / About the job
             </FormLabel>
             <Field

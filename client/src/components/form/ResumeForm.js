@@ -34,6 +34,15 @@ const ResumeForm = () => {
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
 
+  const TIP_PATHS = {
+    NAME: useAddToPathname('name'),
+    ADDRESS: useAddToPathname('address'),
+    PHONE: useAddToPathname('phone'),
+    EMAIL: useAddToPathname('email'),
+    ABOUT: useAddToPathname('about'),
+    EXTRA: useAddToPathname('extra')
+  };
+
   const dispatch = useDispatch();
 
   const handleGetSinglePreview = useCallback(() => {
@@ -95,7 +104,7 @@ const ResumeForm = () => {
                 <h2 className="sub-title">Contact</h2>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/name`} htmlFor="name">
+                  <FormLabel linkTo={TIP_PATHS.NAME} htmlFor="name">
                     Full Name
                   </FormLabel>
                   <Field type="text" placeholder="Your Name" name="name" />
@@ -103,7 +112,7 @@ const ResumeForm = () => {
                 </div>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/address`} htmlFor="address">
+                  <FormLabel linkTo={TIP_PATHS.ADDRESS} htmlFor="address">
                     Address
                   </FormLabel>
                   <Field type="text" placeholder="Your Address" name="address" />
@@ -111,7 +120,7 @@ const ResumeForm = () => {
                 </div>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/phone`} htmlFor="phoneNumber">
+                  <FormLabel linkTo={TIP_PATHS.PHONE} htmlFor="phoneNumber">
                     Phone Number
                   </FormLabel>
                   <Field type="tel" placeholder="555-555-5555" name="phoneNumber" />
@@ -119,7 +128,7 @@ const ResumeForm = () => {
                 </div>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/email`} htmlFor="email">
+                  <FormLabel linkTo={TIP_PATHS.EMAIL} htmlFor="email">
                     Email
                   </FormLabel>
                   <Field type="email" placeholder="youremail@example.com" name="email" />
@@ -131,7 +140,7 @@ const ResumeForm = () => {
                 <h2 className="sub-title">Description</h2>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/about`} htmlFor="about">
+                  <FormLabel linkTo={TIP_PATHS.ABOUT} htmlFor="about">
                     About
                   </FormLabel>
                   <Field
@@ -149,12 +158,7 @@ const ResumeForm = () => {
 
                 <FieldArray name="jobs">
                   {arrayHelpers => (
-                    <JobFields
-                      templateName={template_name}
-                      values={values}
-                      setFieldValue={setFieldValue}
-                      arrayHelpers={arrayHelpers}
-                    />
+                    <JobFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
                   )}
                 </FieldArray>
               </section>
@@ -164,12 +168,7 @@ const ResumeForm = () => {
 
                 <FieldArray name="schools">
                   {arrayHelpers => (
-                    <SchoolFields
-                      templateName={template_name}
-                      values={values}
-                      setFieldValue={setFieldValue}
-                      arrayHelpers={arrayHelpers}
-                    />
+                    <SchoolFields values={values} setFieldValue={setFieldValue} arrayHelpers={arrayHelpers} />
                   )}
                 </FieldArray>
               </section>
@@ -178,7 +177,7 @@ const ResumeForm = () => {
                 <h2 className="sub-title">Extra</h2>
 
                 <div className="group">
-                  <FormLabel linkTo={`/build/${template_name}/extra`} htmlFor="extra">
+                  <FormLabel linkTo={TIP_PATHS.EXTRA} htmlFor="extra">
                     Special Awards / Ending Note
                   </FormLabel>
                   <Field

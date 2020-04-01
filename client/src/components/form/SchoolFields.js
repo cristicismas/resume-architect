@@ -1,9 +1,15 @@
 import React, { Fragment } from 'react';
 import { Field, ErrorMessage } from 'formik';
+import useAddToPathname from '../../hooks/useAddToPathname';
+
 import DatePickerField from './DatePickerField';
 import FormLabel from './FormLabel';
 
-const SchoolFields = ({ values, setFieldValue, arrayHelpers, templateName }) => {
+const SchoolFields = ({ values, setFieldValue, arrayHelpers }) => {
+  const schoolTipPath = useAddToPathname('school');
+  const degreeTipPath = useAddToPathname('schoolDegree');
+  const dateTipPath = useAddToPathname('schoolDate');
+
   return (
     <Fragment>
       {values.schools.map((school, index) => (
@@ -13,7 +19,7 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers, templateName }) => 
           </button>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/school`} htmlFor={`schools[${index}].school`}>
+            <FormLabel linkTo={schoolTipPath} htmlFor={`schools[${index}].school`}>
               School
             </FormLabel>
             <Field type="text" placeholder="Your university / school / college" name={`schools[${index}].school`} />
@@ -21,7 +27,7 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers, templateName }) => 
           </div>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/schoolDegree`} htmlFor={`schools[${index}].degree`}>
+            <FormLabel linkTo={degreeTipPath} htmlFor={`schools[${index}].degree`}>
               Degree
             </FormLabel>
             <Field type="text" placeholder="Your diploma / degree" name={`schools[${index}].degree`} />
@@ -29,7 +35,7 @@ const SchoolFields = ({ values, setFieldValue, arrayHelpers, templateName }) => 
           </div>
 
           <div className="group">
-            <FormLabel linkTo={`/build/${templateName}/schoolDate`} htmlFor="school-date">
+            <FormLabel linkTo={dateTipPath} htmlFor="school-date">
               Date
             </FormLabel>
             <DatePickerField

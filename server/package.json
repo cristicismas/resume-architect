@@ -34,7 +34,7 @@
     "node-cron": "^2.0.3",
     "pizzip": "^3.0.6",
     "request": "^2.88.0",
-    "word2pdf": "^1.0.8"
+    "word2pdf": "^1.0.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.2",

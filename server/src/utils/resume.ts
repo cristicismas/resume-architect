@@ -1,12 +1,12 @@
 import fs from 'fs-extra';
 import path from 'path';
-import word2pdf from 'word2pdf';
 import cloudinary from 'cloudinary';
 import Boom from '@hapi/boom';
 import { CloudinaryResource } from '../interfaces/cloudinary';
 import { IResumeData, IJob, ISchool } from '../interfaces/resume';
 import { getTempFileName, readJSON, removeFile, writeStreamFromURL } from '../utils/files';
 import { populateTemplate } from '../utils/templates';
+import { docToPdf } from '../utils/convertors';
 import rootDir from '../constants/rootDir';
 import MONTHS from '../constants/months';
 
@@ -29,7 +29,7 @@ export const fetchAndStoreResumeLinks = async () => {
     const resumes = await cloudinary.v2.api.resources({
       resource_type: 'raw',
       type: 'upload',
-      prefix: 'resume_architect/resumes'
+      prefix: 'resume_architect/resumes',
     });
 
     const resumesList = resumes.resources.map((resume: CloudinaryResource) => {
@@ -37,7 +37,7 @@ export const fetchAndStoreResumeLinks = async () => {
 
       return {
         secure_url,
-        public_id
+        public_id,
       };
     });
 
@@ -50,11 +50,11 @@ export const fetchAndStoreResumeLinks = async () => {
 };
 
 export const sanitizeAndFormatFormData = (data: IResumeData) => {
-  data.jobs = data.jobs.filter(job => {
+  data.jobs = data.jobs.filter((job) => {
     return job.jobStartDate || job.jobEndDate || job.company || job.job || job.responsibilities;
   });
 
-  data.schools = data.schools.filter(school => {
+  data.schools = data.schools.filter((school) => {
     return school.schoolStartDate || school.schoolEndDate || school.degree || school.school;
   });
 
@@ -65,7 +65,7 @@ export const sanitizeAndFormatFormData = (data: IResumeData) => {
 };
 
 const formatJobDates = (jobs: IJob[]) => {
-  return jobs.map(job => {
+  return jobs.map((job) => {
     job.jobStartDate = formatDate(job.jobStartDate);
     job.jobEndDate = formatDate(job.jobEndDate);
 
@@ -74,7 +74,7 @@ const formatJobDates = (jobs: IJob[]) => {
 };
 
 const formatSchoolDates = (schools: ISchool[]) => {
-  return schools.map(school => {
+  return schools.map((school) => {
     school.schoolStartDate = formatDate(school.schoolStartDate);
     school.schoolEndDate = formatDate(school.schoolEndDate);
 
@@ -115,7 +115,7 @@ export const getResumePDF = async (resumeName: string, resumeData: IResumeData) 
     const docxPath = path.join(rootDir, getTempFileName('.docx'));
     await fs.writeFile(docxPath, docxBuffer);
 
-    const pdfBuffer = await word2pdf(docxPath);
+    const pdfBuffer = await docToPdf(docxPath);
     fs.unlink(docxPath);
 
     return pdfBuffer;

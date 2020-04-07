@@ -2,20 +2,20 @@ import cloudinary from 'cloudinary';
 import fs from 'fs-extra';
 import path from 'path';
 import Boom from '@hapi/boom';
-import word2pdf from 'word2pdf';
 import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
+import { CloudinaryResource } from '../interfaces/cloudinary';
 import { readJSON, writeStreamFromURL, writeToTemp } from '../utils/files';
+import { docToPdf } from '../utils/convertors';
 import rootDir from '../constants/rootDir';
 import docxParser from '../constants/docxParser';
-import { CloudinaryResource } from '../interfaces/cloudinary';
 
 export const buildTemplatePreviews = async () => {
   try {
     const templates = await cloudinary.v2.api.resources({
       resource_type: 'raw',
       type: 'upload',
-      prefix: 'resume_architect/resumes'
+      prefix: 'resume_architect/resumes',
     });
 
     for (const template of templates.resources) {
@@ -25,15 +25,15 @@ export const buildTemplatePreviews = async () => {
       const populatedTemplate = await populateTemplate('temp/template.docx', templateData);
       await writeToTemp('populated_template.docx', populatedTemplate);
 
-      const pdf = await word2pdf(path.join(rootDir, 'temp/populated_template.docx'), 'binary');
-      await writeToTemp('template_preview.pdf', pdf);
+      const pdf = await docToPdf(path.join(rootDir, 'temp/populated_template.docx'));
+      await writeToTemp('populated_template.pdf', pdf as ArrayBuffer);
 
       // Change the resumes folder to previews, and the docx extension to pdf.
       const pdfFileName = template.public_id.replace('resumes/', 'previews/').replace('docx', 'pdf');
 
-      await cloudinary.v2.uploader.upload(path.join(rootDir, 'temp/template_preview.pdf'), {
+      await cloudinary.v2.uploader.upload(path.join(rootDir, 'temp/populated_template.pdf'), {
         public_id: pdfFileName,
-        resource_type: 'image'
+        resource_type: 'image',
       });
     }
 
@@ -68,7 +68,7 @@ export const fetchAndStorePreviewLinks = async () => {
     const templates = await cloudinary.v2.api.resources({
       type: 'upload',
       prefix: 'resume_architect/previews',
-      max_results: 500
+      max_results: 500,
     });
 
     // Returns all template previews with a .png extension
@@ -78,7 +78,7 @@ export const fetchAndStorePreviewLinks = async () => {
 
       return {
         name,
-        url
+        url,
       };
     });
 

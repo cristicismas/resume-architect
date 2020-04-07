@@ -27,7 +27,7 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
         return res.response(docxBuffer).header('content-type', MIME_TYPES.docx);
       case 'pdf':
         const pdfBuffer = await getResumePDF(resumeName, resumeData);
-        return res.response(pdfBuffer).header('content-type', MIME_TYPES.pdf);
+        return res.response(pdfBuffer as ArrayBuffer).header('content-type', MIME_TYPES.pdf);
       default:
         return Boom.badRequest('The resume type must be either docx or pdf.');
     }

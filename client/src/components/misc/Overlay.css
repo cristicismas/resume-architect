@@ -18,7 +18,7 @@
   left: 0;
   top: 0;
   opacity: 0;
-  animation: fadein forwards 0.5s;
+  animation: fadein forwards 0.3s;
 }
 
 .overlay {
@@ -32,7 +32,7 @@
   border-top: 5px solid #1e69ca;
   background-color: #eee;
   text-align: center;
-  animation: fadein forwards 0.5s;
+  animation: fadein forwards 0.3s;
 }
 
 .overlay-container .close-overlay-btn {

@@ -40,9 +40,10 @@ const Resumes = () => {
         key={resumeDate}
         caption={resumeName}
         template={templateForResume}
+        showOptions={true}
         linkTo={{
           pathname: `/draft/${templateName}/${whiteSpaceToSnakeCase(resumeName)}`,
-          state: { resumeData: resume.data }
+          state: { resumeData: resume.data },
         }}
       />
     );

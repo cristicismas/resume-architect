@@ -26,6 +26,12 @@
   transform: translateY(-5px);
 }
 
+.template-preview-container:hover .template-options {
+  transform: translate(-50%, -5px);
+  visibility: visible;
+  opacity: 1;
+}
+
 .template-preview-container figcaption {
   text-align: center;
   position: relative;

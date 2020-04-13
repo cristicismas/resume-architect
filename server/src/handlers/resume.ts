@@ -60,6 +60,20 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
   }
 };
 
+export const renameResume = async (request: Request, res: ResponseToolkit) => {
+  try {
+    const newResumeName = JSON.parse(request.payload as string);
+    await Resume.updateOne({ _id: request.params.id }, { $set: { 'meta.resumeName': newResumeName } });
+
+    return res.response({
+      message: 'Resume renamed.',
+    });
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Something went wrong fetching the resumes');
+  }
+};
+
 export const deleteResume = async (request: Request, res: ResponseToolkit) => {
   try {
     await Resume.deleteOne({ _id: request.params.id });

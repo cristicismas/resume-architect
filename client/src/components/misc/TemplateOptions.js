@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { deleteResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './TemplateOptions.css';
@@ -8,6 +9,7 @@ import Icon from './Icon';
 
 const TemplateOptions = ({ resumeId }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const dispatchDelete = useCallback(() => {
     dispatch(deleteResume(resumeId));
@@ -23,7 +25,8 @@ const TemplateOptions = ({ resumeId }) => {
   const handleEdit = e => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('edit');
+
+    history.push(`/resumes/${resumeId}/rename`);
   };
 
   return (

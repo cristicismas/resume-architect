@@ -4,6 +4,7 @@ import {
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
   SAVE_USER_RESUME,
+  RENAME_RESUME,
   DELETE_RESUME,
   DELETE_LOCAL_RESUME,
 } from '../actionTypes';
@@ -80,6 +81,22 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
     dispatch({
       type: SAVE_USER_RESUME,
       payload: savedResume,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const renameResume = (id, newName) => async dispatch => {
+  try {
+    await apiCall('PATCH', `resume/${id}/rename`, newName);
+
+    dispatch({
+      type: RENAME_RESUME,
+      payload: {
+        id,
+        newName,
+      },
     });
   } catch (err) {
     console.log(err);

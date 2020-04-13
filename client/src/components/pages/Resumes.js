@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Route, useHistory } from 'react-router-dom';
 import { getPreviewsForEachResume } from '../../store/actions/previews';
 import { getUserResumes } from '../../store/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
 import './Resumes.css';
 
+import Overlay from '../misc/Overlay';
 import TemplatePreview from '../misc/TemplatePreview';
+import RenameResume from '../misc/RenameResume';
 
 const Resumes = () => {
   const previews = useSelector(state => state.previews.previewsForEachResume);
   const resumes = useSelector(state => state.resume.resumes);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const fetchPreviews = useCallback(() => {
     dispatch(getPreviewsForEachResume());
@@ -54,6 +58,12 @@ const Resumes = () => {
   return (
     <section id="resumes">
       <h1 className="title">My Resumes</h1>
+
+      <Route exact path="/resumes/:id/rename">
+        <Overlay closeOverlay={history.goBack}>
+          <RenameResume />
+        </Overlay>
+      </Route>
 
       {previews.length > 0 && <div className="resume-previews">{resumePreviewsList}</div>}
     </section>

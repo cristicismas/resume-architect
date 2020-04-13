@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit } from 'hapi';
-import { buildResume, saveResume, getResumes, deleteResume } from '../handlers/resume';
+import { buildResume, saveResume, getResumes, renameResume, deleteResume } from '../handlers/resume';
 
 const buildResumeRoute = {
   method: 'POST',
@@ -19,10 +19,16 @@ const getResumesRoute = {
   handler: (request: Request, responseToolkit: ResponseToolkit) => getResumes(request, responseToolkit),
 };
 
+const renameResumeRoute = {
+  method: 'PATCH',
+  path: '/resume/{id}/rename',
+  handler: (request: Request, responseToolkit: ResponseToolkit) => renameResume(request, responseToolkit),
+};
+
 const deleteResumeRoute = {
   method: 'DELETE',
   path: '/resume/{id}',
   handler: (request: Request, responseToolkit: ResponseToolkit) => deleteResume(request, responseToolkit),
 };
 
-export default [buildResumeRoute, saveResumeRoute, getResumesRoute, deleteResumeRoute];
+export default [buildResumeRoute, saveResumeRoute, getResumesRoute, renameResumeRoute, deleteResumeRoute];

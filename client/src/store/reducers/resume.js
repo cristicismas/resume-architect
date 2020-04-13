@@ -3,6 +3,7 @@ import {
   GET_RESUME_PDF,
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
+  RENAME_RESUME,
   DELETE_RESUME,
   DELETE_LOCAL_RESUME,
 } from '../actionTypes';
@@ -27,6 +28,13 @@ export default (state = initialState, action) => {
       return { ...state, docx: '', pdf: '' };
     case GET_USER_RESUMES:
       return { ...state, resumes: [...initialResumes, ...action.payload] };
+    case RENAME_RESUME:
+      const resumesCopy = [...state.resumes];
+
+      const resumeToRenameIndex = state.resumes.findIndex(resume => resume._id === action.payload.id);
+      resumesCopy[resumeToRenameIndex].meta.resumeName = action.payload.newName;
+
+      return { ...state, resumes: resumesCopy };
     case DELETE_RESUME:
       const filteredResumes = state.resumes.filter(resume => resume._id !== action.payload);
       return { ...state, resumes: filteredResumes };

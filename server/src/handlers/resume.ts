@@ -59,3 +59,16 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
     return Boom.badImplementation('Something went wrong fetching the resumes');
   }
 };
+
+export const deleteResume = async (request: Request, res: ResponseToolkit) => {
+  try {
+    await Resume.deleteOne({ _id: request.params.id });
+
+    return res.response({
+      message: 'Resume deleted.',
+    });
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Something went wrong deleting the resume');
+  }
+};

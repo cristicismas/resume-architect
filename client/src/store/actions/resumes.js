@@ -3,7 +3,9 @@ import {
   GET_RESUME_PDF,
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
-  SAVE_USER_RESUME
+  SAVE_USER_RESUME,
+  DELETE_RESUME,
+  DELETE_LOCAL_RESUME,
 } from '../actionTypes';
 
 import { apiCall } from '../../utils/api';
@@ -16,12 +18,12 @@ export const buildResume = (data, resumeType, resumeName) => async dispatch => {
     if (resumeType.toLowerCase() === 'pdf') {
       dispatch({
         type: GET_RESUME_PDF,
-        payload
+        payload,
       });
     } else {
       dispatch({
         type: GET_RESUME_DOCX,
-        payload
+        payload,
       });
     }
 
@@ -39,7 +41,7 @@ export const resetDownloadLinks = () => async (dispatch, getState) => {
     URL.revokeObjectURL(pdf);
 
     dispatch({
-      type: RESET_DOWNLOAD_LINKS
+      type: RESET_DOWNLOAD_LINKS,
     });
 
     return;
@@ -54,7 +56,7 @@ export const getUserResumes = () => async dispatch => {
 
     dispatch({
       type: GET_USER_RESUMES,
-      payload: resumes
+      payload: resumes,
     });
 
     return resumes;
@@ -69,16 +71,38 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
       ...resume,
       meta: {
         ...resume.meta,
-        resumeName
-      }
+        resumeName,
+      },
     };
 
     const savedResume = await apiCall('POST', 'resume/save', resumeToSave);
 
     dispatch({
       type: SAVE_USER_RESUME,
-      payload: savedResume
+      payload: savedResume,
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteResume = id => async dispatch => {
+  try {
+    if (id) {
+      await apiCall('DELETE', `resume/${id}`);
+
+      dispatch({
+        type: DELETE_RESUME,
+        payload: id,
+      });
+    } else {
+      // If there is no id, it means the resume is only saved in local storage.
+      localStorage.removeItem('latestResumeDraft');
+
+      dispatch({
+        type: DELETE_LOCAL_RESUME,
+      });
+    }
   } catch (err) {
     console.log(err);
   }

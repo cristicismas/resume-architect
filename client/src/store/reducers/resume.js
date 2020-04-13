@@ -1,4 +1,11 @@
-import { GET_RESUME_DOCX, GET_RESUME_PDF, RESET_DOWNLOAD_LINKS, GET_USER_RESUMES } from '../actionTypes';
+import {
+  GET_RESUME_DOCX,
+  GET_RESUME_PDF,
+  RESET_DOWNLOAD_LINKS,
+  GET_USER_RESUMES,
+  DELETE_RESUME,
+  DELETE_LOCAL_RESUME,
+} from '../actionTypes';
 
 const initialResumes = localStorage.getItem('latestResumeDraft')
   ? [JSON.parse(localStorage.getItem('latestResumeDraft'))]
@@ -7,7 +14,7 @@ const initialResumes = localStorage.getItem('latestResumeDraft')
 const initialState = {
   docx: '',
   pdf: '',
-  resumes: initialResumes
+  resumes: initialResumes,
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +27,12 @@ export default (state = initialState, action) => {
       return { ...state, docx: '', pdf: '' };
     case GET_USER_RESUMES:
       return { ...state, resumes: [...initialResumes, ...action.payload] };
+    case DELETE_RESUME:
+      const filteredResumes = state.resumes.filter(resume => resume._id !== action.payload);
+      return { ...state, resumes: filteredResumes };
+    case DELETE_LOCAL_RESUME:
+      const resumesSavedRemotely = state.resumes.filter(resume => resume._id);
+      return { ...state, resumes: resumesSavedRemotely };
     default:
       return state;
   }

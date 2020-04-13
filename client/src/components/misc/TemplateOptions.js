@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './TemplateOptions.css';
 
 import Icon from './Icon';
 
-const TemplateOptions = () => {
+const TemplateOptions = ({ resumeId }) => {
+  const dispatch = useDispatch();
+
+  const dispatchDelete = useCallback(() => {
+    dispatch(deleteResume(resumeId));
+  }, [dispatch, resumeId]);
+
   const handleDelete = e => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('delete');
+
+    dispatchDelete();
   };
 
   const handleEdit = e => {

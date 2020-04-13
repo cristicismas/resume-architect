@@ -30,6 +30,7 @@ const Resumes = () => {
 
   const resumePreviewsList = resumes.map(resume => {
     const resumeDate = new Date(resume.meta.draftDate).toLocaleString();
+    const resumeId = resume._id;
     const templateName = resume.meta.templateName;
     const resumeName = resume.meta.isAutoSaved ? 'Latest Auto Saved Resume' : resume.meta.resumeName;
 
@@ -40,6 +41,7 @@ const Resumes = () => {
         key={resumeDate}
         caption={resumeName}
         template={templateForResume}
+        resumeId={resumeId}
         showOptions={true}
         linkTo={{
           pathname: `/draft/${templateName}/${whiteSpaceToSnakeCase(resumeName)}`,

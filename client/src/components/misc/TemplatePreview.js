@@ -5,13 +5,13 @@ import './TemplatePreview.css';
 import TemplateOptions from './TemplateOptions';
 import Spinner from './Spinner';
 
-const TemplatePreview = ({ template, linkTo, caption, showOptions }) => {
+const TemplatePreview = ({ template, linkTo, caption, showOptions, resumeId }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   if (template)
     return (
       <Link to={linkTo} className="template-preview-container">
-        {showOptions && <TemplateOptions template={template} />}
+        {showOptions && <TemplateOptions resumeId={resumeId} />}
 
         <figure>
           <img

@@ -7,7 +7,7 @@ import './BuildResume.css';
 import TipRoutes from '../form/tips/TipRoutes';
 import Templates from '../layout/Templates';
 import ResumeForm from '../form/ResumeForm';
-import Modal from '../misc/Modal';
+import Modal from '../modals/Modal';
 import Icon from '../misc/Icon';
 
 const BuildResume = () => {

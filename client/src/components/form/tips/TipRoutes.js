@@ -3,7 +3,7 @@ import { Route, useHistory } from 'react-router-dom';
 import TIPS from '../../../constants/tips';
 import './Tips.css';
 
-import Modal from '../../misc/Modal';
+import Modal from '../../modals/Modal';
 
 const TipRoutes = () => {
   const history = useHistory();

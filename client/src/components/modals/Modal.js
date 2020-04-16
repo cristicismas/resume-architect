@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import Icon from './Icon';
+import Icon from '../misc/Icon';
 import ICONS from '../../constants/icons';
 import './Modal.css';
 

@@ -6,7 +6,7 @@ import { getUserResumes } from '../../store/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
 import './Resumes.css';
 
-import Modal from '../misc/Modal';
+import Modal from '../modals/Modal';
 import TemplatePreview from '../misc/TemplatePreview';
 import RenameResume from '../misc/RenameResume';
 

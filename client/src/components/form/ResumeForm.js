@@ -17,7 +17,7 @@ import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
 import SaveResume from '../misc/SaveResume';
-import Modal from '../misc/Modal';
+import Modal from '../modals/Modal';
 import Icon from '../misc/Icon';
 
 const ResumeForm = () => {

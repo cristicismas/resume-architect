@@ -5,7 +5,7 @@ import useAddToPathname from '../../hooks/useAddToPathname';
 import ICONS from '../../constants/icons';
 import './Header.css';
 
-import ConfirmLogout from '../misc/ConfirmLogout';
+import ConfirmLogout from '../modals/ConfirmLogout';
 import HeaderLink from './HeaderLink';
 
 const Header = () => {

@@ -2,12 +2,12 @@ import React, { Children, cloneElement, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Icon from './Icon';
 import ICONS from '../../constants/icons';
-import './Overlay.css';
+import './Modal.css';
 
-const useOutsideClickDetector = (ref, closeOverlay) => {
+const useOutsideClickDetector = (ref, closeModal) => {
   const handleOutsideClick = event => {
     if (ref.current && !ref.current.contains(event.target)) {
-      closeOverlay();
+      closeModal();
     }
   };
 
@@ -32,37 +32,37 @@ const useOwnScrollbar = () => {
   }, []);
 };
 
-const Overlay = ({ hideCloseOverlayButton, closeOverlay, isFullscreen, children }) => {
+const Modal = ({ hideCloseModalButton, closeModal, isFullscreen, children }) => {
   const modalRoot = document.getElementById('modal-root');
 
-  const overlayRef = useRef(null);
-  useOutsideClickDetector(overlayRef, closeOverlay);
+  const modalRef = useRef(null);
+  useOutsideClickDetector(modalRef, closeModal);
 
   useOwnScrollbar();
 
-  const childrenWithCloseOverlay = Children.map(children, child => {
+  const childrenWithCloseModal = Children.map(children, child => {
     // If typeof child.type is a string, then the element is an html element,
-    // not a React element, in which case the closeOverlay prop shouldn't be passed.
+    // not a React element, in which case the closeModal prop shouldn't be passed.
     if (typeof child.type === 'string') {
       return cloneElement(child);
     } else {
-      return cloneElement(child, { closeOverlay });
+      return cloneElement(child, { closeModal });
     }
   });
 
   return createPortal(
-    <div className={`overlay-container ${isFullscreen ? 'fullscreen' : ''}`}>
-      <div className="overlay" ref={hideCloseOverlayButton ? null : overlayRef}>
-        {!hideCloseOverlayButton && (
-          <button type="button" className="close-overlay-btn" onClick={() => closeOverlay()}>
-            <Icon className="close-overlay-icon" icon={ICONS.CROSS} size={30} fill="#222" />
+    <div className={`modal-container ${isFullscreen ? 'fullscreen' : ''}`}>
+      <div className="modal" ref={hideCloseModalButton ? null : modalRef}>
+        {!hideCloseModalButton && (
+          <button type="button" className="close-modal-btn" onClick={() => closeModal()}>
+            <Icon className="close-modal-icon" icon={ICONS.CROSS} size={30} fill="#222" />
           </button>
         )}
-        {childrenWithCloseOverlay}
+        {childrenWithCloseModal}
       </div>
     </div>,
     modalRoot
   );
 };
 
-export default Overlay;
+export default Modal;

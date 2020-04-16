@@ -4,12 +4,12 @@
   }
 }
 
-.overlay-container.fullscreen .overlay {
+.modal-container.fullscreen .modal {
   width: 100%;
   height: 100%;
 }
 
-.overlay-container {
+.modal-container {
   height: 100vh;
   width: 100vw;
   background-color: rgba(22, 22, 22, 0.7);
@@ -21,7 +21,7 @@
   animation: fadein forwards 0.3s;
 }
 
-.overlay {
+.modal {
   position: fixed;
   overflow: auto;
   padding: 50px;
@@ -35,7 +35,7 @@
   animation: fadein forwards 0.3s;
 }
 
-.overlay-container .close-overlay-btn {
+.modal-container .close-modal-btn {
   background-color: transparent;
   color: #eee;
   padding: 0;
@@ -48,33 +48,33 @@
   z-index: 10;
 }
 
-.overlay-container.fullscreen .close-overlay-btn {
+.modal-container.fullscreen .close-modal-btn {
   top: 50px;
   right: 50px;
 }
 
-.overlay .close-overlay-btn:hover,
-.overlay .close-overlay-btn:active {
+.modal .close-modal-btn:hover,
+.modal .close-modal-btn:active {
   box-shadow: none;
   border: none;
 }
 
-.overlay .close-overlay-btn .close-overlay-icon {
+.modal .close-modal-btn .close-modal-icon {
   transition: all 0.2s;
 }
 
-.overlay .close-overlay-btn:hover .close-overlay-icon {
+.modal .close-modal-btn:hover .close-modal-icon {
   fill: #1e69ca;
 }
 
 @media only screen and (max-width: 550px) {
-  .overlay {
+  .modal {
     width: 100vw;
     height: 100vh;
     padding: 0;
   }
 
-  .overlay .close-overlay-btn {
+  .modal .close-modal-btn {
     top: 15px;
     right: 15px;
     transform: scale(0.8);

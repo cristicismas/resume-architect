@@ -3,7 +3,7 @@ import { Route, useHistory } from 'react-router-dom';
 import TIPS from '../../../constants/tips';
 import './Tips.css';
 
-import Overlay from '../../misc/Overlay';
+import Modal from '../../misc/Modal';
 
 const TipRoutes = () => {
   const history = useHistory();
@@ -13,12 +13,12 @@ const TipRoutes = () => {
       {Object.keys(TIPS).map(tip => {
         return (
           <Route key={tip} exact path={[`/build/:templateName/${tip}`, `/draft/:templateName/:resumeName/${tip}`]}>
-            <Overlay closeOverlay={history.goBack}>
+            <Modal closeModal={history.goBack}>
               <section id="tip">
                 <h2 className="title">{TIPS[tip].title}</h2>
                 <p className="text" dangerouslySetInnerHTML={{ __html: TIPS[tip].text }}></p>
               </section>
-            </Overlay>
+            </Modal>
           </Route>
         );
       })}

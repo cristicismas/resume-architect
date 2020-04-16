@@ -4,7 +4,7 @@ import { logout } from '../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 import './ConfirmLogout.css';
 
-import Overlay from './Overlay';
+import Modal from './Modal';
 
 const ConfirmLogout = () => {
   const history = useHistory();
@@ -16,7 +16,7 @@ const ConfirmLogout = () => {
   }, [dispatch, history]);
 
   return (
-    <Overlay closeOverlay={history.goBack}>
+    <Modal closeModal={history.goBack}>
       <section id="confirm-logout">
         <h2>Are you sure you want to log out?</h2>
 
@@ -30,7 +30,7 @@ const ConfirmLogout = () => {
           </button>
         </div>
       </section>
-    </Overlay>
+    </Modal>
   );
 };
 

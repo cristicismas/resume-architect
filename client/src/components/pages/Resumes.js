@@ -6,7 +6,7 @@ import { getUserResumes } from '../../store/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
 import './Resumes.css';
 
-import Overlay from '../misc/Overlay';
+import Modal from '../misc/Modal';
 import TemplatePreview from '../misc/TemplatePreview';
 import RenameResume from '../misc/RenameResume';
 
@@ -60,9 +60,9 @@ const Resumes = () => {
       <h1 className="title">My Resumes</h1>
 
       <Route exact path="/resumes/:id/rename">
-        <Overlay closeOverlay={history.goBack}>
+        <Modal closeModal={history.goBack}>
           <RenameResume />
-        </Overlay>
+        </Modal>
       </Route>
 
       {previews.length > 0 && <div className="resume-previews">{resumePreviewsList}</div>}

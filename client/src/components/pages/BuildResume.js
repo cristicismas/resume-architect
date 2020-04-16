@@ -7,7 +7,7 @@ import './BuildResume.css';
 import TipRoutes from '../form/tips/TipRoutes';
 import Templates from '../layout/Templates';
 import ResumeForm from '../form/ResumeForm';
-import Overlay from '../misc/Overlay';
+import Modal from '../misc/Modal';
 import Icon from '../misc/Icon';
 
 const BuildResume = () => {
@@ -28,9 +28,9 @@ const BuildResume = () => {
       <Route
         exact
         path={['/build/:templateName/change_template', '/draft/:templateName/:resumeName/change_template']}>
-        <Overlay isFullscreen={true} closeOverlay={history.goBack}>
+        <Modal isFullscreen={true} closeModal={history.goBack}>
           <Templates />
-        </Overlay>
+        </Modal>
       </Route>
 
       <TipRoutes />

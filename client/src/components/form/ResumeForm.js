@@ -17,7 +17,7 @@ import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
 import SaveResume from '../misc/SaveResume';
-import Overlay from '../misc/Overlay';
+import Modal from '../misc/Modal';
 import Icon from '../misc/Icon';
 
 const ResumeForm = () => {
@@ -74,9 +74,9 @@ const ResumeForm = () => {
 
     return (
       <Route exact path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
-        <Overlay closeOverlay={history.goBack}>
+        <Modal closeModal={history.goBack}>
           <SaveResume resume={formatResumeToSave(formData, templateName)} />
-        </Overlay>
+        </Modal>
       </Route>
     );
   };

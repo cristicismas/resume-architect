@@ -40,6 +40,11 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
 export const saveResume = async (request: Request, res: ResponseToolkit) => {
   try {
     const resume = safelyParseJSON(request.payload as IResumeToSave);
+
+    if (resume.meta.resumeName.length > 55) {
+      return Boom.badRequest('Your resume name is too long. Try to shorten it to 55 characters.');
+    }
+
     await Resume.create(resume);
 
     return res.response(resume);
@@ -63,6 +68,11 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
 export const renameResume = async (request: Request, res: ResponseToolkit) => {
   try {
     const newResumeName = JSON.parse(request.payload as string);
+
+    if (newResumeName.length > 55) {
+      return Boom.badRequest('Your new resume name is too long. Try to shorten it to 55 characters.');
+    }
+
     await Resume.updateOne({ _id: request.params.id }, { $set: { 'meta.resumeName': newResumeName } });
 
     return res.response({

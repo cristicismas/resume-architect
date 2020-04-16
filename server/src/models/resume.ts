@@ -5,7 +5,7 @@ interface IResume extends IResumeToSave, Document {}
 
 const resumeModel = new mongoose.Schema({
   data: {
-    name: { type: String, required: true },
+    name: { type: String, required: true, maxlength: 55 },
     address: { type: String },
     phoneNumber: { type: String },
     email: { type: String, required: true },

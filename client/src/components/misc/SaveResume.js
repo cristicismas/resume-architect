@@ -37,6 +37,7 @@ const SaveResume = ({ resume }) => {
           value={resumeName}
           onChange={e => setResumeName(e.target.value)}
           required
+          maxLength="55"
           id="save-resume-name-input"
           name="resume-name"
           className="resume-name"

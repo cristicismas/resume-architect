@@ -3,6 +3,7 @@ import {
   GET_RESUME_PDF,
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
+  SAVE_USER_RESUME,
   RENAME_RESUME,
   DELETE_RESUME,
   DELETE_LOCAL_RESUME,
@@ -28,6 +29,8 @@ export default (state = initialState, action) => {
       return { ...state, docx: '', pdf: '' };
     case GET_USER_RESUMES:
       return { ...state, resumes: [...initialResumes, ...action.payload] };
+    case SAVE_USER_RESUME:
+      return { ...state, resumes: [...state.resumes, action.payload] };
     case RENAME_RESUME:
       const resumesCopy = [...state.resumes];
 

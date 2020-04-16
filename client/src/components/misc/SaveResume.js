@@ -17,13 +17,13 @@ const SaveResume = ({ resume }) => {
     document.getElementById('save-resume-name-input').focus();
   }, []);
 
-  const handleSave = useCallback(() => {
+  const dispatchSave = useCallback(() => {
     dispatch(saveUserResume(resume, resumeName));
   }, [dispatch, resume, resumeName]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    handleSave();
+    dispatchSave();
     history.goBack();
   };
 

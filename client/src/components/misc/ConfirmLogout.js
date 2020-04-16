@@ -10,7 +10,7 @@ const ConfirmLogout = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogout = useCallback(() => {
+  const dispatchLogout = useCallback(() => {
     dispatch(logout());
     history.push('/logout');
   }, [dispatch, history]);
@@ -25,7 +25,7 @@ const ConfirmLogout = () => {
             Cancel
           </button>
 
-          <button className="primary" onClick={handleLogout}>
+          <button className="primary" onClick={dispatchLogout}>
             Log out
           </button>
         </div>

@@ -18,13 +18,13 @@ const RenameResume = () => {
     document.getElementById('rename-resume-name-input').focus();
   }, []);
 
-  const handleRename = useCallback(() => {
+  const dispatchRename = useCallback(() => {
     dispatch(renameResume(id, resumeName));
   }, [dispatch, id, resumeName]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    handleRename();
+    dispatchRename();
     history.goBack();
   };
 

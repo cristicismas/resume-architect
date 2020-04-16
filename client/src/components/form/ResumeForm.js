@@ -45,13 +45,13 @@ const ResumeForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleGetSinglePreview = useCallback(() => {
+  const dispatchGetSinglePreview = useCallback(() => {
     dispatch(getSinglePreview(templateName));
   }, [dispatch, templateName]);
 
   useEffect(() => {
-    if (templateName !== 'change_template') handleGetSinglePreview();
-  }, [handleGetSinglePreview, templateName]);
+    if (templateName !== 'change_template') dispatchGetSinglePreview();
+  }, [dispatchGetSinglePreview, templateName]);
 
   const handleBuildResume = useCallback(
     (data, actions) => {

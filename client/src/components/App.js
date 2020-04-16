@@ -17,13 +17,13 @@ import Resumes from './pages/Resumes';
 const App = () => {
   const dispatch = useDispatch();
 
-  const handleCheckToken = useCallback(() => {
+  const dispatchCheckToken = useCallback(() => {
     dispatch(checkToken());
   }, [dispatch]);
 
   useEffect(() => {
-    handleCheckToken();
-  }, [handleCheckToken]);
+    dispatchCheckToken();
+  }, [dispatchCheckToken]);
 
   return (
     <Router>

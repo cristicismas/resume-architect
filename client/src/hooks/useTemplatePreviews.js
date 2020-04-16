@@ -6,16 +6,16 @@ const useTemplatePreviews = (shouldFetch, setShouldFetch) => {
   const { previewsList, couldFetchMore } = useSelector(state => state.previews);
   const dispatch = useDispatch();
 
-  const handleGetPreviews = useCallback(() => {
+  const dispatchGetPreviews = useCallback(() => {
     dispatch(getPreviews());
   }, [dispatch]);
 
   useEffect(() => {
     if (shouldFetch) {
-      handleGetPreviews();
+      dispatchGetPreviews();
       setShouldFetch(false);
     }
-  }, [shouldFetch, setShouldFetch, handleGetPreviews]);
+  }, [shouldFetch, setShouldFetch, dispatchGetPreviews]);
 
   return { previewsList, couldFetchMore };
 };

@@ -13,14 +13,14 @@ const Auth = ({ type }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogin = useCallback(
+  const dispatchLogin = useCallback(
     data => {
       dispatch(login(data));
     },
     [dispatch]
   );
 
-  const handleSignup = useCallback(
+  const dispatchSignup = useCallback(
     data => {
       dispatch(signup(data));
     },
@@ -29,9 +29,9 @@ const Auth = ({ type }) => {
 
   const handleSubmit = (data, actions) => {
     if (type === 'login') {
-      handleLogin(data);
+      dispatchLogin(data);
     } else {
-      handleSignup(data);
+      dispatchSignup(data);
     }
 
     actions.setSubmitting(false);
@@ -45,7 +45,7 @@ const Auth = ({ type }) => {
       <Formik
         initialValues={{
           username: '',
-          password: ''
+          password: '',
         }}
         validationSchema={authFormSchema}
         onSubmit={handleSubmit}>

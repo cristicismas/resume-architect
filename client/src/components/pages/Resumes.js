@@ -16,21 +16,21 @@ const Resumes = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const fetchPreviews = useCallback(() => {
+  const dispatchGetPreviews = useCallback(() => {
     dispatch(getPreviewsForEachResume());
   }, [dispatch]);
 
   useEffect(() => {
-    fetchPreviews();
-  }, [fetchPreviews, resumes.length]);
+    dispatchGetPreviews();
+  }, [dispatchGetPreviews, resumes.length]);
 
-  const fetchResumes = useCallback(() => {
+  const dispatchGetResumes = useCallback(() => {
     dispatch(getUserResumes());
   }, [dispatch]);
 
   useEffect(() => {
-    fetchResumes();
-  }, [fetchResumes]);
+    dispatchGetResumes();
+  }, [dispatchGetResumes]);
 
   const resumePreviewsList = resumes.map(resume => {
     const resumeDate = new Date(resume.meta.draftDate).toLocaleString();

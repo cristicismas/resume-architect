@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 'formik';
-import { Route, Link, useParams, useLocation, useHistory } from 'react-router-dom';
+import { Route, Link, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveResumeData, formatResumeToSave } from '../../utils/buildResumeForm';
 import { getSinglePreview } from '../../store/actions/previews';
@@ -16,14 +16,12 @@ import FormLabel from './FormLabel';
 import JobFields from './JobFields';
 import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
-import SaveResume from '../misc/SaveResume';
-import Modal from '../modals/Modal';
+import SaveResume from '../modals/SaveResume';
 import Icon from '../misc/Icon';
 
 const ResumeForm = () => {
   const { templateName } = useParams();
   const location = useLocation();
-  const history = useHistory();
 
   const locationState = location.state;
   const resumeData = locationState ? locationState.resumeData : null;
@@ -40,7 +38,7 @@ const ResumeForm = () => {
     PHONE: useAddToPathname('phone'),
     EMAIL: useAddToPathname('email'),
     ABOUT: useAddToPathname('about'),
-    EXTRA: useAddToPathname('extra')
+    EXTRA: useAddToPathname('extra'),
   };
 
   const dispatch = useDispatch();
@@ -74,9 +72,7 @@ const ResumeForm = () => {
 
     return (
       <Route exact path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
-        <Modal closeModal={history.goBack}>
-          <SaveResume resume={formatResumeToSave(formData, templateName)} />
-        </Modal>
+        <SaveResume resume={formatResumeToSave(formData, templateName)} />
       </Route>
     );
   };

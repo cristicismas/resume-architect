@@ -5,7 +5,8 @@ import { renameResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './RenameResume.css';
 
-import LoadingButton from './LoadingButton';
+import Modal from './Modal';
+import LoadingButton from '../misc/LoadingButton';
 
 const RenameResume = () => {
   const history = useHistory();
@@ -29,26 +30,28 @@ const RenameResume = () => {
   };
 
   return (
-    <div id="rename-resume">
-      <h1 className="title">Rename Resume</h1>
+    <Modal closeModal={history.goBack}>
+      <div id="rename-resume">
+        <h1 className="title">Rename Resume</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="resume-name">New Name:</label>
-        <input
-          value={resumeName}
-          onChange={e => setResumeName(e.target.value)}
-          required
-          id="rename-resume-name-input"
-          name="resume-name"
-          className="resume-name"
-          type="text"
-        />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="resume-name">New Name:</label>
+          <input
+            value={resumeName}
+            onChange={e => setResumeName(e.target.value)}
+            required
+            id="rename-resume-name-input"
+            name="resume-name"
+            className="resume-name"
+            type="text"
+          />
 
-        <LoadingButton loading={false} staleIcon={ICONS.EDIT} type="submit" className="submit-btn">
-          Rename
-        </LoadingButton>
-      </form>
-    </div>
+          <LoadingButton loading={false} staleIcon={ICONS.EDIT} type="submit" className="submit-btn">
+            Rename
+          </LoadingButton>
+        </form>
+      </div>
+    </Modal>
   );
 };
 

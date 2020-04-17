@@ -1,20 +1,18 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, useHistory } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { getPreviewsForEachResume } from '../../store/actions/previews';
 import { getUserResumes } from '../../store/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
 import './Resumes.css';
 
-import Modal from '../modals/Modal';
 import TemplatePreview from '../misc/TemplatePreview';
-import RenameResume from '../misc/RenameResume';
+import RenameResume from '../modals/RenameResume';
 
 const Resumes = () => {
   const previews = useSelector(state => state.previews.previewsForEachResume);
   const resumes = useSelector(state => state.resume.resumes);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const dispatchGetPreviews = useCallback(() => {
     dispatch(getPreviewsForEachResume());
@@ -60,9 +58,7 @@ const Resumes = () => {
       <h1 className="title">My Resumes</h1>
 
       <Route exact path="/resumes/:id/rename">
-        <Modal closeModal={history.goBack}>
-          <RenameResume />
-        </Modal>
+        <RenameResume />
       </Route>
 
       {previews.length > 0 && <div className="resume-previews">{resumePreviewsList}</div>}

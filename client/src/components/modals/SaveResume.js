@@ -5,7 +5,8 @@ import { saveUserResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './SaveResume.css';
 
-import LoadingButton from './LoadingButton';
+import Modal from './Modal';
+import LoadingButton from '../misc/LoadingButton';
 
 const SaveResume = ({ resume }) => {
   const history = useHistory();
@@ -28,27 +29,29 @@ const SaveResume = ({ resume }) => {
   };
 
   return (
-    <section id="save-resume">
-      <h1 className="title">Save Your Resume</h1>
+    <Modal closeModal={history.goBack}>
+      <section id="save-resume">
+        <h1 className="title">Save Your Resume</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="resume-name">Resume Name:</label>
-        <input
-          value={resumeName}
-          onChange={e => setResumeName(e.target.value)}
-          required
-          maxLength="55"
-          id="save-resume-name-input"
-          name="resume-name"
-          className="resume-name"
-          type="text"
-        />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="resume-name">Resume Name:</label>
+          <input
+            value={resumeName}
+            onChange={e => setResumeName(e.target.value)}
+            required
+            maxLength="55"
+            id="save-resume-name-input"
+            name="resume-name"
+            className="resume-name"
+            type="text"
+          />
 
-        <LoadingButton loading={false} staleIcon={ICONS.SAVE} type="submit" className="submit-btn">
-          Save
-        </LoadingButton>
-      </form>
-    </section>
+          <LoadingButton loading={false} staleIcon={ICONS.SAVE} type="submit" className="submit-btn">
+            Save
+          </LoadingButton>
+        </form>
+      </section>
+    </Modal>
   );
 };
 

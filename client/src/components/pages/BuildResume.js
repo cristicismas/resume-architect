@@ -1,18 +1,16 @@
 import React from 'react';
-import { useHistory, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import ICONS from '../../constants/icons';
 import './BuildResume.css';
 
-import TipRoutes from '../form/tips/TipRoutes';
-import Templates from '../layout/Templates';
+import TipRoutes from '../form/TipRoutes';
 import ResumeForm from '../form/ResumeForm';
-import Modal from '../modals/Modal';
 import Icon from '../misc/Icon';
+import TemplatesModal from '../modals/TemplatesModal';
 
 const BuildResume = () => {
   useScrollToTop();
-  const history = useHistory();
 
   return (
     <section id="build-resume">
@@ -25,12 +23,8 @@ const BuildResume = () => {
         icon.
       </h2>
 
-      <Route
-        exact
-        path={['/build/:templateName/change_template', '/draft/:templateName/:resumeName/change_template']}>
-        <Modal isFullscreen={true} closeModal={history.goBack}>
-          <Templates />
-        </Modal>
+      <Route exact path={['/build/:templateName/change_template', '/draft/:templateName/:resumeName/change_template']}>
+        <TemplatesModal />
       </Route>
 
       <TipRoutes />

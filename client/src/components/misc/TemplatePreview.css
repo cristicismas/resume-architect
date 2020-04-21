@@ -48,4 +48,8 @@
     max-width: 100%;
     margin: 20px auto;
   }
+
+  .template-preview-container:hover .template-options {
+    transform: translate(-50%, -15px);
+  }
 }

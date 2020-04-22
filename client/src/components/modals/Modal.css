@@ -71,7 +71,7 @@
   .modal {
     width: 100vw;
     height: 100vh;
-    padding: 0;
+    padding: 80px 10px 10px 10px;
   }
 
   .modal .close-modal-btn {

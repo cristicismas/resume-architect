@@ -37,9 +37,3 @@
 #confirm-logout .buttons > .primary:hover {
   background-color: rgba(0, 162, 255, 0.15);
 }
-
-@media only screen and (max-width: 550px) {
-  #confirm-logout {
-    margin-top: 100px;
-  }
-}

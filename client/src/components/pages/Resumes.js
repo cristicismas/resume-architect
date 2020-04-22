@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { getPreviewsForEachResume } from '../../store/actions/previews';
 import { getUserResumes } from '../../store/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
@@ -61,7 +61,18 @@ const Resumes = () => {
         <RenameResume />
       </Route>
 
-      {previews.length > 0 && <div className="resume-previews">{resumePreviewsList}</div>}
+      {previews.length > 0 ? (
+        <div className="resume-previews">{resumePreviewsList}</div>
+      ) : (
+        <p className="no-resumes">
+          Sorry, you don't seem to have any saved resumes.
+          <br />
+          <br />
+          To save a resume,
+          <Link to="/templates">select a template</Link>, fill in your data, and click on the 'Save Resume' button at
+          the bottom of the page.
+        </p>
+      )}
     </section>
   );
 };

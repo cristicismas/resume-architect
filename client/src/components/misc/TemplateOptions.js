@@ -1,25 +1,18 @@
-import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { deleteResume } from '../../store/actions/resumes';
 import ICONS from '../../constants/icons';
 import './TemplateOptions.css';
 
 import Icon from './Icon';
 
 const TemplateOptions = ({ resumeId }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
-
-  const dispatchDelete = useCallback(() => {
-    dispatch(deleteResume(resumeId));
-  }, [dispatch, resumeId]);
 
   const handleDelete = e => {
     e.preventDefault();
     e.stopPropagation();
 
-    dispatchDelete();
+    history.push(`/resumes/${resumeId}/delete`);
   };
 
   const handleEdit = e => {

@@ -8,6 +8,7 @@ import './Resumes.css';
 
 import TemplatePreview from '../misc/TemplatePreview';
 import RenameResume from '../modals/RenameResume';
+import DeleteResume from '../modals/DeleteResume';
 
 const Resumes = () => {
   const previews = useSelector(state => state.previews.previewsForEachResume);
@@ -59,6 +60,10 @@ const Resumes = () => {
 
       <Route exact path="/resumes/:id/rename">
         <RenameResume />
+      </Route>
+
+      <Route exact path="/resumes/:id/delete">
+        <DeleteResume />
       </Route>
 
       {previews.length > 0 ? (

@@ -51,7 +51,7 @@ const Modal = ({ hideCloseModalButton, closeModal, isFullscreen, children }) => 
   });
 
   return createPortal(
-    <div className={`modal-container ${isFullscreen ? 'fullscreen' : ''}`}>
+    <div className={`modal-container ${isFullscreen ? 'fullscreen' : 'small'}`}>
       <div className="modal" ref={hideCloseModalButton ? null : modalRef}>
         {!hideCloseModalButton && (
           <button type="button" className="close-modal-btn" onClick={() => closeModal()}>

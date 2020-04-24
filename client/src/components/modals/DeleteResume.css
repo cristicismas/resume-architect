@@ -28,6 +28,6 @@
   left: 7px;
 }
 
-.modal {
+.modal.small {
   max-width: 500px;
 }

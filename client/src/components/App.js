@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkToken } from '../store/actions/user';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { checkToken } from '../store/actions/user';
 
 import Header from './layout/Header';
 import Auth from './pages/Auth';
@@ -13,6 +13,7 @@ import Logout from './pages/Logout';
 import Welcome from './pages/Welcome';
 import About from './pages/About';
 import Resumes from './pages/Resumes';
+import RouteChangeHandler from './misc/RouteChangeHandler';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ const App = () => {
 
   return (
     <Router>
+      <RouteChangeHandler />
+
       <Header />
 
       <Switch>

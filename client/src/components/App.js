@@ -14,6 +14,8 @@ import Welcome from './pages/Welcome';
 import About from './pages/About';
 import Resumes from './pages/Resumes';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+
 import RouteChangeHandler from './misc/RouteChangeHandler';
 
 const App = () => {
@@ -65,13 +67,17 @@ const App = () => {
         <Route path="/templates">
           <Templates shouldScrollToTop={true} />
         </Route>
-        
+
         <Route exact path="/">
           <Home />
         </Route>
 
         <Route path="/privacy">
           <PrivacyPolicy />
+        </Route>
+
+        <Route path="/terms">
+          <TermsAndConditions />
         </Route>
       </Switch>
 

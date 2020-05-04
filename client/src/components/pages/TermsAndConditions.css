@@ -1,0 +1,20 @@
+#terms-and-conditions {
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+#terms-and-conditions h2 {
+  font-size: 36px;
+  text-align: center;
+}
+
+#terms-and-conditions h3 {
+  font-size: 30px;
+}
+
+#terms-and-conditions p,
+#terms-and-conditions li {
+  font-size: 20px;
+  margin-top: 20px;
+}

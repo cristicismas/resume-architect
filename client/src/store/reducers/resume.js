@@ -9,8 +9,8 @@ import {
   DELETE_LOCAL_RESUME,
 } from '../actionTypes';
 
-const initialResumes = localStorage.getItem('latestResumeDraft')
-  ? [JSON.parse(localStorage.getItem('latestResumeDraft'))]
+const initialResumes = localStorage.getItem('autoSavedResume')
+  ? [JSON.parse(localStorage.getItem('autoSavedResume'))]
   : [];
 
 const initialState = {

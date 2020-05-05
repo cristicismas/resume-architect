@@ -35,7 +35,7 @@ const Resumes = () => {
     const resumeDate = new Date(resume.meta.draftDate).toLocaleString();
     const resumeId = resume._id;
     const templateName = resume.meta.templateName;
-    const resumeName = resume.meta.isAutoSaved ? 'Latest Auto Saved Resume' : resume.meta.resumeName;
+    const resumeName = resume.meta.isAutoSaved ? 'Auto Saved Resume' : resume.meta.resumeName;
 
     const templateForResume = previews.find(preview => preview.name === templateName);
 

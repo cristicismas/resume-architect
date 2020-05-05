@@ -2,11 +2,11 @@ export const saveResumeData = (data, templateName) => {
   const formattedData = formatResumeToSave(data, templateName, true);
   const stringifiedData = JSON.stringify(formattedData);
 
-  const resume = localStorage.getItem('latestResumeDraft');
+  const resume = localStorage.getItem('autoSavedResume');
 
   // Fast object comparison. Property order matters.
   if (resume !== stringifiedData) {
-    localStorage.setItem('latestResumeDraft', stringifiedData);
+    localStorage.setItem('autoSavedResume', stringifiedData);
   }
 };
 

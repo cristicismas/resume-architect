@@ -114,7 +114,7 @@ export const deleteResume = id => async dispatch => {
       });
     } else {
       // If there is no id, it means the resume is only saved in local storage.
-      localStorage.removeItem('latestResumeDraft');
+      localStorage.removeItem('autoSavedResume');
 
       dispatch({
         type: DELETE_LOCAL_RESUME,

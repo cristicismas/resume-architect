@@ -1,0 +1,35 @@
+#credits {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 50px 150px;
+}
+
+#credits .title {
+  font-size: 36px;
+  text-align: center;
+}
+
+#credits .sub-title {
+  font-size: 30px;
+}
+
+#credits a {
+  color: rgb(0, 102, 255);
+}
+
+#credits ul {
+  list-style-type: disc;
+  font-size: 24px;
+}
+
+#credits li {
+  margin-bottom: 20px;
+}
+
+#credits img {
+  height: 35px;
+  width: 35px;
+  position: relative;
+  top: 7px;
+  right: 5px;
+}

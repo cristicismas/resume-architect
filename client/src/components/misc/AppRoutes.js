@@ -11,6 +11,7 @@ import About from '../pages/About';
 import Resumes from '../pages/Resumes';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
 import TermsAndConditions from '../pages/TermsAndConditions';
+import Credits from '../pages/Credits';
 
 const AppRoutes = () => {
   return (
@@ -47,16 +48,20 @@ const AppRoutes = () => {
         <Templates shouldScrollToTop={true} />
       </Route>
 
-      <Route exact path="/">
-        <Home />
-      </Route>
-
       <Route path="/privacy">
         <PrivacyPolicy />
       </Route>
 
       <Route path="/terms">
         <TermsAndConditions />
+      </Route>
+
+      <Route path="/credits">
+        <Credits />
+      </Route>
+
+      <Route path="/">
+        <Home />
       </Route>
     </Switch>
   );

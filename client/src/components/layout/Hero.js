@@ -18,9 +18,9 @@ const Hero = () => {
           </Link>
         </div>
 
-        <a href="/" className="resume-sample-link"> 
+        <Link to="/build/Resume_3_bjnkss.pdf" className="resume-sample-link"> 
           <img className="resume-sample" src="resume-sample.png" alt="Resume Sample" />
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -26,6 +26,10 @@ const About = () => {
         <br />
         Currently, the site has very few templates, and I need some help adding more. If you want to help, contact me at
         <a href="mailto:cristicismas.webdev@gmail.com">cristicismas.webdev@gmail.com</a>.
+        <br />
+        <br />
+        If you want to see more of my work, you can take a look at my
+        <a href="https://cristicismas.github.io">portfolio</a>.
       </p>
     </section>
   );

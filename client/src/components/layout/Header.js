@@ -21,7 +21,10 @@ const Header = () => {
   return (
     <header className={headerClassName}>
       <h1 className="title">
-        <Link to="/">ResumeArchitect</Link>
+        <Link to="/">
+          <img src="favicon.png" className="logo" alt="Logo" />
+          ResumeArchitect
+        </Link>
       </h1>
 
       <nav>

@@ -45,7 +45,7 @@ const Resumes = () => {
         caption={resumeName}
         template={templateForResume}
         resumeId={resumeId}
-        showOptions={true}
+        showOptions={resume.meta.isAutoSaved ? false : true}
         linkTo={{
           pathname: `/draft/${templateName}/${whiteSpaceToSnakeCase(resumeName)}`,
           state: { resumeData: resume.data },

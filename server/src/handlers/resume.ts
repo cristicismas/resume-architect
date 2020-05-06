@@ -111,7 +111,7 @@ export const deleteResume = async (request: Request, res: ResponseToolkit) => {
     const resumeId = resume.meta.user_id.toString();
 
     if (resumeId === _id) {
-      await Resume.deleteOne({ _id: request.params.id });
+      await Resume.findByIdAndDelete(request.params.id);
     } else {
       return Boom.unauthorized('You are not allowed to delete that resume.');
     }

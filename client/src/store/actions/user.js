@@ -31,10 +31,9 @@ export const signup = credentials => async dispatch => {
   }
 };
 
-export const checkToken = () => async (disptach, getState) => {
+export const checkToken = () => async disptach => {
   try {
-    const token = getState().user.information.token;
-    const response = await apiCall('POST', 'auth/check', null, token);
+    const response = await apiCall('POST', 'auth/check', null);
 
     if (!response.error) {
       disptach({

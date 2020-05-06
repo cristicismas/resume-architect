@@ -1,4 +1,6 @@
-export const apiCall = async (method, path, data, token) => {
+export const apiCall = async (method, path, data) => {
+  const token = localStorage.getItem('token');
+
   return fetch(`${process.env.REACT_APP_API_URL}/${path}`, {
     method,
     headers: {

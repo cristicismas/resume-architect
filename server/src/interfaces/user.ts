@@ -5,3 +5,7 @@ export interface IUser extends Document {
   username: string;
   password: string;
 }
+
+export interface IToken {
+  _id: string;
+}

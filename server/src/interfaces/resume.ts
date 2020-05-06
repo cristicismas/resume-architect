@@ -30,5 +30,7 @@ export interface IResumeToSave {
     templateName: string;
     isAutoSaved: boolean;
     draftDate: string;
+    resumeName: string;
+    user_id: string;
   };
 }

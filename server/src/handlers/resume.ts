@@ -4,6 +4,7 @@ import { Request, ResponseToolkit } from 'hapi';
 import { getResumeDOCX, getResumePDF, sanitizeAndFormatFormData } from '../utils/resume';
 import { safelyParseJSON } from '../utils/json';
 import { IResumeData, IResumeToSave } from '../interfaces/resume';
+import { IToken } from '../interfaces/user';
 import SCHEMAS from '../constants/schemas';
 import MIME_TYPES from '../constants/mimeTypes';
 
@@ -39,15 +40,22 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
 
 export const saveResume = async (request: Request, res: ResponseToolkit) => {
   try {
+    const { _id } = request.auth.credentials as IToken;
     const resume = safelyParseJSON(request.payload as IResumeToSave);
 
     if (resume.meta.resumeName.length > 55) {
       return Boom.badRequest('Your resume name is too long. Try to shorten it to 55 characters.');
     }
 
-    await Resume.create(resume);
+    const savedResume = await Resume.create({
+      ...resume,
+      meta: {
+        ...resume.meta,
+        user_id: _id
+      }
+    });
 
-    return res.response(resume);
+    return res.response(savedResume);
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Something went wrong saving the resume.');
@@ -56,7 +64,9 @@ export const saveResume = async (request: Request, res: ResponseToolkit) => {
 
 export const getResumes = async (request: Request, res: ResponseToolkit) => {
   try {
-    const resumes = await Resume.find();
+    const { _id } = request.auth.credentials as IToken;
+
+    const resumes = await Resume.find({ 'meta.user_id': _id });
 
     return res.response(resumes);
   } catch (err) {
@@ -67,16 +77,25 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
 
 export const renameResume = async (request: Request, res: ResponseToolkit) => {
   try {
+    const { _id } = request.auth.credentials as IToken;
+
     const newResumeName = JSON.parse(request.payload as string);
 
     if (newResumeName.length > 55) {
       return Boom.badRequest('Your new resume name is too long. Try to shorten it to 55 characters.');
     }
 
-    await Resume.updateOne({ _id: request.params.id }, { $set: { 'meta.resumeName': newResumeName } });
+    const resume = await Resume.findById(request.params.id);
+    const resumeId = resume.meta.user_id.toString();
+
+    if (resumeId === _id) {
+      await Resume.findByIdAndUpdate(request.params.id, { $set: { 'meta.resumeName': newResumeName } });
+    } else {
+      return Boom.unauthorized('You are not allowed to rename that resume.');
+    }
 
     return res.response({
-      message: 'Resume renamed.',
+      message: 'Resume renamed.'
     });
   } catch (err) {
     console.log(err);
@@ -86,10 +105,19 @@ export const renameResume = async (request: Request, res: ResponseToolkit) => {
 
 export const deleteResume = async (request: Request, res: ResponseToolkit) => {
   try {
-    await Resume.deleteOne({ _id: request.params.id });
+    const { _id } = request.auth.credentials as IToken;
+
+    const resume = await Resume.findById(request.params.id);
+    const resumeId = resume.meta.user_id.toString();
+
+    if (resumeId === _id) {
+      await Resume.deleteOne({ _id: request.params.id });
+    } else {
+      return Boom.unauthorized('You are not allowed to delete that resume.');
+    }
 
     return res.response({
-      message: 'Resume deleted.',
+      message: 'Resume deleted.'
     });
   } catch (err) {
     console.log(err);

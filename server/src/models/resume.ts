@@ -1,9 +1,10 @@
+import { ObjectId } from 'mongodb';
 import mongoose, { Document } from 'mongoose';
 import { IResumeToSave } from '../interfaces/resume';
 
 interface IResume extends IResumeToSave, Document {}
 
-const resumeModel = new mongoose.Schema({
+const ResumeSchema = new mongoose.Schema({
   data: {
     name: { type: String, required: true, maxlength: 55 },
     address: { type: String },
@@ -33,8 +34,9 @@ const resumeModel = new mongoose.Schema({
     templateName: { type: String },
     isAutoSaved: { type: Boolean },
     draftDate: { type: String },
-    resumeName: { type: String, required: true, unique: true }
+    resumeName: { type: String, required: true },
+    user_id: { type: ObjectId, required: true }
   }
 });
 
-export default mongoose.model<IResume>('Resume', resumeModel);
+export default mongoose.model<IResume>('Resume', ResumeSchema);

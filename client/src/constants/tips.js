@@ -5,15 +5,15 @@ export default {
   },
   address: {
     title: 'Address',
-    text: 'Where you currently live.<br />Usually includes street, city, region and/or postal code.'
+    text: 'Your current residence.<br />Usually includes street, city, region and/or postal code.'
   },
   phone: {
     title: 'Phone Number',
-    text: 'Your active phone number.<br />Expect to receive calls on this number after sending your resume. Include your country prefix if you wish to work abroad.'
+    text: 'Your active phone number.<br /> Include your country prefix if you wish to work abroad.'
   },
   email: {
     title: 'Email',
-    text: 'Your personal email address.<br />Expect to receive emails to this address after sending your resume. The email should follow this format: youremail@example.com'
+    text: 'Your personal email address.<br />The email should have the following format: youremail@example.com'
   },
   about: {
     title: 'About',
@@ -49,6 +49,6 @@ export default {
   },
   extra: {
     title: 'Extra',
-    text: 'Anything you would like to add to the end of your resume.<br />This could include other certifications / diplomas, special skills, volunteering, etc.'
+    text: 'Anything you would like to add to the end of your resume.<br />This could include other certifications / diplomas, special skills, volunteering experience, etc.'
   }
 };

@@ -13,3 +13,4 @@ export const DELETE_LOCAL_RESUME = 'DELETE_LOCAL_RESUME';
 
 export const LOGGED_IN = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';

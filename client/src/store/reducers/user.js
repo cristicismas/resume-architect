@@ -1,4 +1,4 @@
-import { LOGGED_IN, LOGGED_OUT } from '../actionTypes';
+import { LOGGED_IN, LOGGED_OUT, ACCOUNT_DELETED } from '../actionTypes';
 
 const initialState = {
   loggedIn: false,
@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
       return { ...state, loggedIn: true, information: { ...action.payload } };
     case LOGGED_OUT:
       return { ...state, loggedIn: false, information: { token: null, username: null } };
+    case ACCOUNT_DELETED:
+      return { ...initialState };
     default:
       return state;
   }

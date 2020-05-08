@@ -1,9 +1,10 @@
+import { Request, ResponseToolkit } from 'hapi';
 import bcrypt from 'bcrypt';
 import Boom from '@hapi/boom';
 
 import { createToken } from '../utils/jwt';
 import { safelyParseJSON } from '../utils/json';
-import { IUser } from '../interfaces/user';
+import { IUser, IToken } from '../interfaces/user';
 import User from '../models/user';
 
 export const signup = async (credentials: IUser) => {
@@ -56,5 +57,20 @@ export const login = async (credentials: IUser) => {
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Login failed.');
+  }
+};
+
+export const deleteAccount = async (request: Request, res: ResponseToolkit) => {
+  try {
+    const { _id } = request.auth.credentials as IToken;
+
+    await User.findByIdAndDelete(_id);
+
+    return res.response({
+      message: 'Account deleted.'
+    });
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Sorry, something went wrong deleting your account.');
   }
 };

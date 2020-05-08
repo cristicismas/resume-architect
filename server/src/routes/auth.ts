@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit } from 'hapi';
-import { signup, login } from '../handlers/auth';
+import { signup, login, deleteAccount } from '../handlers/auth';
 import { IUser } from '../interfaces/user';
 
 const signupRoute = {
@@ -14,6 +14,15 @@ const loginRoute = {
   handler: (request: Request, h: ResponseToolkit) => login(request.payload as IUser)
 };
 
+const deleteAccountRoute = {
+  method: 'DELETE',
+  path: '/user/delete',
+  config: {
+    auth: 'jwt'
+  },
+  handler: (request: Request, h: ResponseToolkit) => deleteAccount(request, h)
+}
+
 const checkTokenRoute = {
   method: 'POST',
   config: {
@@ -26,4 +35,4 @@ const checkTokenRoute = {
   }
 };
 
-export default [signupRoute, loginRoute, checkTokenRoute];
+export default [signupRoute, loginRoute, deleteAccountRoute, checkTokenRoute];

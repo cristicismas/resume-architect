@@ -12,6 +12,7 @@ import Resumes from '../pages/Resumes';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
 import TermsAndConditions from '../pages/TermsAndConditions';
 import Credits from '../pages/Credits';
+import Account from '../pages/Account';
 
 const AppRoutes = () => {
   return (
@@ -58,6 +59,10 @@ const AppRoutes = () => {
 
       <Route path="/credits">
         <Credits />
+      </Route>
+
+      <Route path="/account">
+        <Account />
       </Route>
 
       <Route path="/">

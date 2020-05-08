@@ -1,4 +1,4 @@
-import { LOGGED_IN, LOGGED_OUT } from '../actionTypes';
+import { LOGGED_IN, LOGGED_OUT, ACCOUNT_DELETED } from '../actionTypes';
 import { apiCall } from '../../utils/api';
 
 export const login = credentials => async dispatch => {
@@ -33,7 +33,7 @@ export const signup = credentials => async dispatch => {
 
 export const checkToken = () => async disptach => {
   try {
-    const response = await apiCall('POST', 'auth/check', null);
+    const response = await apiCall('POST', 'auth/check');
 
     if (!response.error) {
       disptach({
@@ -52,6 +52,19 @@ export const logout = () => async dispatch => {
 
     dispatch({
       type: LOGGED_OUT
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteAccount = () => async dispatch => {
+  try {
+    await apiCall('DELETE', 'user/delete');
+    localStorage.removeItem('token');
+
+    dispatch({
+      type: ACCOUNT_DELETED
     });
   } catch (err) {
     console.log(err);

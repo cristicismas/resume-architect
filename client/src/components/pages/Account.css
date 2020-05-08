@@ -1,0 +1,41 @@
+#account {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 30px;
+}
+
+#account .title {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+#account .description {
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+#account .delete-btn {
+  background-color: #e45151;
+  display: flex;
+  justify-content: center;
+  border: none;
+  margin: 50px auto 0px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 12px 19px 12px 15px;
+  border-radius: 5px;
+}
+
+#account .delete-btn:hover {
+  background-color: #f02f2f;
+}
+
+#account .delete-btn .icon {
+  position: relative;
+  left: 5px;
+  top: 2px;
+}

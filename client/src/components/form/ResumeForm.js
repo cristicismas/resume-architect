@@ -3,8 +3,8 @@ import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 
 import { Route, Link, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveResumeData, formatResumeToSave } from '../../utils/buildResumeForm';
-import { getSinglePreview } from '../../store/actions/previews';
-import { buildResume, resetDownloadLinks } from '../../store/actions/resumes';
+import { getSinglePreview } from '../../redux/actions/previews';
+import { buildResume, resetDownloadLinks } from '../../redux/actions/resumes';
 import { buildResumeSchema } from '../../schemas/buildResume';
 import useAddToPathname from '../../hooks/useAddToPathname';
 import INITIAL_VALUES from '../../constants/initialValues';

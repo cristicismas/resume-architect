@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteAccount } from '../../store/actions/user';
+import { deleteAccount } from '../../redux/actions/user';
 import ICONS from '../../constants/icons';
 import './Account.css';
 

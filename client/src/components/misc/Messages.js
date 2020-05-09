@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeMessage } from '../../store/actions/messages';
+import { removeMessage } from '../../redux/actions/messages';
 import ICONS from '../../constants/icons';
 import './Messages.css';
 

@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPreviews } from '../store/actions/previews';
+import { getPreviews } from '../redux/actions/previews';
 
 const useTemplatePreviews = (shouldFetch, setShouldFetch) => {
   const { previewsList, couldFetchMore } = useSelector(state => state.previews);

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login, signup } from '../../store/actions/user';
+import { login, signup } from '../../redux/actions/user';
 import { authFormSchema } from '../../schemas/authForm';
 import './Auth.css';
 

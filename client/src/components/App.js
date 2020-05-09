@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { checkToken } from '../store/actions/user';
+import { checkToken } from '../redux/actions/user';
 
 import Header from './layout/Header';
 import AppRoutes from './misc/AppRoutes';

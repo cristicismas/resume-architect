@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { renameResume } from '../../store/actions/resumes';
+import { renameResume } from '../../redux/actions/resumes';
 import ICONS from '../../constants/icons';
 import './RenameResume.css';
 

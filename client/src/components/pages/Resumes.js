@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
-import { getPreviewsForEachResume } from '../../store/actions/previews';
-import { getUserResumes } from '../../store/actions/resumes';
+import { getPreviewsForEachResume } from '../../redux/actions/previews';
+import { getUserResumes } from '../../redux/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
 import './Resumes.css';
 

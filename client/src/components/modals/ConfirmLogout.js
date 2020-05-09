@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../store/actions/user';
+import { logout } from '../../redux/actions/user';
 import { useHistory } from 'react-router-dom';
 import './ConfirmLogout.css';
 

@@ -4,10 +4,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { checkToken } from '../store/actions/user';
 
 import Header from './layout/Header';
+import AppRoutes from './misc/AppRoutes';
 import Footer from './layout/Footer';
 
 import RouteChangeHandler from './misc/RouteChangeHandler';
-import AppRoutes from './misc/AppRoutes';
+import Messages from './misc/Messages';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ const App = () => {
       <Header />
       <AppRoutes />
       <Footer />
+
+      <Messages />
     </Router>
   );
 };

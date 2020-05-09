@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { LOGGED_OUT } from '../actionTypes';
 
+import messages from './messages';
 import previews from './previews';
 import resume from './resume';
 import user from './user';
 
 const allReducers = combineReducers({
+  messages,
   previews,
   resume,
   user

@@ -31,15 +31,6 @@ header .title a {
   border: 5px solid transparent;
 }
 
-
-header.dark .title a:hover {
-  border-bottom-color: rgb(0, 132, 255);
-}
-
-header .title a:hover {
-  border-bottom-color: rgb(0, 255, 194);
-}
-
 header a {
   color: #eee;
   font-weight: bold;
@@ -75,14 +66,13 @@ header nav a.active:not(:hover) {
 header.dark nav a:hover,
 header.dark nav a.active {
   color: rgb(0, 132, 255);
-  background-color: rgba(0, 183, 255, .1);
+  background-color: rgba(0, 183, 255, 0.1);
   border-bottom: 5px solid rgb(0, 132, 255);
 }
 
 header nav a:hover,
 header nav a.active {
   color: rgb(0, 255, 194);
-  background-color: rgba(0, 255, 194, .1);
   border-bottom: 5px solid rgb(0, 255, 194);
 }
 
@@ -94,7 +84,7 @@ header .icon {
   position: relative;
   top: 5px;
   left: 10px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 header.dark nav a:hover .icon,
@@ -116,7 +106,6 @@ header nav a.active .icon {
 
   header.dark nav {
     border-bottom: 2px solid rgb(0, 132, 255);
-
   }
 
   header nav {
@@ -128,7 +117,7 @@ header nav a.active .icon {
   header {
     width: 85%;
   }
-  
+
   header nav {
     margin-top: 20px;
   }

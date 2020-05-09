@@ -1,7 +1,7 @@
 import { PUSH_MESSAGE, REMOVE_MESSAGE, REMOVE_ALL_MESSAGES } from '../actionTypes';
 
-export const pushMessage = message => async (dispatch, state) => {
-  const { lastId } = state.messages;
+export const pushMessage = message => async (dispatch, getState) => {
+  const { lastId } = getState().messages;
 
   const newMessageId = lastId + 1;
   const newMessage = { ...message, id: newMessageId };

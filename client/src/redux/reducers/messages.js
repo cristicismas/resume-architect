@@ -9,7 +9,9 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case PUSH_MESSAGE:
       const messages = [...state.messages, action.payload];
-      return { ...state, messages };
+      const newId = state.lastId + 1;
+
+      return { ...state, lastId: newId, messages };
     case REMOVE_MESSAGE:
       const filteredMessages = state.messages.filter(message => message.id !== action.payload);
       return { ...state, messages: filteredMessages };

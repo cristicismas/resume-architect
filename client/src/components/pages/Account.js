@@ -13,7 +13,7 @@ const Account = () => {
 
   const dispatchDelete = useCallback(() => {
     dispatch(deleteAccount());
-  }, dispatch);
+  }, [dispatch]);
 
   const handleDelete = e => {
     e.preventDefault();

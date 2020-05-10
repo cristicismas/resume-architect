@@ -1,6 +1,14 @@
+#delete-resume {
+  max-width: 600px;
+}
+
+#delete-resume .description {
+  font-size: 24px;
+  margin: 70px 10px;
+}
+
 #delete-resume .delete-btn {
   background-color: #e93c3c;
-  text-transform: uppercase;
   display: flex;
   justify-content: center;
   border: none;

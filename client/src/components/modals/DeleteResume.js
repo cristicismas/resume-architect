@@ -27,7 +27,12 @@ const DeleteResume = () => {
   return (
     <Modal closeModal={history.goBack}>
       <div id="delete-resume">
-        <h1 className="title">Are you sure you want to delete the resume?</h1>
+        <h1 className="title">Are you sure?</h1>
+
+        <p className="description">
+          If you delete this resume, you won't be able to recover it, and the data inside the resume will be gone
+          forever.
+        </p>
 
         <LoadingButton
           loading={false}

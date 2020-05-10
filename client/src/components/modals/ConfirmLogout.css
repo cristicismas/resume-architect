@@ -10,6 +10,7 @@
 }
 
 #confirm-logout .buttons > * {
+  background-color: #eee;
   margin: 10px;
   font-size: 22px;
   font-weight: bold;

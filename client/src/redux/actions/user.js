@@ -21,6 +21,11 @@ export const login = credentials => async dispatch => {
         type: MESSAGE_TYPES.SUCCESS
       })
     );
+
+    dispatch({
+      type: TOKEN_CHECKED,
+      payload: response
+    });
   } catch (err) {
     console.log(err);
   }
@@ -44,22 +49,27 @@ export const signup = credentials => async dispatch => {
         type: MESSAGE_TYPES.SUCCESS
       })
     );
+
+    dispatch({
+      type: TOKEN_CHECKED,
+      payload: response
+    });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const checkToken = () => async disptach => {
+export const checkToken = () => async dispatch => {
   try {
     const response = await apiCall('POST', 'auth/check');
     if (!response.error) {
-      disptach({
+      dispatch({
         type: LOGGED_IN,
         payload: response
       });
     }
 
-    disptach({
+    dispatch({
       type: TOKEN_CHECKED,
       payload: response
     });

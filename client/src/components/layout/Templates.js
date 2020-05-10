@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import useTemplatePreviews from '../../hooks/useTemplatePreviews';
 import './Templates.css';
@@ -7,14 +8,21 @@ import TemplatePreview from '../misc/TemplatePreview';
 import Spinner from '../misc/Spinner';
 
 const Templates = ({ shouldScrollToTop = false, isModal }) => {
+  const { pathname } = useLocation();
+  const { templateName } = useParams();
+
   useScrollToTop(shouldScrollToTop);
 
   const [shouldFetch, setShouldFetch] = useState(true);
   const { previewsList, couldFetchMore } = useTemplatePreviews(shouldFetch, setShouldFetch);
 
-  const templatePreviews = previewsList.map(template => (
-    <TemplatePreview key={template.name} linkTo={`/build/${template.name}`} template={template} />
-  ));
+  const templatePreviews = previewsList.map(template => {
+    const linkTo = isModal
+      ? pathname.replace(templateName, template.name).replace('/change_template', '')
+      : `/build/${template.name}`;
+
+    return <TemplatePreview key={template.name} linkTo={linkTo} template={template} />;
+  });
 
   return (
     <section id="templates">

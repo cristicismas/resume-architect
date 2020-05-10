@@ -24,7 +24,7 @@
 .modal {
   position: fixed;
   overflow: auto;
-  padding: 50px;
+  padding: 50px 20px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -33,6 +33,10 @@
   background-color: #eee;
   text-align: center;
   animation: fadein forwards 0.3s;
+}
+
+.modal > * {
+  margin: auto;
 }
 
 .modal-container .close-modal-btn {
@@ -67,7 +71,7 @@
   fill: #1e69ca;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 800px) {
   .modal {
     width: 100vw;
     height: 100vh;

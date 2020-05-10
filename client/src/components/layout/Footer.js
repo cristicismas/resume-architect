@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
+  const loggedIn = useSelector(state => state.user.loggedIn);
+
   return (
     <footer>
       <div className="left-side">
@@ -18,7 +21,8 @@ const Footer = () => {
           <Link to="/privacy">Privacy Policy</Link>
           <Link to="/terms">Terms of Use</Link>
           <Link to="/credits">Credits & Attributions</Link>
-          <Link to="/account">Your Account</Link>
+
+          {loggedIn ? <Link to="/account">Your Account</Link> : null}
         </nav>
       </div>
 

@@ -6,7 +6,7 @@ import './Templates.css';
 import TemplatePreview from '../misc/TemplatePreview';
 import Spinner from '../misc/Spinner';
 
-const Templates = ({ shouldScrollToTop = false }) => {
+const Templates = ({ shouldScrollToTop = false, isModal }) => {
   useScrollToTop(shouldScrollToTop);
 
   const [shouldFetch, setShouldFetch] = useState(true);
@@ -18,7 +18,7 @@ const Templates = ({ shouldScrollToTop = false }) => {
 
   return (
     <section id="templates">
-      <h1 className="title">Pick a template!</h1>
+      <h1 className="title">{isModal ? 'Change your template' : 'Pick a template!'}</h1>
 
       {shouldFetch && (
         <div className="templates-spinner">

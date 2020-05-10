@@ -9,7 +9,7 @@ const TemplatesModal = () => {
 
   return (
     <Modal isFullscreen={true} closeModal={history.goBack}>
-      <Templates />
+      <Templates isModal={true} />
     </Modal>
   );
 };

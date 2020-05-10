@@ -13,6 +13,7 @@ import PrivacyPolicy from '../pages/PrivacyPolicy';
 import TermsAndConditions from '../pages/TermsAndConditions';
 import Credits from '../pages/Credits';
 import Account from '../pages/Account';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const AppRoutes = () => {
   return (
@@ -37,9 +38,9 @@ const AppRoutes = () => {
         <About />
       </Route>
 
-      <Route path="/resumes">
+      <PrivateRoute path="/resumes">
         <Resumes />
-      </Route>
+      </PrivateRoute>
 
       <Route path={['/build/:templateName', '/draft/:templateName/:resumeName']}>
         <BuildResume />
@@ -61,9 +62,9 @@ const AppRoutes = () => {
         <Credits />
       </Route>
 
-      <Route path="/account">
+      <PrivateRoute path="/account">
         <Account />
-      </Route>
+      </PrivateRoute>
 
       <Route path="/">
         <Home />

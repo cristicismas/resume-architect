@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation, Route } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useAddToPathname from '../../hooks/useAddToPathname';
 import ICONS from '../../constants/icons';
 import './Header.css';
 
 import ConfirmLogout from '../modals/ConfirmLogout';
 import HeaderLink from './HeaderLink';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -47,9 +48,9 @@ const Header = () => {
         )}
       </nav>
 
-      <Route path="*/confirm_logout">
+      <PrivateRoute path="*/confirm_logout">
         <ConfirmLogout />
-      </Route>
+      </PrivateRoute>
     </header>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getPreviewsForEachResume } from '../../redux/actions/previews';
 import { getUserResumes } from '../../redux/actions/resumes';
 import { whiteSpaceToSnakeCase } from '../../utils/misc';
@@ -9,6 +9,7 @@ import './Resumes.css';
 import TemplatePreview from '../misc/TemplatePreview';
 import RenameResume from '../modals/RenameResume';
 import DeleteResume from '../modals/DeleteResume';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const Resumes = () => {
   const previews = useSelector(state => state.previews.previewsForEachResume);
@@ -58,13 +59,13 @@ const Resumes = () => {
     <section id="resumes">
       <h1 className="title">My Resumes</h1>
 
-      <Route exact path="/resumes/:id/rename">
+      <PrivateRoute exact path="/resumes/:id/rename">
         <RenameResume />
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/resumes/:id/delete">
+      <PrivateRoute exact path="/resumes/:id/delete">
         <DeleteResume />
-      </Route>
+      </PrivateRoute>
 
       {previews.length > 0 ? (
         <div className="resume-previews">{resumePreviewsList}</div>

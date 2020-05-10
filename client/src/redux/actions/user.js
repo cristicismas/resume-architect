@@ -1,4 +1,4 @@
-import { LOGGED_IN, LOGGED_OUT, ACCOUNT_DELETED } from '../actionTypes';
+import { LOGGED_IN, LOGGED_OUT, TOKEN_CHECKED, ACCOUNT_DELETED } from '../actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { pushMessage } from './messages';
 import { apiCall } from '../../utils/api';
@@ -52,13 +52,17 @@ export const signup = credentials => async dispatch => {
 export const checkToken = () => async disptach => {
   try {
     const response = await apiCall('POST', 'auth/check');
-
     if (!response.error) {
       disptach({
         type: LOGGED_IN,
         payload: response
       });
     }
+
+    disptach({
+      type: TOKEN_CHECKED,
+      payload: response
+    });
   } catch (err) {
     console.log(err);
   }

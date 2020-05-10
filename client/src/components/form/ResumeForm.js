@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 'formik';
-import { Route, Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveResumeData, formatResumeToSave } from '../../utils/buildResumeForm';
 import { getSinglePreview } from '../../redux/actions/previews';
@@ -18,6 +18,7 @@ import SchoolFields from './SchoolFields';
 import LoadingButton from '../misc/LoadingButton';
 import SaveResume from '../modals/SaveResume';
 import Icon from '../misc/Icon';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const ResumeForm = () => {
   const { templateName } = useParams();
@@ -38,7 +39,7 @@ const ResumeForm = () => {
     PHONE: useAddToPathname('phone'),
     EMAIL: useAddToPathname('email'),
     ABOUT: useAddToPathname('about'),
-    EXTRA: useAddToPathname('extra'),
+    EXTRA: useAddToPathname('extra')
   };
 
   const dispatch = useDispatch();
@@ -71,9 +72,11 @@ const ResumeForm = () => {
     const formData = useFormikContext().values;
 
     return (
-      <Route exact path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
+      <PrivateRoute
+        exact
+        path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
         <SaveResume resume={formatResumeToSave(formData, templateName)} />
-      </Route>
+      </PrivateRoute>
     );
   };
 

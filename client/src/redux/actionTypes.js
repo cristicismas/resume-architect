@@ -13,6 +13,7 @@ export const DELETE_LOCAL_RESUME = 'DELETE_LOCAL_RESUME';
 
 export const LOGGED_IN = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
+export const TOKEN_CHECKED = 'TOKEN_CHECKED';
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 
 export const PUSH_MESSAGE = 'PUSH_MESSAGE';

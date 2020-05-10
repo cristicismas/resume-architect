@@ -1,10 +1,6 @@
 #welcome {
   text-align: center;
-  padding: 100px;
-}
-
-#welcome .title {
-  font-size: 36px;
+  padding: 50px;
 }
 
 #welcome p {
@@ -12,14 +8,4 @@
   max-width: 900px;
   line-height: 40px;
   margin: 50px auto;
-}
-
-#welcome a {
-  color: #0077ff;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-#welcome a:hover {
-  background-color: #d6e9f0;
 }

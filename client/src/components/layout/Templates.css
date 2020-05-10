@@ -1,8 +1,3 @@
-#templates .title {
-  font-size: 35px;
-  text-align: center;
-}
-
 #templates .templates-spinner {
   display: flex;
   justify-content: center;

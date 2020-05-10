@@ -18,6 +18,16 @@ a {
   transition: all 0.2s;
 }
 
+a.intermediary {
+  color: #0077ff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+a.intermediary:hover {
+  background-color: #d6e9f0;
+}
+
 header + * {
   min-height: 100vh;
 }
@@ -25,4 +35,13 @@ header + * {
 .bold {
   font-weight: bold;
   color: #eee;
+}
+
+.title {
+  font-size: 36px;
+  text-align: center;
+}
+
+#modal-root .title {
+  font-size: 30px;
 }

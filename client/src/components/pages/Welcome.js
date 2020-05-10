@@ -14,8 +14,8 @@ const Welcome = () => {
       </p>
 
       <p>
-        To view your saved resumes, you can visit the <Link to="/resumes">My Resumes</Link> page. If you want to select
-        a template for a new resume instead, visit the <Link to="/templates">Templates</Link> page.
+        To view your saved resumes, you can visit the <Link className="intermediary" to="/resumes">My Resumes</Link> page. If you want to select
+        a template for a new resume instead, visit the <Link className="intermediary" to="/templates">Templates</Link> page.
       </p>
     </section>
   );

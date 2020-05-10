@@ -74,7 +74,7 @@ const Resumes = () => {
           <br />
           <br />
           To save a resume,
-          <Link to="/templates">select a template</Link>, fill in your data, and click on the 'Save Resume' button at
+          <Link className="intermediary" to="/templates">select a template</Link>, fill in your data, and click on the 'Save Resume' button at
           the bottom of the page.
         </p>
       )}

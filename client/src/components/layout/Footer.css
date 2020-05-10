@@ -8,6 +8,10 @@ footer {
   background: linear-gradient(to top right, rgb(0, 43, 124) 0%, rgb(0, 195, 255) 100%);
 }
 
+footer a {
+  color: #eee;
+}
+
 footer a:hover {
   color: rgb(0, 255, 194);
 }

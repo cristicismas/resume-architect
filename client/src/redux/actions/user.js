@@ -1,4 +1,6 @@
 import { LOGGED_IN, LOGGED_OUT, ACCOUNT_DELETED } from '../actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
+import { pushMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const login = credentials => async dispatch => {
@@ -11,6 +13,14 @@ export const login = credentials => async dispatch => {
       type: LOGGED_IN,
       payload: response
     });
+
+    dispatch(
+      pushMessage({
+        text: 'You are now logged in!',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }
@@ -26,6 +36,14 @@ export const signup = credentials => async dispatch => {
       type: LOGGED_IN,
       payload: response
     });
+
+    dispatch(
+      pushMessage({
+        text: 'Welcome!',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }
@@ -53,6 +71,14 @@ export const logout = () => async dispatch => {
     dispatch({
       type: LOGGED_OUT
     });
+
+    dispatch(
+      pushMessage({
+        text: 'You are now logged out.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }
@@ -66,6 +92,14 @@ export const deleteAccount = () => async dispatch => {
     dispatch({
       type: ACCOUNT_DELETED
     });
+
+    dispatch(
+      pushMessage({
+        text: 'Your account has been deleted.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }

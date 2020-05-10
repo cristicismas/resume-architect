@@ -8,7 +8,8 @@ import {
   DELETE_RESUME,
   DELETE_LOCAL_RESUME
 } from '../actionTypes';
-
+import MESSAGE_TYPES from '../../constants/messageTypes';
+import { pushMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const buildResume = (data, resumeType, resumeName) => async dispatch => {
@@ -82,6 +83,14 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
       type: SAVE_USER_RESUME,
       payload: savedResume
     });
+
+    dispatch(
+      pushMessage({
+        text: 'Your resume has been saved.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }
@@ -98,6 +107,14 @@ export const renameResume = (id, newName) => async dispatch => {
         newName
       }
     });
+
+    dispatch(
+      pushMessage({
+        text: 'Resume renamed successfully.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }
@@ -120,6 +137,14 @@ export const deleteResume = id => async dispatch => {
         type: DELETE_LOCAL_RESUME
       });
     }
+
+    dispatch(
+      pushMessage({
+        text: 'Your resume has been removed.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
   } catch (err) {
     console.log(err);
   }

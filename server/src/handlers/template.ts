@@ -1,11 +1,11 @@
-import { Request } from 'hapi';
+import { Request, ResponseToolkit } from 'hapi';
 import { ITemplatePreview } from '../interfaces/template';
 import { readJSON } from '../utils/files';
 import Boom from '@hapi/boom';
 
 const max_results = 6;
 
-export const getTemplatePreviewsLinks = async (request: Request) => {
+export const getTemplatePreviewsLinks = async (request: Request, res: ResponseToolkit) => {
   try {
     const { indexToFetch } = request.params;
 
@@ -17,14 +17,14 @@ export const getTemplatePreviewsLinks = async (request: Request) => {
       templateLinks = templateLinks.slice(indexToFetch, indexToFetch + max_results);
     }
 
-    return templateLinks;
+    return res.response(templateLinks);
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Something went wrong getting the template preview links');
   }
 };
 
-export const getSinglePreviewLink = async (request: Request) => {
+export const getSinglePreviewLink = async (request: Request, res: ResponseToolkit) => {
   try {
     const { templateName } = request.params;
 
@@ -34,7 +34,7 @@ export const getSinglePreviewLink = async (request: Request) => {
       if (template.name === templateName) return true;
     });
 
-    return template;
+    return res.response(template);
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Something went wrong getting the preview link');

@@ -7,7 +7,7 @@ import { safelyParseJSON } from '../utils/json';
 import { IUser, IToken } from '../interfaces/user';
 import User from '../models/user';
 
-export const signup = async (credentials: IUser) => {
+export const signup = async (credentials: IUser, res: ResponseToolkit) => {
   try {
     const { username, password } = safelyParseJSON(credentials);
 
@@ -24,17 +24,17 @@ export const signup = async (credentials: IUser) => {
       return Boom.badRequest('A user with that username already exists.');
     }
 
-    return {
+    return res.response({
       username: username,
       token: createToken(user)
-    };
+    });
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Signup failed.');
   }
 };
 
-export const login = async (credentials: IUser) => {
+export const login = async (credentials: IUser, res: ResponseToolkit) => {
   try {
     const { username, password } = safelyParseJSON(credentials);
 
@@ -50,10 +50,10 @@ export const login = async (credentials: IUser) => {
       return Boom.badRequest('Your password is wrong.');
     }
 
-    return {
+    return res.response({
       username: username,
       token: createToken(user)
-    };
+    });
   } catch (err) {
     console.log(err);
     return Boom.badImplementation('Login failed.');

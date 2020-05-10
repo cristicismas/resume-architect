@@ -5,13 +5,13 @@ import { IUser } from '../interfaces/user';
 const signupRoute = {
   method: 'POST',
   path: '/auth/signup',
-  handler: (request: Request, h: ResponseToolkit) => signup(request.payload as IUser)
+  handler: (request: Request, h: ResponseToolkit) => signup(request.payload as IUser, h)
 };
 
 const loginRoute = {
   method: 'POST',
   path: '/auth/login',
-  handler: (request: Request, h: ResponseToolkit) => login(request.payload as IUser)
+  handler: (request: Request, h: ResponseToolkit) => login(request.payload as IUser, h)
 };
 
 const deleteAccountRoute = {

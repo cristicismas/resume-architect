@@ -52,9 +52,33 @@ const Message = ({ message }) => {
     }, 200);
   };
 
+  let messageIcon = {
+    path: null,
+    color: null
+  };
+
+  if (type === 'error') {
+    messageIcon = {
+      path: ICONS.ERROR,
+      color: 'red'
+    };
+  } else if (type === 'success') {
+    messageIcon = {
+      path: ICONS.SUCCESS,
+      color: 'green'
+    };
+  } else {
+    messageIcon = {
+      path: ICONS.INFO,
+      color: '#0077ff'
+    };
+  }
+
   return (
     <div className="message-container">
       <div className={messageClassName}>
+        <Icon className="message-icon" icon={messageIcon.path} size={30} fill={messageIcon.color} />
+
         <div className="text">{text}</div>
 
         <button className="dismiss-btn" onClick={onRemoveClick}>

@@ -26,23 +26,29 @@
   justify-content: space-between;
   padding: 10px 10px 10px 20px;
   background-color: #fff;
-  border: 1px solid #b3b3b3;
+  border: 2px solid #b3b3b3;
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   transition: all 0.2s;
   animation: slide-in 0.2s forwards;
 }
 
+.message-list .message .message-icon {
+  position: relative;
+  right: 14px;
+  margin-left: 10px;
+}
+
 .message-list .message.error {
-  border: 2px solid red;
+  border-color: red;
 }
 
 .message-list .message.success {
-  border: 2px solid green;
+  border-color: green;
 }
 
 .message-list .message.info {
-  border: 2px solid #0077ff;
+  border-color: #0077ff;
 }
 
 .message-list .message.to-remove {

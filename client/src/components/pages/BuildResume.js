@@ -23,7 +23,7 @@ const BuildResume = () => {
         icon.
       </h2>
 
-      <Route exact path={['/build/:templateName/change_template', '/draft/:templateName/:resumeName/change_template']}>
+      <Route exact path={['/build/:templateName/change_template', '/draft/:templateName/:resumeId/change_template']}>
         <TemplatesModal />
       </Route>
 

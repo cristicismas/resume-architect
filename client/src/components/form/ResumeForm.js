@@ -74,7 +74,7 @@ const ResumeForm = () => {
     return (
       <PrivateRoute
         exact
-        path={['/draft/:templateName/:resumeName/save', '/build/:templateName/save']}>
+        path={['/draft/:templateName/:resumeId/save', '/build/:templateName/save']}>
         <SaveResume resume={formatResumeToSave(formData, templateName)} />
       </PrivateRoute>
     );

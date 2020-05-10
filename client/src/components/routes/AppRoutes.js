@@ -42,7 +42,7 @@ const AppRoutes = () => {
         <Resumes />
       </PrivateRoute>
 
-      <Route path={['/build/:templateName', '/draft/:templateName/:resumeName']}>
+      <Route path={['/build/:templateName', '/draft/:templateName/:resumeId']}>
         <BuildResume />
       </Route>
 

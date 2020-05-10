@@ -12,9 +12,9 @@ import MESSAGE_TYPES from '../../constants/messageTypes';
 import { pushMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
-export const buildResume = (data, resumeType, resumeName) => async dispatch => {
+export const buildResume = (data, resumeType, templateName) => async dispatch => {
   try {
-    const response = await apiCall('POST', `resume/build/${resumeType}/${resumeName}`, data);
+    const response = await apiCall('POST', `resume/build/${resumeType}/${templateName}`, data);
     const payload = URL.createObjectURL(response);
 
     if (resumeType.toLowerCase() === 'pdf') {

@@ -48,8 +48,8 @@ const Resumes = () => {
         resumeId={resumeId}
         showOptions={resume.meta.isAutoSaved ? false : true}
         linkTo={{
-          pathname: `/draft/${templateName}/${whiteSpaceToSnakeCase(resumeName)}`,
-          state: { resumeData: resume.data },
+          pathname: `/draft/${templateName}/${resume._id ? resume._id : whiteSpaceToSnakeCase(resumeName)}`,
+          state: { resumeData: resume.data }
         }}
       />
     );
@@ -75,8 +75,10 @@ const Resumes = () => {
           <br />
           <br />
           To save a resume,
-          <Link className="intermediary" to="/templates">select a template</Link>, fill in your data, and click on the 'Save Resume' button at
-          the bottom of the page.
+          <Link className="intermediary" to="/templates">
+            select a template
+          </Link>
+          , fill in your data, and click on the 'Save Resume' button at the bottom of the page.
         </p>
       )}
     </section>

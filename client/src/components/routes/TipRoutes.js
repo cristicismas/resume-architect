@@ -9,7 +9,7 @@ const TipRoutes = () => {
     <Fragment>
       {Object.keys(TIPS).map(tip => {
         return (
-          <Route key={tip} exact path={[`/build/:templateName/${tip}`, `/draft/:templateName/:resumeName/${tip}`]}>
+          <Route key={tip} exact path={[`/build/:templateName/${tip}`, `/draft/:templateName/:resumeId/${tip}`]}>
             <Tip title={TIPS[tip].title} text={TIPS[tip].text} />
           </Route>
         );

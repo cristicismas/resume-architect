@@ -4,10 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { checkToken } from '../redux/actions/user';
 
 import Header from './layout/Header';
-import AppRoutes from './misc/AppRoutes';
+import AppRoutes from './routes/AppRoutes';
 import Footer from './layout/Footer';
 
-import RouteChangeHandler from './misc/RouteChangeHandler';
+import RouteChangeHandler from './routes/RouteChangeHandler';
 import Messages from './misc/Messages';
 
 const App = () => {

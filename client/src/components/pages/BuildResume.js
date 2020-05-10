@@ -4,7 +4,7 @@ import useScrollToTop from '../../hooks/useScrollToTop';
 import ICONS from '../../constants/icons';
 import './BuildResume.css';
 
-import TipRoutes from '../form/TipRoutes';
+import TipRoutes from '../routes/TipRoutes';
 import ResumeForm from '../form/ResumeForm';
 import Icon from '../misc/Icon';
 import TemplatesModal from '../modals/TemplatesModal';

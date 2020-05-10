@@ -16,7 +16,7 @@ const About = () => {
         <br />
         <br />
         All of that was incredibly frustrating, and that's why I decided to make a simple, no BS builder, that doesn't
-        try to fool its user in order to get revenue.
+        try to fool its users in order to get revenue.
         <br />
         <br />
         The reason I won't ask for money, and the reason I'm not going to bloat this site with ads, is that I don't

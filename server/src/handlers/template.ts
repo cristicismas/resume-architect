@@ -20,7 +20,7 @@ export const getTemplatePreviewsLinks = async (request: Request, res: ResponseTo
     return res.response(templateLinks);
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong getting the template preview links');
+    return Boom.badImplementation('Something went wrong getting the template preview links.');
   }
 };
 
@@ -37,6 +37,6 @@ export const getSinglePreviewLink = async (request: Request, res: ResponseToolki
     return res.response(template);
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong getting the preview link');
+    return Boom.badImplementation('Something went wrong getting the preview link.');
   }
 };

@@ -71,7 +71,7 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
     return res.response(resumes);
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong fetching the resumes');
+    return Boom.badImplementation('Something went wrong fetching the resumes.');
   }
 };
 
@@ -99,7 +99,7 @@ export const renameResume = async (request: Request, res: ResponseToolkit) => {
     });
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong fetching the resumes');
+    return Boom.badImplementation('Something went wrong fetching the resumes.');
   }
 };
 
@@ -121,6 +121,6 @@ export const deleteResume = async (request: Request, res: ResponseToolkit) => {
     });
   } catch (err) {
     console.log(err);
-    return Boom.badImplementation('Something went wrong deleting the resume');
+    return Boom.badImplementation('Something went wrong deleting the resume.');
   }
 };

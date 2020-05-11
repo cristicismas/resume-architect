@@ -6,17 +6,17 @@ import {
   SAVE_USER_RESUME,
   RENAME_RESUME,
   DELETE_RESUME,
-  DELETE_LOCAL_RESUME,
+  DELETE_LOCAL_RESUME
 } from '../actionTypes';
 
-const initialResumes = localStorage.getItem('autoSavedResume')
-  ? [JSON.parse(localStorage.getItem('autoSavedResume'))]
-  : [];
+const getAutoSavedResumeArray = () => {
+  return localStorage.getItem('autoSavedResume') ? [JSON.parse(localStorage.getItem('autoSavedResume'))] : [];
+};
 
 const initialState = {
   docx: '',
   pdf: '',
-  resumes: initialResumes,
+  resumes: getAutoSavedResumeArray()
 };
 
 export default (state = initialState, action) => {
@@ -28,7 +28,10 @@ export default (state = initialState, action) => {
     case RESET_DOWNLOAD_LINKS:
       return { ...state, docx: '', pdf: '' };
     case GET_USER_RESUMES:
-      return { ...state, resumes: [...initialResumes, ...action.payload] };
+      return {
+        ...state,
+        resumes: [...getAutoSavedResumeArray(), ...action.payload]
+      };
     case SAVE_USER_RESUME:
       return { ...state, resumes: [...state.resumes, action.payload] };
     case RENAME_RESUME:

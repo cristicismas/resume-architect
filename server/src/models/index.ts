@@ -5,6 +5,7 @@ const connectToDatabase = async () => {
     keepAlive: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
     useCreateIndex: true
   });
 };

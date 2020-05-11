@@ -23,7 +23,7 @@ const Header = () => {
     <header className={headerClassName}>
       <h1 className="title">
         <Link to="/">
-          <img src="favicon.png" className="logo" alt="Logo" />
+          <img src="/favicon.png" className="logo" alt="Logo" />
           ResumeArchitect
         </Link>
       </h1>

@@ -1,4 +1,6 @@
 import { GET_PREVIEWS, GET_SINGLE_PREVIEW, GET_PREVIEWS_FOR_EACH } from '../actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
+import { pushMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const getPreviews = () => async (dispatch, getState) => {
@@ -16,7 +18,15 @@ export const getPreviews = () => async (dispatch, getState) => {
       return newTemplates;
     } else return null;
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -38,7 +48,15 @@ export const getPreviewsForEachResume = () => async (dispatch, getState) => {
 
     return previews;
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -53,6 +71,14 @@ export const getSinglePreview = previewName => async dispatch => {
 
     return template;
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };

@@ -31,7 +31,15 @@ export const buildResume = (data, resumeType, templateName) => async dispatch =>
 
     return payload;
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -48,7 +56,7 @@ export const resetDownloadLinks = () => async (dispatch, getState) => {
 
     return;
   } catch (err) {
-    console.log(err);
+    await err;
   }
 };
 
@@ -63,7 +71,15 @@ export const getUserResumes = () => async dispatch => {
 
     return resumes;
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -92,7 +108,15 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
       })
     );
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -116,7 +140,15 @@ export const renameResume = (id, newName) => async dispatch => {
       })
     );
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -146,6 +178,14 @@ export const deleteResume = id => async dispatch => {
       })
     );
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };

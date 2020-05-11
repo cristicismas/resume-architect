@@ -40,6 +40,7 @@ const RenameResume = () => {
             value={resumeName}
             onChange={e => setResumeName(e.target.value)}
             required
+            maxLength="55"
             id="rename-resume-name-input"
             name="resume-name"
             className="resume-name"

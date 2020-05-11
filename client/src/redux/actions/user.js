@@ -27,7 +27,15 @@ export const login = credentials => async dispatch => {
       payload: response
     });
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -55,26 +63,33 @@ export const signup = credentials => async dispatch => {
       payload: response
     });
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
 export const checkToken = () => async dispatch => {
   try {
     const response = await apiCall('POST', 'auth/check');
-    if (!response.error) {
-      dispatch({
-        type: LOGGED_IN,
-        payload: response
-      });
-    }
+
+    dispatch({
+      type: LOGGED_IN,
+      payload: response
+    });
 
     dispatch({
       type: TOKEN_CHECKED,
       payload: response
     });
   } catch (err) {
-    console.log(err);
+    await err;
   }
 };
 
@@ -94,7 +109,15 @@ export const logout = () => async dispatch => {
       })
     );
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };
 
@@ -115,6 +138,14 @@ export const deleteAccount = () => async dispatch => {
       })
     );
   } catch (err) {
-    console.log(err);
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
   }
 };

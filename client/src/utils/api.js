@@ -9,15 +9,20 @@ export const apiCall = async (method, path, data) => {
     body: data ? JSON.stringify(data) : null
   })
     .then(res => {
-      // If the content-type is set to json, parse the response as json
-      // otherwise, parse it as a blob.
-      if (res.headers.get('content-type').indexOf('application/json') !== -1) {
-        return res.json();
+      if (!res.ok) {
+        const error = res.json();
+        throw error;
       } else {
-        return res.blob();
+        // If the content-type is set to json, parse the response as json
+        // otherwise, parse it as a blob.
+        if (res.headers.get('content-type').indexOf('application/json') !== -1) {
+          return res.json();
+        } else {
+          return res.blob();
+        }
       }
     })
     .catch(err => {
-      console.log(err);
+      throw err;
     });
 };

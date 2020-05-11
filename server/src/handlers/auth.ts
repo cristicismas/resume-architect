@@ -43,8 +43,8 @@ export const login = async (credentials: IUser, res: ResponseToolkit) => {
     if (!user) {
       return Boom.badRequest('That user does not exist.');
     }
-
-    const isPasswordValid = bcrypt.compare(password, user.password);
+    
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       return Boom.badRequest('Your password is wrong.');

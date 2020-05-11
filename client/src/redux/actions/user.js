@@ -26,6 +26,8 @@ export const login = credentials => async dispatch => {
       type: TOKEN_CHECKED,
       payload: response
     });
+
+    return response;
   } catch (err) {
     const errorBody = await err;
 
@@ -62,6 +64,8 @@ export const signup = credentials => async dispatch => {
       type: TOKEN_CHECKED,
       payload: response
     });
+
+    return response;
   } catch (err) {
     const errorBody = await err;
 

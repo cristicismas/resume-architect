@@ -13,29 +13,27 @@ const Auth = ({ type }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const dispatchLogin = useCallback(
-    data => {
-      dispatch(login(data));
-    },
-    [dispatch]
-  );
-
-  const dispatchSignup = useCallback(
-    data => {
-      dispatch(signup(data));
+  const dispatchAuth = useCallback(
+    (data, authType) => {
+      if (authType === 'login') {
+        return dispatch(login(data));
+      } else {
+        return dispatch(signup(data));
+      }
     },
     [dispatch]
   );
 
   const handleSubmit = (data, actions) => {
-    if (type === 'login') {
-      dispatchLogin(data);
-    } else {
-      dispatchSignup(data);
-    }
+    dispatchAuth(data, type).then(res => {
+      actions.setSubmitting(false);
 
-    actions.setSubmitting(false);
-    history.push('/welcome');
+      // If res exists, that means the request was successful,
+      // so we can push the /welcome page to history.
+      if (res) {
+        history.push('/welcome');
+      }
+    });
   };
 
   const formTitle = type === 'login' ? 'Log In' : 'Sign Up';
@@ -45,7 +43,7 @@ const Auth = ({ type }) => {
       <Formik
         initialValues={{
           username: '',
-          password: '',
+          password: ''
         }}
         validationSchema={authFormSchema}
         onSubmit={handleSubmit}>

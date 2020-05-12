@@ -75,6 +75,30 @@ export const getResumes = async (request: Request, res: ResponseToolkit) => {
   }
 };
 
+export const updateResume = async (request: Request, res: ResponseToolkit) => {
+  try {
+    const { _id } = request.auth.credentials as IToken;
+    const resumeId = request.params.id;
+    const updatedResume = JSON.parse(request.payload as string);
+
+    const resume = await Resume.findById(resumeId);
+    const resumeUserId = resume.meta.user_id.toString();
+
+    if (resumeUserId === _id) {
+      await Resume.findByIdAndUpdate(resumeId, { $set: { data: updatedResume.data } });
+    } else {
+      return Boom.unauthorized('You are not allowed to update that resume.');
+    }
+
+    return res.response({
+      message: 'Resume edited.'
+    });
+  } catch (err) {
+    console.log(err);
+    return Boom.badImplementation('Something went wrong updating the resumes.');
+  }
+};
+
 export const renameResume = async (request: Request, res: ResponseToolkit) => {
   try {
     const { _id } = request.auth.credentials as IToken;

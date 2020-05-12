@@ -87,7 +87,8 @@
 }
 
 #resume-form #submit-btn,
-#resume-form #save-btn {
+#resume-form #save-btn,
+#resume-form #update-btn {
   border: none;
   margin: 50px auto 50px;
   color: white;
@@ -101,7 +102,8 @@
 }
 
 #resume-form #submit-btn:hover,
-#resume-form #save-btn:hover {
+#resume-form #save-btn:hover,
+#resume-form #update-btn:hover {
   opacity: 0.8;
 }
 
@@ -112,7 +114,8 @@
   width: 210px;
 }
 
-#resume-form #save-btn .icon {
+#resume-form #save-btn .icon,
+#resume-form #update-btn .icon {
   margin-left: 10px;
 }
 

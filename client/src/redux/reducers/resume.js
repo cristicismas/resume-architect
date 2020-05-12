@@ -4,6 +4,7 @@ import {
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
   SAVE_USER_RESUME,
+  UPDATE_RESUME,
   RENAME_RESUME,
   DELETE_RESUME,
   DELETE_LOCAL_RESUME
@@ -34,6 +35,17 @@ export default (state = initialState, action) => {
       };
     case SAVE_USER_RESUME:
       return { ...state, resumes: [...state.resumes, action.payload] };
+    case UPDATE_RESUME:
+      const resumes = [...state.resumes];
+
+      if (action.payload._id === 'Auto_Saved_Resume') {
+        resumes[0] = action.payload;
+      } else {
+        const resumeIndex = resumes.find(resume => resume._id === action.payload._id);
+        resumes[resumeIndex] = action.payload;
+      }
+
+      return { ...state, resumes };
     case RENAME_RESUME:
       const resumesCopy = [...state.resumes];
 

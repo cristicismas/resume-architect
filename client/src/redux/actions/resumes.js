@@ -4,6 +4,7 @@ import {
   RESET_DOWNLOAD_LINKS,
   GET_USER_RESUMES,
   SAVE_USER_RESUME,
+  UPDATE_RESUME,
   RENAME_RESUME,
   DELETE_RESUME,
   DELETE_LOCAL_RESUME
@@ -103,6 +104,45 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Your resume has been saved.',
+        timeout: 3000,
+        type: MESSAGE_TYPES.SUCCESS
+      })
+    );
+  } catch (err) {
+    const errorBody = await err;
+
+    dispatch(
+      pushMessage({
+        text: errorBody.message,
+        timeout: 3000,
+        type: MESSAGE_TYPES.ERROR
+      })
+    );
+  }
+};
+
+export const updateResume = (id, updatedResume) => async dispatch => {
+  try {
+    if (id === 'Auto_Saved_Resume') {
+      let resume = JSON.parse(localStorage.getItem('autoSavedResume'));
+      resume.data = updatedResume.data;
+
+      localStorage.setItem('autoSavedResume', JSON.stringify(resume));
+    } else {
+      await apiCall('PATCH', `resume/${id}/update`, updatedResume);
+    }
+
+    dispatch({
+      type: UPDATE_RESUME,
+      payload: {
+        id,
+        updatedResume
+      }
+    });
+
+    dispatch(
+      pushMessage({
+        text: 'Your resume has been updated.',
         timeout: 3000,
         type: MESSAGE_TYPES.SUCCESS
       })

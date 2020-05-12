@@ -1,10 +1,10 @@
 import { Request, ResponseToolkit } from 'hapi';
-import { buildResume, saveResume, getResumes, renameResume, deleteResume } from '../handlers/resume';
+import { buildResume, saveResume, getResumes, updateResume, renameResume, deleteResume } from '../handlers/resume';
 
 const buildResumeRoute = {
   method: 'POST',
   path: '/resume/build/{resumeType}/{resumeName}',
-  handler: (request: Request, responseToolkit: ResponseToolkit) => buildResume(request, responseToolkit),
+  handler: (request: Request, responseToolkit: ResponseToolkit) => buildResume(request, responseToolkit)
 };
 
 const saveResumeRoute = {
@@ -13,7 +13,7 @@ const saveResumeRoute = {
   config: {
     auth: 'jwt'
   },
-  handler: (request: Request, responseToolkit: ResponseToolkit) => saveResume(request, responseToolkit),
+  handler: (request: Request, responseToolkit: ResponseToolkit) => saveResume(request, responseToolkit)
 };
 
 const getResumesRoute = {
@@ -22,7 +22,16 @@ const getResumesRoute = {
   config: {
     auth: 'jwt'
   },
-  handler: (request: Request, responseToolkit: ResponseToolkit) => getResumes(request, responseToolkit),
+  handler: (request: Request, responseToolkit: ResponseToolkit) => getResumes(request, responseToolkit)
+};
+
+const updateResumeRoute = {
+  method: 'PATCH',
+  path: '/resume/{id}/update',
+  config: {
+    auth: 'jwt'
+  },
+  handler: (request: Request, responseToolkit: ResponseToolkit) => updateResume(request, responseToolkit)
 };
 
 const renameResumeRoute = {
@@ -31,7 +40,7 @@ const renameResumeRoute = {
   config: {
     auth: 'jwt'
   },
-  handler: (request: Request, responseToolkit: ResponseToolkit) => renameResume(request, responseToolkit),
+  handler: (request: Request, responseToolkit: ResponseToolkit) => renameResume(request, responseToolkit)
 };
 
 const deleteResumeRoute = {
@@ -40,7 +49,14 @@ const deleteResumeRoute = {
   config: {
     auth: 'jwt'
   },
-  handler: (request: Request, responseToolkit: ResponseToolkit) => deleteResume(request, responseToolkit),
+  handler: (request: Request, responseToolkit: ResponseToolkit) => deleteResume(request, responseToolkit)
 };
 
-export default [buildResumeRoute, saveResumeRoute, getResumesRoute, renameResumeRoute, deleteResumeRoute];
+export default [
+  buildResumeRoute,
+  saveResumeRoute,
+  getResumesRoute,
+  updateResumeRoute,
+  renameResumeRoute,
+  deleteResumeRoute
+];

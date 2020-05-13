@@ -4,16 +4,19 @@ import './DatePickerField.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const DatePickerField = ({ namePrefix, startDate, endDate, onChange, monthYearPicker = false }) => {
+  const startDateObject = startDate ? new Date(startDate) : null;
+  const endDateObject = endDate ? new Date(endDate) : null;
+
   return (
     <div className="dates-group">
       <DatePicker
         withPortal
-        selected={startDate ? new Date(startDate) : null}
+        selected={startDateObject}
         onChange={date => onChange(`${namePrefix}StartDate`, date)}
         selectsStart
-        startDate={startDate}
-        endDate={endDate}
-        maxDate={endDate ? endDate : new Date()}
+        startDate={startDateObject}
+        endDate={endDateObject}
+        maxDate={endDate ? new Date(endDate) : new Date()}
         dateFormat={monthYearPicker ? 'MM/yyyy' : 'dd/MM/yyyy'}
         showMonthYearPicker={monthYearPicker}
         placeholderText="Start Date"
@@ -24,12 +27,12 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange, monthYearPi
       <DatePicker
         withPortal
         todayButton="Present"
-        selected={endDate ? new Date(endDate) : null}
+        selected={endDateObject}
         onChange={date => onChange(`${namePrefix}EndDate`, date)}
         selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
+        startDate={startDateObject}
+        endDate={endDateObject}
+        minDate={startDateObject}
         maxDate={new Date()}
         dateFormat={monthYearPicker ? 'MM/yyyy' : 'dd/MM/yyyy'}
         showMonthYearPicker={monthYearPicker}

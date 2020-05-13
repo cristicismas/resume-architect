@@ -9,8 +9,6 @@ import Logout from '../pages/Logout';
 import Welcome from '../pages/Welcome';
 import About from '../pages/About';
 import Resumes from '../pages/Resumes';
-import PrivacyPolicy from '../pages/PrivacyPolicy';
-import TermsAndConditions from '../pages/TermsAndConditions';
 import Credits from '../pages/Credits';
 import Account from '../pages/Account';
 import PrivateRoute from '../routes/PrivateRoute';
@@ -48,14 +46,6 @@ const AppRoutes = () => {
 
       <Route path="/templates">
         <Templates shouldScrollToTop={true} />
-      </Route>
-
-      <Route path="/privacy">
-        <PrivacyPolicy />
-      </Route>
-
-      <Route path="/terms">
-        <TermsAndConditions />
       </Route>
 
       <Route path="/credits">

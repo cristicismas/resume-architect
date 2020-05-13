@@ -41,7 +41,19 @@ export const buildResume = async (request: Request, res: ResponseToolkit) => {
 export const saveResume = async (request: Request, res: ResponseToolkit) => {
   try {
     const { _id } = request.auth.credentials as IToken;
-    const resume = safelyParseJSON(request.payload as IResumeToSave);
+
+    const { data, meta } = safelyParseJSON(request.payload as IResumeToSave);
+
+    const resume = {
+      data: sanitizeAndFormatFormData(data),
+      meta
+    };
+
+    const { name, email, about } = resume.data;
+
+    if (!name || !email || !about) {
+      return Boom.badRequest('To save your resume, please complete the "name", "email" and "about" fields first.');
+    }
 
     if (resume.meta.resumeName.length > 55) {
       return Boom.badRequest('Your resume name is too long. Try to shorten it to 55 characters.');
@@ -79,7 +91,21 @@ export const updateResume = async (request: Request, res: ResponseToolkit) => {
   try {
     const { _id } = request.auth.credentials as IToken;
     const resumeId = request.params.id;
-    const updatedResume = JSON.parse(request.payload as string);
+
+    const { data, meta } = safelyParseJSON(request.payload as IResumeToSave);
+
+    const updatedResume = {
+      data: sanitizeAndFormatFormData(data),
+      meta
+    };
+
+    const { name, email, about } = updatedResume.data;
+
+    if (!name || !email || !about) {
+      return Boom.badRequest(
+        'You can\'t update your resume if you don\'t complete the "name", "email" and "about" fields first.'
+      );
+    }
 
     const resume = await Resume.findById(resumeId);
     const resumeUserId = resume.meta.user_id.toString();

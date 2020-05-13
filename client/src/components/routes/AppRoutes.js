@@ -12,6 +12,7 @@ import Resumes from '../pages/Resumes';
 import Credits from '../pages/Credits';
 import Account from '../pages/Account';
 import PrivateRoute from '../routes/PrivateRoute';
+import NotFound from '../pages/NotFound';
 
 const AppRoutes = () => {
   return (
@@ -56,8 +57,12 @@ const AppRoutes = () => {
         <Account />
       </PrivateRoute>
 
-      <Route path="/">
+      <Route exact path="/">
         <Home />
+      </Route>
+
+      <Route path="*">
+        <NotFound />
       </Route>
     </Switch>
   );

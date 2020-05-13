@@ -57,7 +57,7 @@ const AppRoutes = () => {
         <Account />
       </PrivateRoute>
 
-      <Route exact path="/">
+      <Route exact path={['/', '/confirm_logout']}>
         <Home />
       </Route>
 

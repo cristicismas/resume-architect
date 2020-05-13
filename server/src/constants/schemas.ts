@@ -14,7 +14,7 @@ const buildResumeSchema = Joi.object({
       job: Joi.string().allow(''),
       jobStartDate: Joi.date(),
       jobEndDate: Joi.date(),
-      responsibilities: Joi.string(),
+      responsibilities: Joi.string().allow('')
     })
   ),
   schools: Joi.array().items(
@@ -23,10 +23,10 @@ const buildResumeSchema = Joi.object({
       school: Joi.string().allow(''),
       degree: Joi.string().allow(''),
       schoolStartDate: Joi.date(),
-      schoolEndDate: Joi.date(),
+      schoolEndDate: Joi.date()
     })
   ),
-  extra: Joi.string().allow(''),
+  extra: Joi.string().allow('')
 });
 
 export default { buildResumeSchema };

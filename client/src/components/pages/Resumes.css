@@ -16,3 +16,10 @@
   font-size: 30px;
   line-height: 50px;
 }
+
+@media only screen and (max-width: 700px) {
+  #resumes .resume-previews .template-preview-container figcaption {
+    position: relative;
+    top: -15px;
+  }
+}

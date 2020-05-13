@@ -37,3 +37,13 @@
   left: 5px;
   top: 2px;
 }
+
+@media only screen and (max-width: 600px) {
+  #account {
+    padding: 0 20px;
+  }
+
+  #account .description {
+    font-size: 22px;
+  }
+}

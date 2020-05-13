@@ -1,6 +1,6 @@
 #welcome {
   text-align: center;
-  padding: 50px;
+  padding: 0 50px;
 }
 
 #welcome p {
@@ -8,4 +8,22 @@
   max-width: 900px;
   line-height: 40px;
   margin: 50px auto;
+}
+
+@media only screen and (max-width: 1000px) {
+  #welcome p {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #welcome {
+    text-align: left;
+    padding: 0 25px;
+  }
+
+  #welcome p {
+    line-height: normal;
+    margin: 40px auto;
+  }
 }

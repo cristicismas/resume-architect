@@ -9,6 +9,7 @@
 }
 
 .message-list {
+  padding: 0;
   z-index: 1000;
   position: fixed;
   text-align: center;
@@ -37,6 +38,8 @@
   position: relative;
   right: 14px;
   margin-left: 10px;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 .message-list .message.error {
@@ -74,4 +77,16 @@
 
 .message-list .message .dismiss-btn:hover {
   background-color: #e9e9e9;
+}
+
+@media only screen and (max-width: 1200px) {
+  .message-list {
+    width: 1600px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .message-list {
+    width: 90%;
+  }
 }

@@ -123,9 +123,25 @@ header nav a.active .icon {
   }
 
   header nav a {
-    margin-top: 10px;
+    margin-top: 0px;
     flex-grow: 1;
     text-align: center;
-    padding: 10px 15px;
+    padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  header {
+    width: 100%;
+    padding: 20px 10px;
+  }
+
+  header .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  header .title {
+    font-size: 28px;
   }
 }

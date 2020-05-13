@@ -24,3 +24,28 @@
   top: 7px;
   right: 5px;
 }
+
+@media only screen and (max-width: 1000px) {
+  #credits {
+    padding: 0 25px 100px;
+  }
+
+  #credits .sub-title {
+    font-size: 26px;
+  }
+
+  #credits ul {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #credits .sub-title {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #credits ul {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,30 @@
+@keyframes slideup {
+  0% {
+    transform: rotate(-90deg) translateX(-100px);
+  }
+  100% {
+    transform: rotate(-90deg) translateX(0);
+  }
+}
+
+#scroll-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  height: 70px;
+  width: 70px;
+  transform: rotate(-90deg);
+  animation: slideup 0.7s forwards ease-out;
+}
+
+@media only screen and (max-width: 950px) {
+  #scroll-top {
+    display: none;
+  }
+}

@@ -8,6 +8,7 @@ import TipRoutes from '../routes/TipRoutes';
 import Icon from '../misc/Icon';
 import TemplatesModal from '../modals/TemplatesModal';
 import FormikContainer from '../form/FormikContainer';
+import ScrollTop from '../misc/ScrollTop';
 
 const BuildResume = () => {
   useScrollToTop();
@@ -30,6 +31,8 @@ const BuildResume = () => {
       <TipRoutes />
 
       <FormikContainer />
+
+      <ScrollTop />
     </section>
   );
 };

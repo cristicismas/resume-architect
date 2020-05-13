@@ -16,18 +16,18 @@ const Features = () => {
         </div>
 
         <div className="card">
-          <h3 className="card-title">Professional resumes</h3>
+          <h3 className="card-title">Completely free</h3>
           <p className="card-description">
-            We offer professional resumes that can be downloaded in a variety of formats. This is a completely free
-            service, that helps you build and customise your resume with ease.
+            This is a completely free service, that helps you build, customise, and save your resume with ease. There
+            are no subscriptions or hidden paywalls a that you hit at the end of your form.
           </p>
         </div>
 
         <div className="card">
           <h3 className="card-title">We'll help you out</h3>
           <p className="card-description">
-            No idea what to write? No problem. We tell you exactly what you need to fill out and give you useful examples. Just
-            pick the design you like and get started! You'll be done in no time.
+            No idea what to write? No problem. We tell you exactly what you need to fill out and give you useful
+            examples. Just pick the design you like and get started! You'll be done in no time.
           </p>
         </div>
       </div>

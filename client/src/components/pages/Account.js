@@ -2,12 +2,15 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteAccount } from '../../redux/actions/user';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import ICONS from '../../constants/icons';
 import './Account.css';
 
 import LoadingButton from '../misc/LoadingButton';
 
 const Account = () => {
+  useScrollToTop();
+
   const history = useHistory();
   const dispatch = useDispatch();
 

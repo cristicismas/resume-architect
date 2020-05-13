@@ -1,7 +1,10 @@
 import React from 'react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import './About.css';
 
 const About = () => {
+  useScrollToTop();
+
   return (
     <section id="about">
       <h1 className="title">About</h1>

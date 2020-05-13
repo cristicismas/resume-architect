@@ -1,7 +1,10 @@
 import React from 'react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import './Credits.css';
 
 const Credits = () => {
+  useScrollToTop();
+
   return (
     <section id="credits">
       <h1 className="title">Credits & Attributions</h1>

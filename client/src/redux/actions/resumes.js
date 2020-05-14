@@ -37,7 +37,7 @@ export const buildResume = (data, resumeType, templateName) => async dispatch =>
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -77,7 +77,7 @@ export const getUserResumes = () => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -104,7 +104,7 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Your resume has been saved.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -114,7 +114,7 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -143,7 +143,7 @@ export const updateResume = (id, updatedResume) => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Your resume has been updated.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -153,7 +153,7 @@ export const updateResume = (id, updatedResume) => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -175,7 +175,7 @@ export const renameResume = (id, newName) => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Resume renamed successfully.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -185,7 +185,7 @@ export const renameResume = (id, newName) => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -213,7 +213,7 @@ export const deleteResume = id => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Your resume has been removed.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -223,7 +223,7 @@ export const deleteResume = id => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );

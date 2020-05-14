@@ -23,7 +23,7 @@ export const getPreviews = () => async (dispatch, getState) => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -53,7 +53,7 @@ export const getPreviewsForEachResume = () => async (dispatch, getState) => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -76,7 +76,7 @@ export const getSinglePreview = previewName => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );

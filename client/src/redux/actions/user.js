@@ -17,7 +17,7 @@ export const login = credentials => async dispatch => {
     dispatch(
       pushMessage({
         text: 'You are now logged in!',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -34,7 +34,7 @@ export const login = credentials => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -55,7 +55,7 @@ export const signup = credentials => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Welcome!',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -72,7 +72,7 @@ export const signup = credentials => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -108,7 +108,7 @@ export const logout = () => async dispatch => {
     dispatch(
       pushMessage({
         text: 'You are now logged out.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -118,7 +118,7 @@ export const logout = () => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );
@@ -137,7 +137,7 @@ export const deleteAccount = () => async dispatch => {
     dispatch(
       pushMessage({
         text: 'Your account has been deleted.',
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.SUCCESS
       })
     );
@@ -147,7 +147,7 @@ export const deleteAccount = () => async dispatch => {
     dispatch(
       pushMessage({
         text: errorBody.message,
-        timeout: 3000,
+        timeout: 4000,
         type: MESSAGE_TYPES.ERROR
       })
     );

@@ -86,32 +86,51 @@
   margin-bottom: 70px;
 }
 
+#resume-form .icon {
+  transition: all 0.2s;
+}
+
+#resume-form #save-btn {
+  max-width: 220px;
+}
+
 #resume-form #submit-btn,
 #resume-form #save-btn,
-#resume-form #update-btn {
+#resume-form #update-btn,
+#resume-form .download-group > * {
   border: none;
   margin: 50px auto 50px;
-  color: white;
+  color: #00a2ff;
+  background-color: rgb(0, 162, 255, 0.15);
   font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
   font-size: 22px;
-  background-color: rgb(0, 162, 255);
   padding: 12px 15px;
-  border-radius: 5px;
 }
 
 #resume-form #submit-btn:hover,
-#resume-form #save-btn:hover,
-#resume-form #update-btn:hover {
-  opacity: 0.8;
+#resume-form .download-group #docx-btn:hover {
+  background-color: rgb(0, 162, 255, 0.3);
+  color: #008cff;
 }
 
-#resume-form #save-btn {
-  background-color: rgb(50, 205, 97);
+#resume-form #submit-btn:hover .icon,
+#resume-form .download-group #docx-btn:hover .icon {
+  fill: #008cff;
+}
+
+#resume-form #save-btn:hover,
+#resume-form #update-btn:hover {
+  background-color: rgba(50, 205, 97, 0.35);
+}
+
+#resume-form #save-btn,
+#resume-form #update-btn {
+  background-color: rgba(50, 205, 97, 0.2);
+  color: rgb(9, 170, 17);
   display: flex;
   justify-content: center;
-  width: 210px;
 }
 
 #resume-form #save-btn .icon,
@@ -119,35 +138,47 @@
   margin-left: 10px;
 }
 
+#resume-form .downloads-title {
+  margin: 70px auto 50px;
+  text-align: center;
+  font-size: 26px;
+  color: #333;
+}
+
 #resume-form .download-group {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 80px;
   margin-bottom: 50px;
 }
 
 #resume-form .download-group > * {
   margin: 0 15px 20px;
   padding: 15px 20px;
-  border-radius: 5px;
   font-weight: bold;
   min-width: 150px;
   font-size: 25px;
   text-align: center;
-  color: #fff;
-}
-
-#resume-form .download-group > *:hover {
-  opacity: 0.8;
-}
-
-#resume-form .download-group #docx-btn {
-  background-color: #00a2ff;
 }
 
 #resume-form .download-group #pdf-btn {
-  background-color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.15);
+  color: #ff4d4d;
+}
+
+#resume-form .download-group #pdf-btn:hover {
+  background-color: rgba(255, 77, 77, 0.3);
+}
+
+#resume-form .download-group #pdf-btn .spinner {
+  border-left-color: #ff4d4d;
+  border-right-color: #ff4d4d;
+}
+
+#resume-form .download-group #docx-btn .spinner,
+#resume-form #submit-btn .spinner {
+  border-left-color: #008cff;
+  border-right-color: #008cff;
 }
 
 #resume-form #submit-btn .icon,

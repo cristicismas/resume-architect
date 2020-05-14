@@ -148,34 +148,28 @@ const ResumeForm = ({ values, errors, setFieldValue, isSubmitting, submitCount, 
           </div>
         </section>
 
-        <LoadingButton id="submit-btn" type="submit" staleIcon={ICONS.SUBMIT} loading={isSubmitting}>
+        <LoadingButton
+          id="submit-btn"
+          type="submit"
+          staleIcon={ICONS.SUBMIT}
+          iconColor="#00a2ff"
+          loading={isSubmitting}>
           Submit
         </LoadingButton>
-
-        {showDownloadButtons && (
-          <div className="download-group">
-            <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!docx} href={docx} id="docx-btn">
-              DOCX
-            </LoadingButton>
-
-            <LoadingButton download staleIcon={ICONS.DOWNLOAD} loading={!pdf} href={pdf} id="pdf-btn">
-              PDF
-            </LoadingButton>
-          </div>
-        )}
 
         {location.pathname.includes('/draft') ? (
           <LoadingButton
             id="update-btn"
             type="button"
             onClick={handleUpdate}
-            staleIcon={ICONS.EDIT}
-            loading={isSubmitting}>
+            staleIcon={ICONS.UPDATE}
+            iconColor="rgb(9, 170, 17)"
+            loading={false}>
             Update Resume
           </LoadingButton>
         ) : (
           <Link to={saveResumePathname} id="save-btn">
-            Save Resume <Icon icon={ICONS.SAVE} size={26} fill="#fff" />
+            Save Resume <Icon icon={ICONS.SAVE} size={26} fill="rgb(9, 170, 17)" />
           </Link>
         )}
 
@@ -185,6 +179,34 @@ const ResumeForm = ({ values, errors, setFieldValue, isSubmitting, submitCount, 
             <br />
             Please correct them, and then submit the form again.
           </div>
+        )}
+
+        {showDownloadButtons && (
+          <Fragment>
+            <h3 className="downloads-title">Your downloads:</h3>
+
+            <div className="download-group">
+              <LoadingButton
+                download
+                staleIcon={ICONS.DOWNLOAD}
+                iconColor="#00a2ff"
+                loading={!docx}
+                href={docx}
+                id="docx-btn">
+                DOCX
+              </LoadingButton>
+
+              <LoadingButton
+                download
+                staleIcon={ICONS.DOWNLOAD}
+                iconColor="#ff4d4d"
+                loading={!pdf}
+                href={pdf}
+                id="pdf-btn">
+                PDF
+              </LoadingButton>
+            </div>
+          </Fragment>
         )}
       </Form>
 

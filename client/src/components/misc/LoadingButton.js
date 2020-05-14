@@ -16,7 +16,7 @@ const ButtonWrapper = ({ children, download, ...otherProps }) => {
   }
 };
 
-const LoadingButton = ({ loading, children, download, staleIcon, className, ...otherProps }) => {
+const LoadingButton = ({ loading, children, download, staleIcon, className, iconColor = '#fff', ...otherProps }) => {
   return (
     <ButtonWrapper
       download={download}
@@ -24,7 +24,7 @@ const LoadingButton = ({ loading, children, download, staleIcon, className, ...o
       {...otherProps}>
       {children}
 
-      {loading ? <Spinner /> : <Icon icon={staleIcon} size={26} fill="#fff" />}
+      {loading ? <Spinner /> : <Icon icon={staleIcon} size={26} fill={iconColor} />}
     </ButtonWrapper>
   );
 };

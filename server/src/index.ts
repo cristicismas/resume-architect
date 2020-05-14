@@ -16,7 +16,9 @@ const init = async () => {
     port: 8000,
     host: 'localhost',
     routes: {
-      cors: true
+      cors: {
+        origin: process.env.CORS_WHITELIST.split(', ')
+      }
     }
   });
 

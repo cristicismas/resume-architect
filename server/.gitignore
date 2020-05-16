@@ -1,0 +1,5 @@
+node_modules
+temp
+.env
+resumes_list.json
+template_previews.json

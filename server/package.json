@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e ts --exec npm run compile",
-    "compile": "rm -rf ./dist/* && tsc && node ./dist/index.js"
+    "start": "npm run compile && nodemon -e ts --exec node ./dist/index.js",
+    "compile": "rm -rf ./dist/* && tsc",
+    "deploy": "npm run compile && git add . && git commit -m Deploy && git push heroku master",
+    "heroku-postbuild": "rm -rf node_modules/bcrypt && npm install && mkdir temp && touch temp/template.docx"
   },
   "author": "Cristi Cismas",
   "license": "ISC",
@@ -14,13 +16,6 @@
     "@hapi/boom": "^9.0.0",
     "@hapi/hapi": "^18.4.1",
     "@hapi/joi": "^17.1.0",
-    "@types/fs-extra": "^8.0.1",
-    "@types/hapi__joi": "^16.0.11",
-    "@types/jsonwebtoken": "^8.3.7",
-    "@types/lodash.merge": "^4.6.6",
-    "@types/node-cron": "^2.0.2",
-    "@types/pizzip": "^3.0.1",
-    "@types/request": "^2.48.4",
     "angular-expressions": "^1.0.1",
     "bcrypt": "^3.0.7",
     "cloudinary": "^1.18.1",
@@ -33,11 +28,18 @@
     "mongoose": "^5.8.4",
     "node-cron": "^2.0.3",
     "pizzip": "^3.0.6",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "nodemon": "^2.0.2",
+    "typescript": "^3.7.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "typescript": "^3.7.4",
+    "@types/fs-extra": "^8.0.1",
+    "@types/hapi__joi": "^16.0.11",
+    "@types/jsonwebtoken": "^8.3.7",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/node-cron": "^2.0.2",
+    "@types/pizzip": "^3.0.1",
+    "@types/request": "^2.48.4",
     "@types/hapi": "^18.0.3",
     "@types/node": "^13.1.2",
     "@types/bcrypt": "^3.0.0",

@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run compile && nodemon -e ts --exec node ./dist/index.js",
-    "compile": "rm -rf ./dist/* && tsc",
-    "deploy": "npm run compile && git add . && git commit -m Deploy && git push heroku master",
-    "heroku-postbuild": "rm -rf node_modules/bcrypt && npm install && mkdir temp && touch temp/template.docx"
+    "compile": "rm -rf ./dist/* && tsc"
   },
   "author": "Cristi Cismas",
   "license": "ISC",

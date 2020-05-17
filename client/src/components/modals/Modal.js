@@ -22,7 +22,7 @@ const useOutsideClickDetector = (ref, closeModal) => {
   });
 };
 
-const useOwnScrollbar = () => {
+const useDisableBodyScroll = () => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -32,13 +32,21 @@ const useOwnScrollbar = () => {
   }, []);
 };
 
+const useScrollToTop = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+};
+
 const Modal = ({ hideCloseModalButton, closeModal, isFullscreen, children }) => {
   const modalRoot = document.getElementById('modal-root');
 
   const modalRef = useRef(null);
   useOutsideClickDetector(modalRef, closeModal);
 
-  useOwnScrollbar();
+  useDisableBodyScroll();
+
+  useScrollToTop();
 
   const childrenWithCloseModal = Children.map(children, child => {
     // If typeof child.type is a string, then the element is an html element,

@@ -25,6 +25,7 @@ const ResumeForm = ({ values, errors, setFieldValue, isSubmitting, submitCount, 
 
   const saveResumePathname = useAddToPathname('save');
 
+  const { loggedIn } = useSelector(state => state.user);
   const { templateToBuild } = useSelector(state => state.previews);
   const { docx, pdf } = useSelector(state => state.resume);
 
@@ -167,11 +168,11 @@ const ResumeForm = ({ values, errors, setFieldValue, isSubmitting, submitCount, 
             loading={false}>
             Update Resume
           </LoadingButton>
-        ) : (
+        ) : loggedIn ? (
           <Link to={saveResumePathname} id="save-btn">
             Save Resume <Icon icon={ICONS.SAVE} size={26} fill="rgb(9, 170, 17)" />
           </Link>
-        )}
+        ) : null}
 
         {Object.keys(errors).length > 0 && submitCount > 0 && (
           <div className="errors-warning">

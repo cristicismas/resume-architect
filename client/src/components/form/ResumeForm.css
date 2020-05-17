@@ -182,7 +182,8 @@
 }
 
 #resume-form #submit-btn .icon,
-#resume-form .download-group .icon {
+#resume-form .download-group .icon,
+#resume-form #update-btn .icon {
   margin: 3px 0 0 8px;
 }
 

@@ -22,16 +22,6 @@ const About = () => {
         try to fool its users in order to get revenue.
         <br />
         <br />
-        The reason I won't ask for money, and the reason I'm not going to bloat this site with ads, is that I don't
-        actually need money to host the website, since it's hosted on a free server on{' '}
-        <a className="intermediary" href="https://heroku.com">
-          Heroku
-        </a>
-        . That means that resume building isn't going to be necessarily fast, but from what I could test, it's fast
-        enough to be usable.
-        <br />
-        <br />
-        <br />
         Currently, the site has very few templates, and I need some help adding more. If you want to help, contact me at
         <a className="intermediary" href="mailto:cristicismas.webdev@gmail.com">
           cristicismas.webdev@gmail.com

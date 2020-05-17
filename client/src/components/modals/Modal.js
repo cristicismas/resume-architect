@@ -32,9 +32,11 @@ const useDisableBodyScroll = () => {
   }, []);
 };
 
-const useScrollToTop = () => {
+const useScrollToTopOnPhones = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.innerWidth <= 800) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 };
 
@@ -46,7 +48,7 @@ const Modal = ({ hideCloseModalButton, closeModal, isFullscreen, children }) => 
 
   useDisableBodyScroll();
 
-  useScrollToTop();
+  useScrollToTopOnPhones();
 
   const childrenWithCloseModal = Children.map(children, child => {
     // If typeof child.type is a string, then the element is an html element,

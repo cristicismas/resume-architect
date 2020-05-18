@@ -26,6 +26,12 @@
       "schoolEndDate": "May 2016",
       "school": "Miami University",
       "degree": "B.A. H.R. Management"
+    },
+    {
+      "schoolStartDate": "February 2016",
+      "schoolEndDate": "May 2020",
+      "school": "Washington University",
+      "degree": "Computer Science"
     }
   ],
   "extra": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus ornare risus quis sollicitudin. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;"

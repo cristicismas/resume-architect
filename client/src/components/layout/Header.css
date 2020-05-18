@@ -388,6 +388,10 @@ header #small-nav .nav-checkbox:checked + .checkbox-label .hamburger-menu::after
 }
 
 @media only screen and (max-width: 380px) {
+  header {
+    margin-bottom: 50px;
+  }
+
   header #small-nav .checkbox-label {
     top: 90px;
     right: 50%;

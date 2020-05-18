@@ -24,6 +24,7 @@ header .title {
   margin: 0;
   padding: 10px;
   font-size: 30px;
+  white-space: nowrap;
 }
 
 header .title a {

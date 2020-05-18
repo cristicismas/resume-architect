@@ -26,8 +26,6 @@ const Header = () => {
   const headerClassName = pathname === '/' || pathname === '/confirm_logout' ? 'light' : 'dark';
 
   const handleCheckboxChange = e => {
-    console.log(e.target.checked);
-    
     if (e.target.checked) {
       document.body.style.overflow = 'hidden';
     } else {

@@ -6,6 +6,7 @@ import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 import { CloudinaryResource } from '../interfaces/cloudinary';
 import { readJSON, writeStreamFromURL, writeToTemp } from '../utils/files';
+import { sanitizeAndFormatFormData } from '../utils/resume';
 import { docToPdf } from '../utils/convertors';
 import rootDir from '../constants/rootDir';
 import docxParser from '../constants/docxParser';
@@ -15,14 +16,15 @@ export const buildTemplatePreviews = async () => {
     const templates = await cloudinary.v2.api.resources({
       resource_type: 'raw',
       type: 'upload',
-      prefix: 'resume_architect/resumes',
+      prefix: 'resume_architect/resumes'
     });
 
     for (const template of templates.resources) {
       await writeStreamFromURL(template.secure_url, 'temp/template.docx');
 
       const templateData = await readJSON('template_sample_data.json');
-      const populatedTemplate = await populateTemplate('temp/template.docx', templateData);
+
+      const populatedTemplate = await populateTemplate('temp/template.docx', sanitizeAndFormatFormData(templateData));
       await writeToTemp('populated_template.docx', populatedTemplate);
 
       const pdf = await docToPdf(path.join(rootDir, 'temp/populated_template.docx'));
@@ -33,7 +35,7 @@ export const buildTemplatePreviews = async () => {
 
       await cloudinary.v2.uploader.upload(path.join(rootDir, 'temp/populated_template.pdf'), {
         public_id: pdfFileName,
-        resource_type: 'image',
+        resource_type: 'image'
       });
     }
 
@@ -50,7 +52,7 @@ export const populateTemplate = async (inputFilePath: string, templateData: any)
 
     const zipContent = new PizZip(template);
     const doc = new Docxtemplater();
-    await doc.loadZip(zipContent).setOptions({ parser: docxParser });
+    await doc.loadZip(zipContent).setOptions({ parser: docxParser, linebreaks: true });
 
     doc.setData(templateData);
     doc.render();
@@ -68,7 +70,7 @@ export const fetchAndStorePreviewLinks = async () => {
     const templates = await cloudinary.v2.api.resources({
       type: 'upload',
       prefix: 'resume_architect/previews',
-      max_results: 500,
+      max_results: 500
     });
 
     // Returns all template previews with a .png extension
@@ -78,7 +80,7 @@ export const fetchAndStorePreviewLinks = async () => {
 
       return {
         name,
-        url,
+        url
       };
     });
 

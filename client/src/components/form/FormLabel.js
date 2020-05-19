@@ -8,7 +8,7 @@ import Icon from '../misc/Icon';
 const FormLabel = ({ htmlFor, linkTo, children }) => {
   return (
     <div className="label">
-      <Link to={linkTo}>
+      <Link to={linkTo} tabIndex="-1">
         <Icon icon={ICONS.INFO} size={20} />
       </Link>
 

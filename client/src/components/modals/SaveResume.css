@@ -13,28 +13,27 @@
 }
 
 #save-resume .submit-btn {
-  background-color: rgb(50, 205, 97);
+  background-color: rgba(50, 205, 97, .2);
+  color: rgb(5, 153, 12);
   display: flex;
   justify-content: center;
   border: none;
   margin: 50px auto 0px;
-  color: white;
-  font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
   font-size: 22px;
   padding: 12px 19px 12px 15px;
-  border-radius: 5px;
 }
 
 #save-resume .submit-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(50, 205, 97, 0.35);
 }
 
 #save-resume .submit-btn .icon {
   position: relative;
   top: 3px;
   left: 7px;
+  fill: rgb(5, 153, 12);
 }
 
 @media only screen and (max-width: 550px) {

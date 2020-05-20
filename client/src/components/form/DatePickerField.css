@@ -11,6 +11,10 @@
   padding: 5px;
 }
 
+.dates-group .react-datepicker__today-button {
+  font-size: 18px;
+}
+
 .dates-group {
   display: flex;
   align-items: center;

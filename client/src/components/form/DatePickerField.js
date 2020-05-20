@@ -11,6 +11,7 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange, monthYearPi
     <div className="dates-group">
       <DatePicker
         withPortal
+        onFocus={e => (e.target.readOnly = true)}
         selected={startDateObject}
         onChange={date => onChange(`${namePrefix}StartDate`, date)}
         selectsStart
@@ -26,6 +27,7 @@ const DatePickerField = ({ namePrefix, startDate, endDate, onChange, monthYearPi
 
       <DatePicker
         withPortal
+        onFocus={e => (e.target.readOnly = true)}
         todayButton="Present"
         selected={endDateObject}
         onChange={date => onChange(`${namePrefix}EndDate`, date)}

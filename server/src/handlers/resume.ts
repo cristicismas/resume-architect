@@ -111,7 +111,9 @@ export const updateResume = async (request: Request, res: ResponseToolkit) => {
     const resumeUserId = resume.meta.user_id.toString();
 
     if (resumeUserId === _id) {
-      await Resume.findByIdAndUpdate(resumeId, { $set: { data: updatedResume.data } });
+      await Resume.findByIdAndUpdate(resumeId, {
+        $set: { data: updatedResume.data, 'meta.templateName': updatedResume.meta.templateName }
+      });
     } else {
       return Boom.unauthorized('You are not allowed to update that resume.');
     }

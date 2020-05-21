@@ -121,8 +121,16 @@ export const saveUserResume = (resume, resumeName) => async dispatch => {
   }
 };
 
-export const updateResume = (id, updatedResume) => async dispatch => {
+export const updateResume = (templateName, id, updatedResume) => async dispatch => {
   try {
+    updatedResume = {
+      ...updatedResume,
+      meta: {
+        ...updatedResume.meta,
+        templateName
+      }
+    };
+
     if (id === 'Auto_Saved_Resume') {
       let resume = JSON.parse(localStorage.getItem('autoSavedResume'));
       resume.data = updatedResume.data;

@@ -49,7 +49,7 @@ const ResumeForm = ({ values, errors, setFieldValue, isSubmitting, submitCount, 
   }, [dispatchGetSinglePreview, templateName]);
 
   const handleUpdate = () => {
-    dispatch(updateResume(resumeId, formatResumeToSave(formData)));
+    dispatch(updateResume(templateName, resumeId, formatResumeToSave(formData)));
   };
 
   const changeTemplatePath = useAddToPathname('change_template');

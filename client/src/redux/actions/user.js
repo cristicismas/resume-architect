@@ -87,14 +87,13 @@ export const checkToken = () => async dispatch => {
       type: LOGGED_IN,
       payload: response
     });
-
-    dispatch({
-      type: TOKEN_CHECKED,
-      payload: response
-    });
   } catch (err) {
     await err;
   }
+
+  dispatch({
+    type: TOKEN_CHECKED
+  });
 };
 
 export const logout = () => async dispatch => {

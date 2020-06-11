@@ -19,13 +19,19 @@
 }
 
 .template-options > button {
-  height: 40px;
-  width: 40px;
-  background-color: transparent;
-  border: none;
+  height: 45px;
+  width: 45px;
+  background-color: rgba(238, 238, 238, 0.5);
+  border-radius: 10px;
+  border: 2px solid #555;
   padding: 10px;
   margin: 15px 3px;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.template-options > button:hover {
+  background-color: rgb(255, 255, 255);
 }
 
 .template-options > button > .icon {
@@ -42,6 +48,7 @@
 
 @media (pointer: coarse), (pointer: none) {
   .template-options {
+    background-image: none;
     visibility: visible;
     opacity: 1;
   }
@@ -57,5 +64,29 @@
     opacity: 1;
     width: calc(100% - 80px);
     transform: translate(-50%, -10px);
+  }
+
+  .template-options > button {
+    background-color: #fff;
+  }
+
+  .template-options > button > .icon {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .template-options {
+    background-image: none;
+  }
+
+  .template-options > button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .template-options > button > .icon {
+    width: 27px;
+    height: 27px;
   }
 }

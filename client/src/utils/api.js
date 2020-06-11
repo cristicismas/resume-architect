@@ -15,7 +15,7 @@ export const apiCall = async (method, path, data) => {
       } else {
         // If the content-type is set to json, parse the response as json
         // otherwise, parse it as a blob.
-        if (res.headers.get('content-type').indexOf('application/json') !== -1) {
+        if (res.headers.get('content-type') && res.headers.get('content-type').indexOf('application/json') !== -1) {
           return res.json();
         } else {
           return res.blob();

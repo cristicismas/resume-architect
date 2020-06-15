@@ -24,7 +24,7 @@
   content: '';
   width: 350px;
   padding: 30px 50px;
-  height: 320px;
+  height: 325px;
   background: linear-gradient(to bottom right, rgb(0, 43, 124) 0%, rgb(0, 204, 255) 100%);
   position: absolute;
   top: 0;
@@ -40,6 +40,20 @@
   text-align: center;
 }
 
+#features .feature-cards .card .card-title .icon {
+  position: relative;
+  top: 3px;
+  right: 5px;
+  margin-right: 5px;
+  transition: all .2s;
+}
+
+#features .feature-cards .card .card-title .money-icon {
+  transform: scale(1.2);
+  top: 5px;
+  right: 7px;
+}
+
 #features .feature-cards .card .card-description {
   font-size: 22px;
   display: flex;
@@ -52,6 +66,10 @@
   box-shadow: 0 20px 30px 0px #bbb;
   color: #fff;
   background-color: transparent;
+}
+
+#features .feature-cards .card:hover .icon {
+  fill: #fff;
 }
 
 #features .feature-cards .card:hover::before {
@@ -72,6 +90,10 @@
   #features .feature-cards .card:hover {
     color: #000;
     background-color: #fff;
+  }
+
+  #features .feature-cards .card:hover .icon {
+    fill: #111;
   }
 }
 

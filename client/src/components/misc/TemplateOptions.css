@@ -27,18 +27,18 @@
   padding: 10px;
   margin: 15px 3px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
+  background-color: rgb(255, 255, 255);
 }
 
 .template-options > button:hover {
-  background-color: rgb(255, 255, 255);
+  box-shadow: -3px 3px 1px 0px #000;
 }
 
 .template-options > button > .icon {
   position: relative;
   top: -7px;
   left: -4px;
-  opacity: 0.5;
   transition: opacity 0.2s;
 }
 
@@ -68,6 +68,10 @@
 
   .template-options > button {
     background-color: #fff;
+  }
+
+  .template-options > button:hover {
+    box-shadow: none;
   }
 
   .template-options > button > .icon {

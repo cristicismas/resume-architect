@@ -8,22 +8,21 @@
 }
 
 #delete-resume .delete-btn {
-  background-color: #e93c3c;
+  background-color: rgba(233, 60, 60, .2);
   display: flex;
   justify-content: center;
   border: none;
   margin: 50px auto 0px;
-  color: white;
+  color: #e93c3c;
   font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
   font-size: 22px;
   padding: 12px 19px 12px 15px;
-  border-radius: 5px;
 }
 
 #delete-resume .delete-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(233, 60, 60, .3);
 }
 
 #delete-resume .delete-btn .icon {

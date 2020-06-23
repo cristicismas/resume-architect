@@ -38,6 +38,7 @@ const DeleteResume = () => {
           loading={false}
           staleIcon={ICONS.DELETE}
           onClick={handleDelete}
+          iconColor="#e93c3c"
           type="button"
           className="delete-btn">
           Delete

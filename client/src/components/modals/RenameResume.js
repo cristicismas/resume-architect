@@ -47,7 +47,7 @@ const RenameResume = () => {
             type="text"
           />
 
-          <LoadingButton loading={false} staleIcon={ICONS.EDIT} type="submit" className="submit-btn">
+          <LoadingButton loading={false} staleIcon={ICONS.EDIT} iconColor="#0084ff" type="submit" className="submit-btn">
             Rename
           </LoadingButton>
         </form>

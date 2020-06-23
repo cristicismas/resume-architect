@@ -19,22 +19,21 @@
 }
 
 #rename-resume .submit-btn {
-  background-color: #00a2ff;
+  background-color: rgba(0, 162, 255, .2);
+  color: #0084ff;
   display: flex;
   justify-content: center;
   border: none;
-  margin: 50px auto 0px;
-  color: white;
+  margin: 55px auto 0px;
   font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
   font-size: 22px;
   padding: 12px 19px 12px 15px;
-  border-radius: 5px;
 }
 
 #rename-resume .submit-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(0, 162, 255, .3);
 }
 
 #rename-resume .submit-btn .icon {

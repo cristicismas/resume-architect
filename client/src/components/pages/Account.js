@@ -44,6 +44,7 @@ const Account = () => {
       <LoadingButton
         loading={false}
         staleIcon={ICONS.DELETE}
+        iconColor="#e93c3c"
         onClick={handleDelete}
         type="button"
         className="delete-btn">

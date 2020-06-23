@@ -20,7 +20,7 @@ const Footer = () => {
 
           {loggedIn ? <Link to="/resumes">My Resumes</Link> : null}
 
-          <Link to="/about">About Us</Link>
+          <Link to="/about">About</Link>
           <Link to="/credits">Credits & Attributions</Link>
 
           {loggedIn ? <Link to="/account">Your Account</Link> : null}

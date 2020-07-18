@@ -36,4 +36,4 @@ CORS_WHITELIST
 ```
 
 
-__!!! The backend requires dotenv to be installed locally first.__
+__!!! The backend requires unoconv to be installed locally first.__

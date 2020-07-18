@@ -34,3 +34,6 @@ CLOUD_API_SECRET
 DATABASE_URL
 CORS_WHITELIST
 ```
+
+
+__!!! The backend requires dotenv to be installed locally first.__

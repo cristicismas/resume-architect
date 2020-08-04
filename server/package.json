@@ -25,9 +25,9 @@
     "lodash.merge": "^4.6.2",
     "mongoose": "^5.8.4",
     "node-cron": "^2.0.3",
+    "nodemon": "^2.0.4",
     "pizzip": "^3.0.6",
     "request": "^2.88.0",
-    "nodemon": "^2.0.2",
     "typescript": "^3.7.4"
   },
   "devDependencies": {

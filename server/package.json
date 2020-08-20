@@ -15,7 +15,7 @@
     "@hapi/hapi": "^18.4.1",
     "@hapi/joi": "^17.1.0",
     "angular-expressions": "^1.0.1",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "cloudinary": "^1.18.1",
     "docxtemplater": "^3.16.3",
     "dotenv": "^8.2.0",

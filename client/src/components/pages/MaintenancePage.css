@@ -1,0 +1,89 @@
+#maintenance-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 35px dashed yellow;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#maintenance-page.dark {
+  background-color: #090909;
+  color: #eee;
+}
+
+#maintenance-page::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  content: '';
+  border: 35px solid black;
+  width: calc(100vw - 70px);
+  height: calc(100vh - 70px);
+  margin-left: -35px;
+  margin-top: -35px;
+}
+
+#maintenance-page .page-text {
+  padding: 30px;
+}
+
+#maintenance-page .main-text {
+  font-size: 56px;
+  margin-top: -50px;
+}
+
+#maintenance-page .secondary-text {
+  font-size: 42px;
+}
+
+@media only screen and (max-width: 1000px) {
+  #maintenance-page .main-text {
+    font-size: 42px;
+  }
+
+  #maintenance-page .secondary-text {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #maintenance-page {
+    border-width: 25px;
+  }
+
+  #maintenance-page::before {
+    border: 25px solid black;
+    width: calc(100vw - 50px);
+    height: calc(100vh - 50px);
+    margin-left: -25px;
+    margin-top: -25px;
+  }
+
+  #maintenance-page .main-text {
+    font-size: 32px;
+  }
+
+  #maintenance-page .secondary-text {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #maintenance-page .page-text {
+    padding: 5px;
+  }
+
+  #maintenance-page .main-text {
+    font-size: 26px;
+  }
+
+  #maintenance-page .secondary-text {
+    font-size: 20px;
+  }
+}

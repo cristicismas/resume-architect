@@ -2,14 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
+import MaintenancePage from './components/pages/MaintenancePage';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
-ReactDOM.render(
+const underMaintenance = process?.env?.REACT_APP_MAINTENANCE?.toLowerCase() === 'true';
+
+const toRender = underMaintenance ? (
+  <MaintenancePage />
+) : (
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+)
+
+ReactDOM.render(
+  toRender,
   document.getElementById('root')
 );
 

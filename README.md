@@ -4,14 +4,14 @@ Hi! This is an open source Resume Builder.
 
 ## Setup
 
-#### Client
+### Client
 
 ```sh
 npm install
 npm start
 ```
 
-### DOTENV
+__.env__
 
 ```
 REACT_APP_API_URL
@@ -24,7 +24,7 @@ npm install
 npm start
 ```
 
-### DOTENV
+__.env__
 
 ```
 SECRET_KEY

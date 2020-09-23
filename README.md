@@ -15,6 +15,7 @@ __.env__
 
 ```
 REACT_APP_API_URL
+REACT_APP_MAINTENANCE
 ```
 
 ### Server

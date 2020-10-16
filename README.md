@@ -1,6 +1,8 @@
 # Resume Architect
 
-Hi! This is an open source Resume Builder.
+Hi! This is an open source Resume Builder website.
+
+![Resume Architect Image](https://cristicismas.github.io/images/resumearchitect.png)
 
 ## Setup
 

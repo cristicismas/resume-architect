@@ -14,7 +14,7 @@
     "@hapi/boom": "^9.0.0",
     "@hapi/hapi": "^18.4.1",
     "@hapi/joi": "^17.1.0",
-    "angular-expressions": "^1.0.1",
+    "angular-expressions": "^1.1.2",
     "bcrypt": "^5.0.0",
     "cloudinary": "^1.18.1",
     "docxtemplater": "^3.16.3",
